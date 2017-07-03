@@ -1,13 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <fmt:requestEncoding value="UTF-8"/> 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<%request.setCharacterEncoding("UTF-8"); 
-  String path=request.getContextPath();	
-%>    
+<%request.setCharacterEncoding("UTF-8"); String path=request.getContextPath(); %>    
 
 <!DOCTYPE html>
 <html>
@@ -139,17 +135,18 @@ body {
 	<c:import url="header.jsp"/>
 	</div>
 	<br><br><br><br><br><br>
-	<c:choose>
-		<%-- 서버단에서 받은 값이 insert면 물품 등록창 나옴 --%>
+	<!-- TODOwhyNot 없어도 되는 페이지 아님? -->
+	<%-- <c:choose>
+		서버단에서 받은 값이 insert면 물품 등록창 나옴
 		<c:when test="${item == 'insert' }">
 			<br><br><br><br><br><br>
 			<c:import url="../item/insert.jsp"/>
 		</c:when>
-		<%-- 그외는 list화면 --%>
+		그외는 list화면
 		<c:otherwise>
 			<c:import url="../item/list.jsp"/>
 		</c:otherwise>
-	</c:choose>
+	</c:choose> --%>
 	
 	<!-- carousel 슬라이드쇼  -->
 	<div class="container">
@@ -166,7 +163,7 @@ body {
 				<!-- 랜덤 입찰 물품 -->
 				<div class="item active" style = "max-width: 700px; max-height:150px;">
 					<a href = '${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />' >  <!-- //TODO: 정효형 게시글 링크. -->
-					<img src="${randomOne.picture_location }" alt="Random data" style="width: 100%; height: 100%;" /> -->
+					<img src="${randomOne.picture_location }" alt="Random data" style="width: 100%; height: 100%;" />
 					<div class="carousel-caption">
 						<h3>randomOne ${randomOne.item_name } </h3>
 						<p>randomOne ${randomOne.item_content } </p>
@@ -177,8 +174,7 @@ body {
 				<!-- 카테고리 홍보: phone -->
 				<div class="item" style = "max-width: 700px; max-height:150px;">
 					<a href = "${path }/search.do?schParentDept=&schDept=phone" > 
-					
-					<img src="http://cfile1.uf.tistory.com/image/230CD4385334098709CFFC" alt="Category Ads - Phone" style="width: 100%; height: 100%;" />-->
+					<img src="http://cfile1.uf.tistory.com/image/230CD4385334098709CFFC" alt="Category Ads - Phone" style="width: 100%; height: 100%;" />
 					<div class="carousel-caption">
 						<h3> category Ads </h3>
 						<p> try Smart Phone! </p>
@@ -291,9 +287,9 @@ body {
 	
 	
 	
-	<!-- 맨아래 사이트맵. -->
-	<footer  id = "block" >
-	<c:import url="siteMap.jsp"/>
-	</footer>
+	<!-- 맨아래 사이트맵. 문제있음!! -->
+<%-- 	<footer  id = "block" >
+	<jsp:include page="siteMap.jsp" />
+	</footer> --%>
 </body>
 </html>

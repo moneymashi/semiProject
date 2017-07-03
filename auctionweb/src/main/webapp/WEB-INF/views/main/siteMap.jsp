@@ -116,7 +116,7 @@ section .col-md-3:first-child {
       </div>
     </div>
   </section>
-  <section id="sec3">
+  <section id="sec3"></section>
 
 </div>
 <!-- /container -->

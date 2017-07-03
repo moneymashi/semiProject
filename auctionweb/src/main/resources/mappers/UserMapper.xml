@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cto.auction.repository.user.UserDAO">
+	<!-- 테스트/관리자용 회원정보 -->
+	<select id="auctionUserList" resultType="user">
+		SELECT * FROM AUCTION_USER WHERE 1=1
+	</select>
+	<select id="loginCheck" resultType="user">
+		SELECT * FROM AUCTION_USER
+		WHERE email = #{email} AND password = #{password}
+	</select>
+	<!-- 회원가입 : USER_ID자동생성 ,권한 및 포인트 기본 0 -->
+	<select id="signUpProc" resultType="user">
+		INSERT INTO
+		AUCTION_USER
+		(EMAIL, PASSWORD, USER_NAME, REGISTER_DATE) VALUES
+		(#{email}, #{password}, #{user_name}, SYSDATE)
+	</select>
+
+	<select id="myPageUserInfo" resultType="user">
+		SELECT * FROM AUCTION_USER WHERE USER_ID = #{user_id }
+		<!-- SELECT
+		USER_ID
+		USER_NAME
+		EMAIL AS email, PASSWORD AS password,
+		REGISTER_DATE as registerDate, AUTH
+		AS auth, USER_POINT AS userPoint,
+		REAL_NAME AS realName, ADDRESS AS
+		address,
+		ZIP_CODE AS zipCode,
+		PHONE_NUMBER as phoneNumber, PICTURE AS picture FROM
+		AUCTION_USER WHERE
+		EMAIL = #{email} -->
+	</select>
+	<update id="myPageUserUpdate" parameterType="user">
+		UPDATE
+		AUCTION_USER
+		SET
+		PICTURE_LOCATION = #{picture_location},
+		PHONE_NUMBER =
+		#{phone_number},
+		USER_NAME = #{user_name},
+		PASSWORD = #{password}
+		WHERE USER_ID = ${user_id } 
+	</update>
+	
+	<delete id="myPageUserDelete">
+		DELETE FROM AUCTION_USER WHERE USER_ID = #{user_id}
+	</delete>
+	
+	
+	<update id="myPageLocUpdate" parameterType="user">
+	UPDATE
+	AUCTION_USER
+	SET
+	REAL_NAME = #{real_name},
+	ADDRESS = #{address},
+	ZIP_CODE = #{zip_code},
+	PHONE_NUMBER = #{phone_number}
+	WHERE USER_ID = ${user_id }
+	</update>
+	
+	<select id="myPageUserPayment" resultType="payment">
+		SELECT * FROM USER_PAYMENT WHERE USER_ID = #{user_id}
+	</select>
+	<update id="myPagePayUpdate" parameterType="payment">
+	UPDATE
+	USER_PAYMENT
+	SET
+	CARD_COMPANY = #{card_company},
+	SERIAL_NUMBER = #{serial_number},
+	CVC = #{cvc},
+	MONTH = #{month},
+	YEAR = #{year}
+	WHERE USER_ID = ${user_id }
+	</update>
+	<select id="myPagePayInsert" resultType="payment">
+		INSERT INTO
+		USER_PAYMENT
+		( USER_ID, CARD_COMPANY, SERIAL_NUMBER, CVC, MONTH, YEAR )	VALUES
+		( ${user_id }, #{card_company}, #{serial_number}, #{cvc}, #{month}, #{year})
+	</select>
+
+
+</mapper>

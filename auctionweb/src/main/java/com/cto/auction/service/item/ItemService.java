@@ -3,9 +3,11 @@ package com.cto.auction.service.item;
 import java.io.File; 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,4 +124,27 @@ public class ItemService {
 		in.close();
 		out.close();
 	}*/
+	
+	
+	
+	
+	
+	
+	
+	/* whyNot Start */
+	public List<Item> auctionInfoBidding(Item info, HttpSession session) {
+		info.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoBidding(info);
+	}
+	public List<Item> auctionInfoWinBid(Item info, HttpSession session) {
+		info.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoWinBid(info);
+	}
+	public List<Item> auctionInfoLoseBid(Item info, HttpSession session) {
+		info.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoLoseBid(info);
+	}
+	
+	
+	/* whyNot End */
 }
