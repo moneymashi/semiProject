@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cto.auction.repository.member.MemberDAO">
+	<resultMap type="member" id="memberResult"/>
+	<!-- 로그인시 해당계정이 있는지 확인 -->
+	<select id="loginCheck" resultType="member">
+		SELECT * FROM AUCTION_USER WHERE EMAIL = #{email} AND PASSWORD = #{password}
+	</select>
+	<!-- 회원가입 -->
+	<select id="memberInsert" resultType="member">
+		INSERT INTO AUCTION_USER(EMAIL, PASSWORD, USER_NAME) 
+		VALUES(#{email}, #{password}, #{user_name})
+	</select>
+	<!-- 회원정보 확인 -->
+	<select id="memberInfo" resultType="member">
+		SELECT * FROM AUCTION_USER WHERE EMAIL = #{email}
+	</select>
+	<!-- 회원정보 수정 -->
+	<update id="memberUpdate" parameterType="member">
+		UPDATE AUCTION_USER SET PASSWORD = #{password}, USER_NAME = #{user_name} WHERE EMAIL = #{email}
+	</update>
+	<!-- 회원정보 삭제 -->
+	<delete id="memberDelete">
+		DELETE FROM AUCTION_USER WHERE EMAIL = #{email} AND PASSWORD = #{password}
+	</delete>
+</mapper>
