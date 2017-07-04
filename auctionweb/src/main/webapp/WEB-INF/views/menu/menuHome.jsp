@@ -29,12 +29,12 @@
 		<a href="${path }/notice/notice.do">공지/문의</a>
 	</div>
 	<div>
-		<a href="${path }/myPage/auctionInfo.do">MY PGAE</a>
+		<a href="${path }/myPage/auctionInfo.do">MY PGAE(기본 입찰정보창)</a>
 		<!-- TODO 입찰중인 상품 갯수 -->
 	</div>
 	<!-- TODO 공지 문의 게시판 주소 -->
 	<div>
-		<a href="${path }/TODO.do">판매자페이지</a>
+		<a href="${path }/auctioneerPage/auctioneerInfo.do">판매자페이지(기본 판매자정보창)</a>
 		<!-- TODO 입찰중인 상품 갯수 -->
 	</div>
 </body>

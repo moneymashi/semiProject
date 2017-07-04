@@ -43,7 +43,14 @@ public class MainController {
 		return mav;
 	}
 	
-	//판매자 정보가기
+	//판매자 전환하기
+	@RequestMapping("auctioneerPage/auctioneerAuth.do")
+	public ModelAndView auctioneerAuctioneerInfo(ModelAndView mav) {
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "auctioneerPage/auctioneerInfo");
+		return mav;
+	}
+	
 	
 	@RequestMapping("menuPageLoc.do")
 	public ModelAndView pageLoc(@RequestParam("pl") String pl,ModelAndView mav){
