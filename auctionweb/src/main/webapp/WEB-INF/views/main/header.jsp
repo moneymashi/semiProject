@@ -14,13 +14,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		/* 		var id = "${sessionScope.id}";
@@ -28,63 +32,29 @@
 		 alert(id);
 		 })
 		 */
+		
 	});
 </script>
 <style type="text/css">
 
 /* CSS는 복붙이라 설명 생략 ... */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
 
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-.dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-.dropdown-content a:hover {
-	background-color: #f1f1f1
-}
-
-.dropdown:hover .dropdown-content {
-	display: block;
-}
-
-.dropdown:hover .dropbtn {
-	background-color: #3e8e41;
-}
 </style>
+
+
+
+
 </head>
 <body>
-	<nav class="navbar  navbar-inverse  navbar-fixed-top">
-		<div class="container">
+
+<nav class="navbar  navbar-inverse  navbar-fixed-top">
+	<div class="container-fluid">
 			<%-- nav 맨왼쪽 로고 부분. --%>
-			<a class="navbar-brand" href="${path }/main.do">AUCTION</a>
+			<a class="navbar-brand col-sm-12" href="${path }/main.do">AUCTION</a>
 
 			<%-- 드랍다운 카테고리부분 --%>
-			<div class="form-inline form-group ">
-				<div class="input-group col-8 nav navbar-nav">
+			<div class=" col-sm-8">
+				
 
 					<%-- 부모카테고리 - Electronic --%>
 					<div class="dropdown">
@@ -114,27 +84,9 @@
 						</div>
 					</div>
 
-					<%-- 검색파트 :: //README: 검색 숨김 참고링크  https://bootsnipp.com/snippets/featured/inline-navbar-search   --%>
-					<div class="input-group-btn">
-						<form method="get" action="${path }/search.do">
-							<%-- name = schAll 로 searchLists메서드의 전체검색담당 --%>
-							<input type="text" class="search-query form-control pull-right"
-								name="schAll" placeholder="Search" value="${itemSch.schAll }" />
-							<%-- 검색창 꺠긋히 지우기. --%>
-							<button type="reset" class="btn btn-default">
-								<span class="glyphicon glyphicon-remove"><span
-									class="sr-only">Close</span></span>
-							</button>
-							<%-- submit버튼 --%>
-							<button class="btn btn-primary" type="submit">
-								<span class=" glyphicon glyphicon-search"><span
-									class="sr-only">Search</span></span>
-							</button>
-						</form>
-					</div>
-				</div>
 
-
+			</div>
+			<div class="col-sm-4">
 				<ul class="nav navbar-nav navbar-right">
 					<c:if test="${msg=='logout' }">
 						<div style="color: red;">로그아웃되었습니다.</div>
@@ -170,9 +122,40 @@
 						</c:otherwise>
 					</c:choose>
 				</ul>
-
+			
+			
+			
+				
+					
+					<%-- 검색창 css수정중 --%>
+					<div class="dropdown ">
+					  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+					  		검색<span class="caret"></span>
+					  	</button>
+						<ul class="dropdown-menu">
+							<li>
+								<%-- 검색파트 :: //README: 검색 숨김 참고링크  https://bootsnipp.com/snippets/featured/inline-navbar-search   --%>
+								<form method="get" action="${path }/search.do">
+									<%-- name = schAll 로 searchLists메서드의 전체검색담당 --%>
+									<input type="text" class="search-query form-control pull-right"
+										name="schAll" placeholder="Search" value="${itemSch.schAll }" />
+									<%-- 검색창 꺠긋히 지우기. --%>
+									<button type="reset" class="btn btn-default">
+										<span class="glyphicon glyphicon-remove"><span
+											class="sr-only">Close</span></span>
+									</button>
+									<%-- submit버튼 --%>
+									<button class="btn btn-primary" type="submit">
+										<span class=" glyphicon glyphicon-search"><span
+											class="sr-only">Search</span></span>
+									</button>
+								</form>
+							</li>
+						</ul>
+					</div>
 			</div>
-		</div>
-	</nav>
+	</div>
+</nav>
+
 </body>
 </html>
