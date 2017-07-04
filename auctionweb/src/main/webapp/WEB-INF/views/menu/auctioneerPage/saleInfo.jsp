@@ -60,8 +60,7 @@
 				<c:forEach var="biddingJspOnly" items="${bidding }">
 					<div>
 						<!-- 해당 물품 테이블 클릭시 해당 페이지로 이동  -->
-						<input type="hidden" name="auction_id"
-							value="${biddingJspOnly.auction_id }" />
+						<input type="hidden" name="auction_id" value="${biddingJspOnly.auction_id }" />
 						<div>이미지 : ${biddingJspOnly.picture_location}</div>
 						<div>물품명 : ${biddingJspOnly.item_name}</div>
 						<div>마감날짜 : ${biddingJspOnly.end_date}</div>

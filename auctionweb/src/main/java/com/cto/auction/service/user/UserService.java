@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.cto.auction.repository.user.UserDAO;
 import com.cto.auction.vo.user.User;
+import com.cto.auction.vo.bid.Bid;
+import com.cto.auction.vo.item.Item;
 import com.cto.auction.vo.user.Auctioneer;
 import com.cto.auction.vo.user.Payment;
 
@@ -81,4 +83,44 @@ public class UserService {
 		dao.auctioneerAuctioneerInsert(ins);
 		dao.auctioneerAuctioneerAuth(ins);
 	}
+	
+	
+	
+	
+	public List<Item> auctionInfoBidding01(Item item, HttpSession session) {
+		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoBidding01(item);
+	}
+	public List<Item> auctionInfoBidding02(Bid bid, HttpSession session) {
+		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoBidding02(bid);
+	}
+	
+	public List<Item> auctionInfoWinBid01(Item item, HttpSession session) {
+		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoWinBid01(item);
+	}
+	public List<Item> auctionInfoWinBid02(Bid bid, HttpSession session) {
+		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoWinBid02(bid);
+	}
+	
+	public List<Item> auctionInfoLoseBid01(Item item, HttpSession session) {
+		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoLoseBid01(item);
+	}
+	public List<Item> auctionInfoLoseBid02(Bid bid, HttpSession session) {
+		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.auctionInfoLoseBid02(bid);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

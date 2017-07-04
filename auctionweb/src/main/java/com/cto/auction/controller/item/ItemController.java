@@ -71,35 +71,6 @@ public class ItemController {
 	}
 
 	/* whyNot Start */
-	@RequestMapping("myPage/auctionInfo.do")
-	public ModelAndView myPageAuctionInfo(Item info, HttpSession session, ModelAndView mav) {
-		// menu/menu 페이지로 이동
-		mav.setViewName("menu/menu");
-		// menu.jsp 에 포함된 인클루드 페이지 auctionInfo.jsp
-		mav.addObject("pageName", "myPage/auctionInfo");
-		// 입찰중인 물품(경매시간 남은 경우. 입찰가와 상관없음)
-		List<Item> aib = service.auctionInfoBidding(info, session);
-		// 낙찰된 물품(경매시간이 끝났고, 입찰가가 1등인경우)
-		List<Item> aiw = service.auctionInfoWinBid(info, session);
-		// 낙찰에 실패한 물품(경매시간끝났고, 입찰가가 1등이 아닌경우)
-		List<Item> ail = service.auctionInfoLoseBid(info, session);
-		if (aib != null) {
-			mav.addObject("bidding", aib);
-		} else {
-			mav.addObject("biddingMsg", "nothing");
-		}
-		if (aiw != null) {
-			mav.addObject("winBid", aiw);
-		} else {
-			mav.addObject("winBidMsg", "nothing");
-		}
-		if (ail != null) {
-			mav.addObject("loseBid", ail);
-		} else {
-			mav.addObject("loseBidMsg", "nothing");
-		}
-		return mav;
-	}
 	
 	@RequestMapping("auctioneerPage/itemInsert.do")
 	public ModelAndView auctioneerItemInsert(ModelAndView mav) {
