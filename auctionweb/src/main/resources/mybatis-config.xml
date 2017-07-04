@@ -4,11 +4,12 @@
 <configuration>
 	<typeAliases>
 		<!-- 별명 설정 -->
-		<typeAlias alias="member" type="com.cto.auction.vo.member.Member"/>
+		<typeAlias alias="user" type="com.cto.auction.vo.user.User"/>
 		<typeAlias alias="board" type="com.cto.auction.vo.board.Board"/>
 		<typeAlias alias="item" type="com.cto.auction.vo.item.Item"/>
 		<typeAlias alias="itemSch" type="com.cto.auction.vo.item.Item_Sch"/>
 		<typeAlias alias="bid" type="com.cto.auction.vo.bid.Bid"/>
+		<typeAlias alias="payment" type="com.cto.auction.vo.user.Payment"/>
 	</typeAliases>
 </configuration>
 	

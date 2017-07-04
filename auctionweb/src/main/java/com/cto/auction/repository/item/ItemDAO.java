@@ -1,6 +1,7 @@
 package com.cto.auction.repository.item;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +24,12 @@ public interface ItemDAO {
 	public Item randomOne();
 	// 페이징 처리에 필요.
 	public int totCnt(Item_Sch sch);
+	
+	
+	/*whyNot Start */
+	public List<Item> auctionInfoBidding(Item info);
+	public List<Item> auctionInfoWinBid(Item info);
+	public List<Item> auctionInfoLoseBid(Item info);
+	
+	
 }

@@ -211,6 +211,33 @@
 	
 	
 	
+	<!-- whyNot Start -->
+	<select id="auctionInfoBidding" resultMap="itemResult">
+		SELECT * FROM AUCTION_ITEM WHERE
+		AUCTIONEER_ID = ${auctioneer_id }
+		<!-- TODO 현재 비딩한 데이터를 다 불러옴
+		이중에서 같은 물품은 내가 입찰한 내용만 가지고와야함
+		가지고 와야할 값
+		아이템테이블 : 현재 입찰가,...등등
+		비드 테이블 : 내가 입찰한 금액,... 등등 -->
+		<!-- SELECT * FROM AUCTION_ITEM WHERE
+		AUCTIONEER_ID = ${user_id }
+		AND
+		END_DATE > SYSDATE -->
+	</select>
+	<!-- Bidding(비딩중인 물품) -->
+	<select id="auctionInfoWinBid" resultMap="itemResult">
+	SELECT * FROM AUCTION_ITEM WHERE
+		AUCTIONEER_ID = ${auctioneer_id }
+	</select>
+	<!-- LoseBid(작찰실패한 물품) -->
+	<select id="auctionInfoLoseBid" resultMap="itemResult">
+	SELECT * FROM AUCTION_ITEM WHERE
+		AUCTIONEER_ID = ${auctioneer_id }
+	</select>
+	
+	
+	
 	
 	
 </mapper>
