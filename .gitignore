@@ -3,6 +3,6 @@
 
 ### Java-Web ###
 ## ignoring target file
-auctionweb/target
+auctionweb/target/
 
 # End of https://www.gitignore.io/api/java-web
