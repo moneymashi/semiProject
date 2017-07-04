@@ -42,8 +42,21 @@ public class Item {
 	private int parent_category_id;
 	private String picture_location;
 	private MultipartFile file;
+	private String parentName;  // 부모카테고리로 별명값 가져오기
+	private String childName; // 자식카테고리로 별명값 가져오기
 	
-
+	public String getParentName() {
+		return parentName;
+	}
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+	public String getChildName() {
+		return childName;
+	}
+	public void setChildName(String childName) {
+		this.childName = childName;
+	}
 	public String getState_name() {
 		return state_name;
 	}
