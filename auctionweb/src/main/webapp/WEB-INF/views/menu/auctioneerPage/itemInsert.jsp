@@ -106,49 +106,51 @@
 </style>
 </head>
 <body>
-
-<div class="container">
-<br><br><br><br>
-	<div class="panel panel-primary">
-		<div class="panel-heading" style="text-align:center;"><h2>물품등록</h2></div>
-		<div class="panel-body">
-			<form class="form-horizontal" id="form01" method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<%-- 세션 id값으로 자동설정 --%>
-					<label class="col-sm-2 control-label">판매자id:</label>
-					<div class="col-sm-10"><input class="form-control" type="text" id="auctioneer_id" name="auctioneer_id" value="${sessionScope.id }"/></div>
-				</div>	
-				<div class="form-group">
-					<label class="col-sm-2 control-label">품목명:</label>
-					<div class="col-sm-10"><input class="form-control" type="text" id="item_name" name="item_name" /></div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">상위카테고리:</label>
-					<div class="col-sm-10"><input class="form-control" name="parent_category_id" value="2"/></div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">하위카테고리:</label>
-					<div  class="col-sm-10"><input class="form-control" name="category_id" value="4"></div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">경매시작가:</label>
-					<div class="col-sm-10"><input class="form-control" type="text" id="current_bid_amount" name="current_bid_amount" /></div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">사진:</label>
-					<div class="col-sm-10"><input class="form-control" type="file" id="picture_location" name="file" /></div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">물품상세정보:</label>
-					<div class="col-sm-10"><textarea class="form-control" id="item_content" rows="20" name="item_content"></textarea></div>
-				</div>
-				<div class="form-group" style="text-align:center;">
-					<input class="btn btn-primary" id="insBtn" type="button" value="등록하기" />
-					<input class="btn btn-primary" type="reset" value="초기화" />
-				</div>
-			</form>
+	<div class="col-sm-3">
+		<jsp:include page="auctioneerPageNav.jsp" flush="false" />
+	</div>
+	<div class="container col-sm-9">
+	<br><br><br><br>
+		<div class="panel panel-primary">
+			<div class="panel-heading" style="text-align:center;"><h2>물품등록</h2></div>
+			<div class="panel-body">
+				<form class="form-horizontal" id="form01" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<%-- 세션 id값으로 자동설정 --%>
+						<label class="col-sm-2 control-label">판매자id:</label>
+						<div class="col-sm-10"><input class="form-control" type="text" id="auctioneer_id" name="auctioneer_id" value="${sessionScope.id }"/></div>
+					</div>	
+					<div class="form-group">
+						<label class="col-sm-2 control-label">품목명:</label>
+						<div class="col-sm-10"><input class="form-control" type="text" id="item_name" name="item_name" /></div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">상위카테고리:</label>
+						<div class="col-sm-10"><input class="form-control" name="parent_category_id" value="2"/></div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">하위카테고리:</label>
+						<div  class="col-sm-10"><input class="form-control" name="category_id" value="4"></div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">경매시작가:</label>
+						<div class="col-sm-10"><input class="form-control" type="text" id="current_bid_amount" name="current_bid_amount" /></div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">사진:</label>
+						<div class="col-sm-10"><input class="form-control" type="file" id="picture_location" name="file" /></div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">물품상세정보:</label>
+						<div class="col-sm-10"><textarea class="form-control" id="item_content" rows="20" name="item_content"></textarea></div>
+					</div>
+					<div class="form-group" style="text-align:center;">
+						<input class="btn btn-primary" id="insBtn" type="button" value="등록하기" />
+						<input class="btn btn-primary" type="reset" value="초기화" />
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>

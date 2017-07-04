@@ -17,12 +17,24 @@
 <style type="text/css"></style>
 </head>
 <body>
-	<h1>판매자페이지 네비(css후 삭제)</h1>
 	<c:if test="${mem.auth == 1}">
 		<div>판매자 등록하고 집문서 까지 팔아보자~!</div>
 	</c:if>
 	<c:if test="${mem.auth != 1}">
-		<div>
+		<ul class="list-group">
+		  <li class="list-group-item">
+		  	<a href="${path }/auctioneerPage/auctioneerInfo.do">판매자정보</a>
+			<!-- TODO 입찰중인 상품 갯수 -->
+		  </li>
+		  <li class="list-group-item">
+		  	<a href="${path }/auctioneerPage/itemInsert.do">판매등록</a>
+		  </li>
+		  <li class="list-group-item">
+		  	<a href="${path }/auctioneerPage/saleInfo.do">경매정보</a>
+		  </li>
+		</ul>
+		
+		<%-- <div>
 			<a href="${path }/auctioneerPage/auctioneerInfo.do">판매자정보</a>
 			<!-- TODO 입찰중인 상품 갯수 -->
 		</div>
@@ -32,7 +44,7 @@
 		<div>
 			<a href="${path }/auctioneerPage/saleInfo.do">경매정보</a>
 			<!-- TODO 입찰중인 상품 갯수 -->
-		</div>
+		</div> --%>
 	</c:if>
 	
 </body>

@@ -74,7 +74,7 @@
 			    </div>
 			    <div class="form-group">
 			      <label for="point">포인트:</label>
-			      <input type="text" class="form-control" id="point" value="${userInfo.user_point }" disabled>
+			      <input type="text" class="form-control" id="point" value="${userInfo.user_point }" >
 			    </div>
 			    <button type="button" id="uptBtn" class="btn btn-primary">수정</button>
 				<button type="button" id="delBtn" class="btn btn-danger">회원탈퇴</button>
