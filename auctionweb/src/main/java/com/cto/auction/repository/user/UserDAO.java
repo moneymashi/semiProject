@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Repository;
 
 import com.cto.auction.vo.user.User;
+import com.cto.auction.vo.user.Auctioneer;
 import com.cto.auction.vo.user.Payment;
 
 @Repository
@@ -24,16 +25,22 @@ public interface UserDAO {
 	public User myPageUserInfo(User info);
 
 	public void myPageUserUpdate(User upt);
-	
+
 	public void myPageUserDelete(User del);
 
-	
 	public void myPageLocUpdate(User upt);
 
 	public Payment myPageUserPayment(Payment info);
 
 	public void myPagePayUpdate(Payment upt);
 
-	public void myPagePayInsert(Payment upt);
+	public void myPagePayInsert(Payment ins);
 
+	public Auctioneer auctioneerAuctioneerInfo(Auctioneer info);
+
+	public void auctioneerAuctioneerUpdate(Payment upt);
+
+	public void auctioneerAuctioneerInsert(Payment ins);
+	
+	public void auctioneerAuctioneerAuth(User auth);
 }

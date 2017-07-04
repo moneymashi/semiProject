@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cto.auction.repository.user.UserDAO;
 import com.cto.auction.vo.user.User;
+import com.cto.auction.vo.user.Auctioneer;
 import com.cto.auction.vo.user.Payment;
 
 @Service
@@ -58,6 +59,7 @@ public class UserService {
 		info.setUser_id((Integer) session.getAttribute("sessionUser_id"));
 		return dao.myPageUserPayment(info);
 	}
+	
 
 	public void myPagePayUpdate(Payment upt) {
 		dao.myPagePayUpdate(upt);
@@ -66,4 +68,17 @@ public class UserService {
 		dao.myPagePayInsert(upt);
 	}
 
+	
+	public Auctioneer auctioneerAuctioneerInfo(Auctioneer info, HttpSession session) {
+		info.setAuctioneer_id((Integer) session.getAttribute("sessionUser_id"));
+		return dao.auctioneerAuctioneerInfo(info);
+	}
+	
+	public void auctioneerAuctioneerUpdate(Payment upt) {
+		dao.auctioneerAuctioneerUpdate(upt);
+	}
+	public void auctioneerAuctioneerInsert(Payment ins, User auth) {
+		dao.auctioneerAuctioneerInsert(ins);
+		dao.auctioneerAuctioneerAuth(auth);
+	}
 }

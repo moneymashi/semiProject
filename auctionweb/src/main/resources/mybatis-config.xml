@@ -10,6 +10,7 @@
 		<typeAlias alias="itemSch" type="com.cto.auction.vo.item.Item_Sch"/>
 		<typeAlias alias="bid" type="com.cto.auction.vo.bid.Bid"/>
 		<typeAlias alias="payment" type="com.cto.auction.vo.user.Payment"/>
+		<typeAlias alias="auctioneer" type="com.cto.auction.vo.user.Auctioneer"/>
 	</typeAliases>
 </configuration>
 	

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cto.auction.service.user.UserService;
 import com.cto.auction.vo.user.User;
+import com.cto.auction.vo.user.Auctioneer;
 import com.cto.auction.vo.user.Payment;
 
 
@@ -160,19 +161,28 @@ public class UserController {
 		return mav;
 	}
 	
+
+	
 	// 판매자 페이지
 	@RequestMapping("auctioneerPage/auctioneerInfo.do")
-	public ModelAndView auctioneerAuctioneerInfo(ModelAndView mav) {
+	public ModelAndView auctioneerAuctioneerInfo(Auctioneer info, HttpSession session, ModelAndView mav) {
 		mav.setViewName("menu/menu");
 		mav.addObject("pageName", "auctioneerPage/auctioneerInfo");
+		mav.addObject("acnrInfo", service.auctioneerAuctioneerInfo(info, session));
 		return mav;
 	}
-	@RequestMapping("auctioneerPage/itemInsert.do")
-	public ModelAndView auctioneerItemInsert(ModelAndView mav) {
-		mav.setViewName("menu/menu");
-		mav.addObject("pageName", "auctioneerPage/itemInsert");
-		return mav;
+	@RequestMapping("auctioneerPage/auctioneerUpdate.do")
+	public String auctioneerAuctioneerUpdate(Payment upt) {
+		service.auctioneerAuctioneerUpdate(upt);
+		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
+	@RequestMapping("auctioneerPage/auctioneerInsert.do")
+	public String auctioneerAuctioneerInsert(Payment ins, User auth) {
+		service.auctioneerAuctioneerInsert(ins, auth);
+		return "redirect:/auctioneerPage/auctioneerInfo.do";
+	}
+	
+	
 	@RequestMapping("auctioneerPage/saleInfo.do")
 	public ModelAndView auctioneerSaleInfo(ModelAndView mav) {
 		mav.setViewName("menu/menu");

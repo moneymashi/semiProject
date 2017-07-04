@@ -70,23 +70,6 @@ public class ItemController {
 		return "main/search";
 	}
 
-	// 아이템 등록화면 이동
-	@RequestMapping("item/insert.do")
-	public String insert(Model m) {
-		// view화면에서 item값이 insert면 등록화면이 나옴
-		m.addAttribute("item", "insert");
-		return "main/main";
-	}
-
-	// 아이템 등록실행
-	@RequestMapping("item/insertProc.do")
-	public String insertProc(@ModelAttribute Item ins, HttpSession session, MultipartFile file) throws IOException {
-		int id = (int) session.getAttribute("id");
-		ins.setAuctioneer_id(id);
-		service.itemInsert(ins, file);
-		return "redirect:/main.do";
-	}
-
 	/* whyNot Start */
 	@RequestMapping("myPage/auctionInfo.do")
 	public ModelAndView myPageAuctionInfo(Item info, HttpSession session, ModelAndView mav) {
@@ -116,6 +99,21 @@ public class ItemController {
 			mav.addObject("loseBidMsg", "nothing");
 		}
 		return mav;
+	}
+	
+	@RequestMapping("auctioneerPage/itemInsert.do")
+	public ModelAndView auctioneerItemInsert(ModelAndView mav) {
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "auctioneerPage/itemInsert");
+		return mav;
+	}
+	// 아이템 등록실행
+	@RequestMapping("auctioneerPage/itemInsertProc.do")
+	public String insertProc(@ModelAttribute Item ins, HttpSession session, MultipartFile file) throws IOException {
+		int id = (int) session.getAttribute("id");
+		ins.setAuctioneer_id(id);
+		service.itemInsert(ins, file);
+		return "redirect:/auctioneerPage/itemInsert.do";
 	}
 
 	/* whyNot End */
