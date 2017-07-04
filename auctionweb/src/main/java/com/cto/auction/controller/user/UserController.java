@@ -159,6 +159,27 @@ public class UserController {
 		mav.addObject("pageName", "myPage/delivery");
 		return mav;
 	}
+	
+	// 판매자 페이지
+	@RequestMapping("auctioneerPage/auctioneerInfo.do")
+	public ModelAndView auctioneerAuctioneerInfo(ModelAndView mav) {
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "auctioneerPage/auctioneerInfo");
+		return mav;
+	}
+	@RequestMapping("auctioneerPage/itemInsert.do")
+	public ModelAndView auctioneerItemInsert(ModelAndView mav) {
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "auctioneerPage/itemInsert");
+		return mav;
+	}
+	@RequestMapping("auctioneerPage/saleInfo.do")
+	public ModelAndView auctioneerSaleInfo(ModelAndView mav) {
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "auctioneerPage/saleInfo");
+		return mav;
+	}
+
 
 
 

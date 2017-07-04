@@ -23,7 +23,7 @@
 		<!-- TODO 입찰중인 상품 갯수 -->
 	</div>
 	<div>
-		<a href="${path }/auctioneerPage/saleRege.do">판매등록</a>
+		<a href="${path }/auctioneerPage/itemInsert.do">판매등록</a>
 	</div>
 	<div>
 		<a href="${path }/auctioneerPage/saleInfo.do">경매정보</a>
