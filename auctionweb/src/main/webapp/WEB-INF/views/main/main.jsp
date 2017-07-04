@@ -211,7 +211,7 @@ body {
 	<h3>recommend  </h3>
 	
 	<!--  최다 조회 물품 -->
-	<div class="block"  style = "display: inline-block; width:33%; height:100%;">
+	<div class="block"  style = "display: inline-block; width:25%; height:100%;">
 		<div class="top">
 			<ul>
 				<a href = '${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />' >  <!-- //TODO: 정효형 게시글 링크. -->	

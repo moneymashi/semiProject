@@ -113,13 +113,13 @@
 		<if test="endDateOrder != null and priceOrder != null and endDateOrder != '' and priceOrder != '' " >
 			ORDER BY ai.current_bid_amount ${priceOrder}, ai.end_date ${endDateOrder}
 		</if>  
-		<if test="endDateOrder != null and priceOrder == '' " >
+		<if test="endDateOrder != '' and priceOrder == '' " >
 			ORDER BY ai.end_date ${endDateOrder}
 		</if>  
-		<if test="priceOrder != null and endDateOrder == null " >
+		<if test="priceOrder != ''  and endDateOrder == '' " >
 			ORDER BY ai.current_bid_amount ${priceOrder}
 		</if>  
-		<if test="priceOrder == null and endDateOrder == null " >
+		<if test="priceOrder == '' and endDateOrder == '' " >
 			ORDER BY ai.auction_id desc
 		</if>  
 		) aiall )

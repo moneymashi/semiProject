@@ -8,8 +8,13 @@
         <!-- 드라이버 클래스 이름이 변경됨 -->
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
         <!-- 연결문자열에 log4jdbc가 추가됨 -->
+<<<<<<< HEAD
         <property name="url" value="jdbc:log4jdbc:oracle:thin:@192.168.0.110:1522:orcl"/>
         <property name="username" value="auction01"/>
+=======
+        <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="auction"/>
+>>>>>>> 4faa0ac198002629ce38c9edb1781ab1ac856b91
         <property name="password" value="1111"/>
         <!-- <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"/>
         <property name="username" value="auction01"/>
