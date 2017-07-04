@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cto.auction.service.item.ItemService;
 import com.cto.auction.service.user.UserService;
 import com.cto.auction.vo.user.User;
 import com.cto.auction.vo.bid.Bid;
@@ -25,7 +24,6 @@ import com.cto.auction.vo.user.Payment;
 public class UserController {
 	@Autowired(required = false)
 	private UserService service;
-	private ItemService serviceItem;
 	
 	@RequestMapping("whyNot.do")
 	public String auctionUserList(@ModelAttribute("testCtrlModelAttribute") User sch, Model m) {
@@ -54,7 +52,7 @@ public class UserController {
 			// 세션 name : 로그인 한 계정의 이름
 			session.setAttribute("name", service.loginCheck(mem).getUser_name());
 			// 보여주는 view 경로 설정( 로그인이 성공 했으면 main으로)
-			mav.setViewName("main/main");
+			mav.setViewName("redirect:/main.do");
 			// 해당 view에 포함시킬 객체 설정(로그인 여부 msg를 설정함-success)
 			mav.addObject("msg", "success");
 		} else {
@@ -105,8 +103,9 @@ public class UserController {
 
 	// 회원정보 수정
 	@RequestMapping("myPage/update.do")
-	public String myPageUserUpdate(User upt) {
+	public String myPageUserUpdate(User upt, HttpSession session) {
 		service.myPageUserUpdate(upt);
+		session.setAttribute("mem", service.myPageUserInfo(upt, session));
 		return "redirect:/myPage/userInfo.do";
 	}
 	@RequestMapping("myPage/locUpdate.do")
@@ -221,8 +220,9 @@ public class UserController {
 		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
 	@RequestMapping("auctioneerPage/auctioneerInsert.do")
-	public String auctioneerAuctioneerInsert(Auctioneer ins, HttpSession session) {
+	public String auctioneerAuctioneerInsert(Auctioneer ins, User upt, HttpSession session) {
 		service.auctioneerAuctioneerInsert(ins);
+		session.setAttribute("mem", service.myPageUserInfo(upt, session));
 		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
 	

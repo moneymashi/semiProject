@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cto.auction.repository.user.UserDAO;
-import com.cto.auction.vo.user.User;
 import com.cto.auction.vo.bid.Bid;
 import com.cto.auction.vo.item.Item;
 import com.cto.auction.vo.user.Auctioneer;
 import com.cto.auction.vo.user.Payment;
+import com.cto.auction.vo.user.User;
 
 @Service
 public class UserService {
@@ -27,6 +27,10 @@ public class UserService {
 	// 로그인 데이터확인
 	public User loginCheck(User mem) {
 		return dao.loginCheck(mem);
+	}
+	public User sessionUpdate(User supt, HttpSession session) {
+		supt.setUser_id((Integer) session.getAttribute("sessionUser_id"));
+		return dao.sessionUpdate(supt);
 	}
 
 	// 회원가입
