@@ -85,7 +85,16 @@
 	<select id="bidList" resultMap="bidResult">
 		SELECT * FROM AUCTION_BID WHERE AUCTION_ID = #{auction_id} ORDER BY BIDDING_DATE DESC
 	</select>
-
+	
+	<!-- 아이템 조회수 증가 -->
+	<update id="itemHit">
+		UPDATE AUCTION_ITEM SET ACCOUNT_HIT = ACCOUNT_HIT+1 WHERE AUCTION_ID = #{auction_id}
+	</update>
+	
+	<!-- 경매종료시 status변경 -->
+	<update id="changeStaus">
+		UPDATE AUCTION_ITEM SET STATE_CODE = 2 WHERE AUCTION_ID = #{auction_id}
+	</update>
 
 
 
