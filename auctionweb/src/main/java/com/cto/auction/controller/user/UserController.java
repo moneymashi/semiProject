@@ -172,13 +172,13 @@ public class UserController {
 		return mav;
 	}
 	@RequestMapping("auctioneerPage/auctioneerUpdate.do")
-	public String auctioneerAuctioneerUpdate(Payment upt) {
+	public String auctioneerAuctioneerUpdate(Auctioneer upt) {
 		service.auctioneerAuctioneerUpdate(upt);
 		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
 	@RequestMapping("auctioneerPage/auctioneerInsert.do")
-	public String auctioneerAuctioneerInsert(Payment ins, User auth) {
-		service.auctioneerAuctioneerInsert(ins, auth);
+	public String auctioneerAuctioneerInsert(Auctioneer ins, HttpSession session) {
+		service.auctioneerAuctioneerInsert(ins);
 		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
 	

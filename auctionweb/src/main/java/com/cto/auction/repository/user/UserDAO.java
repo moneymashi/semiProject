@@ -38,9 +38,9 @@ public interface UserDAO {
 
 	public Auctioneer auctioneerAuctioneerInfo(Auctioneer info);
 
-	public void auctioneerAuctioneerUpdate(Payment upt);
+	public void auctioneerAuctioneerUpdate(Auctioneer upt);
 
-	public void auctioneerAuctioneerInsert(Payment ins);
+	public void auctioneerAuctioneerInsert(Auctioneer ins);
 	
-	public void auctioneerAuctioneerAuth(User auth);
+	public void auctioneerAuctioneerAuth(Auctioneer auth);
 }

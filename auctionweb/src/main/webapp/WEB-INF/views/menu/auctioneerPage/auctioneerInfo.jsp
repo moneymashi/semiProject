@@ -12,19 +12,18 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#uptBtn").click(function() {
-			if ('<c:out value="${mem.auth }"/>' == 1) {
+			if ('<c:out value="${sessionScope.mem.auth }"/>' == 1) {
 				$("form").attr("action", "${path }/auctioneerPage/auctioneerInsert.do");
 				alert("판매자 등록을 진행합니다..");
 				$("form").submit();
 			} else {
-				$("form").attr("action", "${path }/auctioneerPage/auctioneerUpdate.do");
+				$("form").attr("action","${path }/auctioneerPage/auctioneerUpdate.do");
 				alert("판매자 정보를 수정했습니다.");
 				$("form").submit();
 			}
 		});
 		$(function() {
-			if ('<c:out value="${mem.auth }"/>' == 1) {
-				$("#uptBtn").text("판매자 등록");
+			if ('<c:out value="${sessionScope.mem.auth }"/>' == 1) { $("#uptBtn").text("판매자 등록");
 			} else {
 				$("#uptBtn").text("판매정보 수정");
 			}
@@ -44,37 +43,33 @@
 	<br>
 	<br>
 	<br>
+	<h1><c:out value="${sessionScope.mem.auth }"/></h1>
 	<form>
-		<input type="hidden" name="user_id" value="${mem.user_id }" />
+		<%-- <input type="hidden" name="user_id" value="${mem.user_id }" /> --%>
+		<input type="hidden" name="auctioneer_id" value="${mem.user_id }">
 		<div>
-			<span>auctioneer_id:${acnrInfo.user_id } //
-				session_id:${mem.user_id }</span>
-		</div>
-		<c:set var="auctioneeridserver" value="${acnrInfo.user_id }" />
-		<div>
+			<span>auctioneer_id:${acnrInfo.auctioneer_id } //
+					sessionScope_id:${sessionScope.mem.user_id } //
+				  session_id:${mem.user_id }</span>
+			<div>AUCTIONEER_ID : ${acnrInfo.auctioneer_id }</div>
+				<%-- <c:set var="memAuth" value="${mem.auth }" /> --%>
 			<div>
-				 AUCTIONEER_ID : <input type="text" name="auctioneer_id" id="auctioneer_id"
-					value="${acnrInfo.auctioneer_id }">
+				AUCTIONEER_LEVEL : ${acnrInfo.auctioneer_level }
 			</div>
 			<div>
-				 AUCTIONEER_LEVEL : <input type="text" name="auctioneer_level" id="auctioneer_level"
-					value="${acnrInfo.auctioneer_level }">
-			</div>
-			<div>
-				SATISFACTION : <input type="text" name="satisfaction" id="satisfaction"
-					value="${acnrInfo.satisfaction }">
+				SATISFACTION : ${acnrInfo.satisfaction }
 			</div>
 			<div>
 				BANK_NAME : <input type="text" name="bank_name" id="bank_name"
 					value="${acnrInfo.bank_name }">
 			</div>
 			<div>
-				ACCOUNT_NAME : <input type="text" name="account_name" id="account_name"
-					value="${acnrInfo.account_name }">
+				ACCOUNT_NAME : <input type="text" name="account_name"
+					id="account_name" value="${acnrInfo.account_name }">
 			</div>
 			<div>
-				ACCOUNT_NUMBER : <input type="text" name="account_number" id="account_number"
-					value="${acnrInfo.account_number }">
+				ACCOUNT_NUMBER : <input type="text" name="account_number"
+					id="account_number" value="${acnrInfo.account_number }">
 			</div>
 
 			<!-- TODO 비밀번호 넣나? -->

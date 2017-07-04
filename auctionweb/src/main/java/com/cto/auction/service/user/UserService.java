@@ -74,11 +74,11 @@ public class UserService {
 		return dao.auctioneerAuctioneerInfo(info);
 	}
 	
-	public void auctioneerAuctioneerUpdate(Payment upt) {
+	public void auctioneerAuctioneerUpdate(Auctioneer upt) {
 		dao.auctioneerAuctioneerUpdate(upt);
 	}
-	public void auctioneerAuctioneerInsert(Payment ins, User auth) {
+	public void auctioneerAuctioneerInsert(Auctioneer ins) {
 		dao.auctioneerAuctioneerInsert(ins);
-		dao.auctioneerAuctioneerAuth(auth);
+		dao.auctioneerAuctioneerAuth(ins);
 	}
 }

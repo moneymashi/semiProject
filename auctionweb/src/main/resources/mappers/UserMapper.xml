@@ -3,12 +3,13 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cto.auction.repository.user.UserDAO">
-	<resultMap type="user" id="userResult"/>
-	<resultMap type="payment" id="paymentResult"/>
-	<resultMap type="auctioneer" id="auctioneerResult"/>
+	<resultMap type="user" id="userResult" />
+	<resultMap type="payment" id="paymentResult" />
+	<resultMap type="auctioneer" id="auctioneerResult" />
 	<!-- 테스트/관리자용 회원정보 -->
 	<select id="auctionUserList" resultType="user">
-		SELECT * FROM AUCTION_USER WHERE 1=1
+		SELECT * FROM
+		AUCTION_USER WHERE 1=1
 	</select>
 	<select id="loginCheck" resultType="user">
 		SELECT * FROM AUCTION_USER
@@ -19,11 +20,13 @@
 		INSERT INTO
 		AUCTION_USER
 		(EMAIL, PASSWORD, USER_NAME, REGISTER_DATE) VALUES
-		(#{email}, #{password}, #{user_name}, SYSDATE)
+		(#{email},
+		#{password}, #{user_name}, SYSDATE)
 	</select>
 
 	<select id="myPageUserInfo" resultType="user">
-		SELECT * FROM AUCTION_USER WHERE USER_ID = #{user_id }
+		SELECT * FROM
+		AUCTION_USER WHERE USER_ID = #{user_id }
 	</select>
 	<update id="myPageUserUpdate" parameterType="user">
 		UPDATE
@@ -34,85 +37,78 @@
 		#{phone_number},
 		USER_NAME = #{user_name},
 		PASSWORD = #{password}
-		WHERE USER_ID = ${user_id } 
+		WHERE
+		USER_ID = ${user_id }
 	</update>
-	
 	<delete id="myPageUserDelete">
+		DELETE FROM AUCTIONEER_INFO WHERE AUCTIONEER_ID = #{user_id}\;
 		DELETE FROM AUCTION_USER WHERE USER_ID = #{user_id}
 	</delete>
-	
-	
+
 	<update id="myPageLocUpdate" parameterType="user">
-	UPDATE
-	AUCTION_USER
-	SET
-	REAL_NAME = #{real_name},
-	ADDRESS = #{address},
-	ZIP_CODE = #{zip_code},
-	PHONE_NUMBER = #{phone_number}
-	WHERE USER_ID = ${user_id }
+		UPDATE
+		AUCTION_USER
+		SET
+		REAL_NAME = #{real_name},
+		ADDRESS = #{address},
+		ZIP_CODE =
+		#{zip_code},
+		PHONE_NUMBER = #{phone_number}
+		WHERE USER_ID = ${user_id }
 	</update>
-	
+
 	<select id="myPageUserPayment" resultType="payment">
-		SELECT * FROM USER_PAYMENT WHERE USER_ID = #{user_id}
+		SELECT * FROM
+		USER_PAYMENT WHERE USER_ID = #{user_id}
 	</select>
 	<update id="myPagePayUpdate" parameterType="payment">
-	UPDATE
-	USER_PAYMENT
-	SET
-	CARD_COMPANY = #{card_company},
-	SERIAL_NUMBER = #{serial_number},
-	CVC = #{cvc},
-	MONTH = #{month},
-	YEAR = #{year}
-	WHERE USER_ID = ${user_id }
+		UPDATE
+		USER_PAYMENT
+		SET
+		CARD_COMPANY = #{card_company},
+		SERIAL_NUMBER = #{serial_number},
+		CVC = #{cvc},
+		MONTH = #{month},
+		YEAR = #{year}
+		WHERE USER_ID = ${user_id}
 	</update>
 	<select id="myPagePayInsert" resultType="payment">
 		INSERT INTO
 		USER_PAYMENT
-		( USER_ID, CARD_COMPANY, SERIAL_NUMBER, CVC, MONTH, YEAR )	VALUES
+		( USER_ID, CARD_COMPANY, SERIAL_NUMBER, CVC, MONTH, YEAR )
+		VALUES
 		( ${user_id }, #{card_company}, #{serial_number}, #{cvc}, #{month}, #{year})
 	</select>
-	
-	
-	
-	
-	
-	
-<!-- 	CREATE TABLE AUCTIONEER_INFO
-(
-   AUCTIONEER_ID      NUMBER (10),
-   AUCTIONEER_LEVEL   NUMBER (1) DEFAULT 0,
-   SATISFACTION       NUMBER (3) DEFAULT 0,
-   BANK_NAME          VARCHAR2 (100),
-   ACCOUNT_NAME       VARCHAR2 (100),
-   ACCOUNT_NUMBER     NUMBER (12)
-)
-NOCACHE
-LOGGING; -->
+
 	<select id="auctioneerAuctioneerInfo" resultType="auctioneer">
-		SELECT * FROM USER_PAYMENT WHERE AUCTIONEER_ID = #{auctioneer_id}
+		SELECT * FROM
+		AUCTIONEER_INFO WHERE AUCTIONEER_ID = #{auctioneer_id}
 	</select>
 	<update id="auctioneerAuctioneerUpdate" parameterType="auctioneer">
-	UPDATE
-	AUCTIONEER_INFO
-	SET
-	BANK_NAME = #{bank_name},
-	ACCOUNT_NAME = #{account_name},
-	ACCOUNT_NUMBER = #{account_number}
-	WHERE AUCTIONEER_ID = ${auctioneer_id }
+		UPDATE
+		AUCTIONEER_INFO
+		SET
+		BANK_NAME = #{bank_name},
+		ACCOUNT_NAME =
+		#{account_name},
+		ACCOUNT_NUMBER = #{account_number}
+		WHERE AUCTIONEER_ID
+		= ${auctioneer_id }
 	</update>
+	<!-- auctioneer_id를 jsp에서 불러오기때문에, 경매자 id를 이용하여 AUCTION_USER 테이블 수정. -->
 	<update id="auctioneerAuctioneerAuth" parameterType="user">
-	UPDATE
-	AUCTION_USER
-	SET
-	AUTH = 2
-	WHERE USER_ID = ${auctioneer_id }
+		UPDATE
+		AUCTION_USER
+		SET
+		AUTH = 2
+		WHERE USER_ID = ${auctioneer_id }
 	</update>
 	<select id="auctioneerAuctioneerInsert" resultType="auctioneer">
 		INSERT INTO
 		AUCTIONEER_INFO
-		( AUCTIONEER_ID, BANK_NAME, ACCOUNT_NAME, ACCOUNT_NUMBER )	VALUES
-		( ${auctioneer_id }, #{bank_name}, #{account_name}, #{account_number})
+		( AUCTIONEER_ID, BANK_NAME, ACCOUNT_NAME,
+		ACCOUNT_NUMBER ) VALUES
+		( ${auctioneer_id }, #{bank_name},
+		#{account_name}, #{account_number})
 	</select>
 </mapper>
