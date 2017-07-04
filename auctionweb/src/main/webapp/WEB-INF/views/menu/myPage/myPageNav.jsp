@@ -17,7 +17,29 @@
 <style type="text/css"></style>
 </head>
 <body>
-	<div>
+	<ul class="list-group">
+	  <li class="list-group-item">
+	  	<a href="${path }/myPage/auctionInfo.do">입찰정보</a>
+		<!-- TODO 입찰중인 상품 갯수 -->
+	  </li>
+	  <li class="list-group-item">
+	  	<a href="${path }/myPage/message.do">쪽지함</a>
+	  </li>
+	  <li class="list-group-item">
+	  	<a href="${path }/myPage/delivery.do">배송확인</a>
+		<!-- TODO 입찰중인 상품 갯수 -->
+	  </li>
+	  <li class="list-group-item">
+	  	<a href="${path }/myPage/locationInfo.do">주소지등록</a>
+	  </li>
+	  <li class="list-group-item">
+	  	<a href="${path }/myPage/userPayment.do">신용카드</a>
+	  </li>
+	  <li class="list-group-item">
+	  	<a href="${path }/myPage/userInfo.do">회원개인정보</a>
+	  </li>
+	</ul>
+	<%-- <div>
 		<a href="${path }/myPage/auctionInfo.do">입찰정보</a>
 		<!-- TODO 입찰중인 상품 갯수 -->
 	</div>
@@ -36,6 +58,6 @@
 	</div>
 	<div>
 		<a href="${path }/myPage/userInfo.do">회원개인정보</a>
-	</div>
+	</div> --%>
 </body>
 </html>

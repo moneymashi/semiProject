@@ -26,10 +26,4 @@ public interface ItemDAO {
 	public int totCnt(Item_Sch sch);
 	
 	
-	/*whyNot Start */
-	public List<Item> auctionInfoBidding(Item info);
-	public List<Item> auctionInfoWinBid(Item info);
-	public List<Item> auctionInfoLoseBid(Item info);
-	
-	
 }

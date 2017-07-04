@@ -39,7 +39,7 @@
 </head>
 <body>
 	<%-- header 삽입 --%>
-	<c:import url="../main/header.jsp" /><br>
+	<c:import url="../main/header.jsp" />
 	<div class="container">
 		<h3>게시글 수정</h3>
 
@@ -52,7 +52,7 @@
 				<label for="board_content">내용</label>
 				<textarea class="form-control" name="board_content" id="board_content" rows="4" placeholder="내용을 입력해주세요">${upt.board_content}</textarea>
 			</div>
-			<div class="form-group" style="text-align: right;">
+			<div class="form-group" style="text-align: center;">
 				<%-- 게시물번호를 hidden으로 처리 --%>
 				<input type="hidden" name="board_id" value="${upt.board_id}">
 				<button class="btn btn-primary" type="button" id="saveBtn">수정완료</button>

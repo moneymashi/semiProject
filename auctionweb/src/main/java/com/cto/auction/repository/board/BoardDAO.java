@@ -41,4 +41,8 @@ public interface BoardDAO {
 	public void bidInsert(Bid bid);
 	// 기존 입찰자면 비드테이블 값 수정
 	public void bidUpdate(Bid bid);
+	// 아이템 리스트에서 클릭시 조회수 1 증가
+	public void itemHit(int auction_id);
+	// 경매종료시 아이템 상태 변경
+	public void changeStaus(int auction_id);
 }

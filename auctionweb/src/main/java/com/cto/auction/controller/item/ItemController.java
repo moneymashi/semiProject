@@ -1,6 +1,6 @@
 package com.cto.auction.controller.item;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -70,52 +70,21 @@ public class ItemController {
 		return "main/search";
 	}
 
-	// 아이템 등록화면 이동
-	@RequestMapping("item/insert.do")
-	public String insert(Model m) {
-		// view화면에서 item값이 insert면 등록화면이 나옴
-		m.addAttribute("item", "insert");
-		return "main/main";
+	/* whyNot Start */
+	
+	@RequestMapping("auctioneerPage/itemInsert.do")
+	public ModelAndView auctioneerItemInsert(ModelAndView mav) {
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "auctioneerPage/itemInsert");
+		return mav;
 	}
-
 	// 아이템 등록실행
-	@RequestMapping("item/insertProc.do")
+	@RequestMapping("auctioneerPage/itemInsertProc.do")
 	public String insertProc(@ModelAttribute Item ins, HttpSession session, MultipartFile file) throws IOException {
 		int id = (int) session.getAttribute("id");
 		ins.setAuctioneer_id(id);
 		service.itemInsert(ins, file);
-		return "redirect:/main.do";
-	}
-
-	/* whyNot Start */
-	@RequestMapping("myPage/auctionInfo.do")
-	public ModelAndView myPageAuctionInfo(Item info, HttpSession session, ModelAndView mav) {
-		// menu/menu 페이지로 이동
-		mav.setViewName("menu/menu");
-		// menu.jsp 에 포함된 인클루드 페이지 auctionInfo.jsp
-		mav.addObject("pageName", "myPage/auctionInfo");
-		// 입찰중인 물품(경매시간 남은 경우. 입찰가와 상관없음)
-		List<Item> aib = service.auctionInfoBidding(info, session);
-		// 낙찰된 물품(경매시간이 끝났고, 입찰가가 1등인경우)
-		List<Item> aiw = service.auctionInfoWinBid(info, session);
-		// 낙찰에 실패한 물품(경매시간끝났고, 입찰가가 1등이 아닌경우)
-		List<Item> ail = service.auctionInfoLoseBid(info, session);
-		if (aib != null) {
-			mav.addObject("bidding", aib);
-		} else {
-			mav.addObject("biddingMsg", "nothing");
-		}
-		if (aiw != null) {
-			mav.addObject("winBid", aiw);
-		} else {
-			mav.addObject("winBidMsg", "nothing");
-		}
-		if (ail != null) {
-			mav.addObject("loseBid", ail);
-		} else {
-			mav.addObject("loseBidMsg", "nothing");
-		}
-		return mav;
+		return "redirect:/auctioneerPage/itemInsert.do";
 	}
 
 	/* whyNot End */

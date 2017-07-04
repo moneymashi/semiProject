@@ -135,18 +135,6 @@ body {
 	<c:import url="header.jsp"/>
 	</div>
 	<br><br><br><br><br><br>
-	<!-- TODOwhyNot 없어도 되는 페이지 아님? -->
-	<%-- <c:choose>
-		서버단에서 받은 값이 insert면 물품 등록창 나옴
-		<c:when test="${item == 'insert' }">
-			<br><br><br><br><br><br>
-			<c:import url="../item/insert.jsp"/>
-		</c:when>
-		그외는 list화면
-		<c:otherwise>
-			<c:import url="../item/list.jsp"/>
-		</c:otherwise>
-	</c:choose> --%>
 	
 	<!-- carousel 슬라이드쇼  -->
 	<div class="container">
@@ -211,7 +199,7 @@ body {
 	<h3>recommend  </h3>
 	
 	<!--  최다 조회 물품 -->
-	<div class="block"  style = "display: inline-block; width:33%; height:100%;">
+	<div class="block"  style = "display: inline-block; width:25%; height:100%;">
 		<div class="top">
 			<ul>
 				<a href = '${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />' >  <!-- //TODO: 정효형 게시글 링크. -->	

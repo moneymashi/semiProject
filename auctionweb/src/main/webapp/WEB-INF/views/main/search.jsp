@@ -9,9 +9,13 @@
 %>
 <%--  
 /* 
- * 0703, 16:22.
- * 2.2차 작업 - 유저 가격필터적용 및 주석작업완료. - JB.
- * 
+ * 0704, 10:35.
+ * 3차 버그픽스 // 필터 적용. 2페이지 ERROR 500존재. - JB.
+ 	변경사항  -------------- 
+ 	ItemMapper - order족
+ 	vo-item/item 에 parentName, childNAme
+ 	search.jsp 부모, 자식카테고리추가.
+ 
  */
 --%>
 <!DOCTYPE html>
@@ -35,10 +39,6 @@
 		////////////// AJAX 보류.
 		////////////// 버그: 필터 적용후, 검색결과 2페이지로 넘기고 다른 filter선택하면 ERROR 500 뜸.. 
 		////////////// 
-		////////////// 
-		////////////// 
-		
-		
 		// 각 페이지의 최대 게시물수.
 		$("select[name=pageSize]").val("${itemSch.pageSize}");
 		// select- option이 변할때 페이징처리.
@@ -68,7 +68,7 @@
 		var schParentDept = "${itemSch.schParentDept}" != "" ? "schParentDept=" + "${itemSch.schParentDept }" : "" ;
 		var schDept = "${itemSch.schDept}" != "" ? "&schDept=" + "${itemSch.schDept }" : "" ;
 		var schAll =  "${itemSch.schAll}" != "" ? "&schAll=" + "${itemSch.schAll }" : "" ;
-		alert('수정8.2');
+		//alert('수정8.2');
 		
 		// 입찰가 정렬필터  - html) select option형식
 		$("select[name=priceOrder]").val("${itemSch.priceOrder}"); 
@@ -260,8 +260,8 @@
 			<div id="block" style="width: 32%;">
 				<div class="top">
 					<ul><a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  <%-- //TODO: 정효형 링크 --%>
-						<li><span class="converse">Parent_category:  //mybatis별명!!!</span></li>
-						<li><span class="converse">Child_category:  </span></li>
+						<li><span class="converse">Parent_category: ${item.parentName } </span></li>
+						<li><span class="converse">Child_category: ${item.childName } </span></li>
 					</a></ul>
 				</div>
 				<div class="middle">

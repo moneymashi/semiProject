@@ -77,7 +77,7 @@
 	var code = "notnull";
 	var timer = 0;
 	var timeout;
-	function codeTimer(t){
+	function codeTimer(t) {
 		timer = t;
 		if (timer-- > 0) {
 			timeout = setTimeout(function() {
@@ -89,7 +89,7 @@
 				codeTimer(timer);
 			}, 1000);
 		} else {
-			$('#codeTime').text("인증시간끝!");
+			$('#codeTime').text("인증시간종료");
 		}
 	}
 
@@ -114,79 +114,87 @@
 	} */
 </script>
 <style type="text/css">
+body {
+	padding: 60px 0;
+}
+
+form>div {
+	margin: 15px 0;
+}
 </style>
 </head>
 <body>
 	<c:import url="../main/header.jsp" />
 	<br>
 	<br>
-	<br>
-	<br>
-	<form class="form-horizontal" method="post">
-		<fieldset>
-			<!-- Form Name -->
-			<legend>회원가입</legend>
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="email">E-mail</label>
-				<div class="col-md-2">
-					<input id="email" name="email" type="text"
-						placeholder="E-mail을 입력하세요." class="form-control input-md">
-				</div>
-				<div>
-					<input type="button" value="중복확인" /> (미구현)+알림창 사용가능여부
-				</div>
-			</div>
 
-			<!-- Text input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="user_name">USER_NAME</label>
-				<div class="col-md-2">
-					<input id="user_name" name="user_name" type="text"
-						placeholder="이름을 입력하세요." class="form-control input-md">
+	<div class="container">
+		<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<div class="panel-title">회원가입</div>
 				</div>
-			</div>
+				<div class="panel-body">
+					<!-- Form Name -->
+					<form method="post">
+						<div class="form-group">
+							<div class=" col-sm-12">
+								<label class=" control-label" for="email">E-mail</label>
+							</div>
+							<div class=" col-sm-9">
+								<!-- Text input-->
+								<input class=" form-control " id="email" name="email" type="text" placeholder="E-mail을 입력하세요." autofocus>
+							</div>
+							<div class=" col-sm-3">
+								<input class=" form-control btn btn-primary " type="button" value="중복확인" />
+							</div>
+						</div>
+						<div class="form-group col-sm-12">
+							<div class="">
+								<!-- Text input-->
+								<label class=" control-label" for="user_name">USER_NAME</label>
+								<input class="form-control" id="user_name" name="user_name" type="text" placeholder="이름을 입력하세요.">
+							</div>
+						</div>
+						<div class="form-group ">
+							<div class="col-sm-12">
+							<!-- Password input-->
+							<label class=" control-label" for="password">PASSWORD</label>
+							<input id="password" name="password" type="password" placeholder="비밀번호를 입력하세요" class="form-control input-md">
+							</div>
+						</div>
+						<div class="form-group col-sm-12">	
+							<!-- Password input-->
+							<label class=" control-label" for="password2">REPEAT PASSWORD</label>
+							<input id="password2" type="password" placeholder="비밀번호를 다시 입력하세요." class="form-control input-md">
+						</div>
 
-			<!-- Password input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="password">PASSWORD</label>
-				<div class="col-md-2">
-					<input id="password" name="password" type="password"
-						placeholder="비밀번호를 입력하세요" class="form-control input-md">
-				</div>
-			</div>
 
-			<!-- Password input-->
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="password2">REPEAT
-					PASSWORD</label>
-				<div class="col-md-2">
-					<input id="password2" type="password" placeholder="비밀번호를 다시 입력하세요."
-						class="form-control input-md">
+						<div class="form-group">
+							<div class=" col-sm-12">
+								<label class=" control-label" for="signUpCode">인증번호(미구현)</label>
+							</div>
+							<div class=" col-sm-9">
+								<input id="signUpCode" type="text" placeholder="인증번호" class="form-control input-md">
+							</div>
+							<div class=" col-sm-3">
+								<div id="signCodeBtn" class="btn btn-primary">인증번호발송</div>
+							</div>
+							<div class=" col-sm-12" >
+							<div id="signUpCode2" style="display:inline"></div>
+							<span class="glyphicon glyphicon-time"></span>
+							<div id="codeTime" style="display:inline"></div>
+						</div>
+						</div>
+						<!-- Button -->
+						<div class="form-group col-md-12">
+							<label class=" control-label" for="submit"></label>
+							<button id="signBtn" name="button" class="btn btn-primary">회원가입</button>
+						</div>
+					</form>
 				</div>
 			</div>
-			<div>
-				<label class="col-md-4 control-label" for="signUpCode">인증번호(미구현)</label>
-				<div class="col-md-2">
-					<input id="signUpCode" type="text" placeholder="인증번호"
-						class="form-control input-md">
-				</div>
-				<div>
-					<div id="signCodeBtn" class="btn btn-primary">인증번호발송</div>
-					(API)//발송->카운트다운+재발송
-				</div>
-				<div id="signUpCode2"></div>
-				<div id="codeTime">시간표시가 안되?</div>
-			</div>
-			<!-- Button -->
-			<br />
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="submit"></label>
-				<div class="col-md-4">
-					<button id="signBtn" name="button" class="btn btn-primary">회원가입</button>
-				</div>
-			</div>
-		</fieldset>
-	</form>
+		</div>
+	</div>
 </body>
 </html>

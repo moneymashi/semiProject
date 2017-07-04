@@ -80,6 +80,7 @@ public class BoardController {
 	    mav.addObject("status", "list"); 
 	    // 마감시간-현재시간이 0보다 같거나 작으면
 	    if(gap<=0){
+	    	service.changeStaus(auction_id);
 	    	mav.addObject("time", "end");
 	    // 아닐 경우
 	    }else{

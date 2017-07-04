@@ -14,15 +14,17 @@
 <style type="text/css"></style>
 </head>
 <body>
-	<div>
+	<div class="col-sm-3">
 		<jsp:include page="myPageNav.jsp" flush="false" />
 	</div>
-	<br>
-	<form>
-	<%--<input type="hidden" name="userId" value="${mem.userId }" /> --%>
-		<div>
-			<h1>현재 이 페이지에 대한 조 내 결정사항 없음.(없는 페이지)</h1>
-		</div>
-	</form>
+	
+	<div class="col-sm-9">
+		<form>
+		<%--<input type="hidden" name="userId" value="${mem.userId }" /> --%>
+			<div>
+				<h1>현재 이 페이지에 대한 조 내 결정사항 없음.(없는 페이지)</h1>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

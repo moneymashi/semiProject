@@ -3,9 +3,15 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cto.auction.repository.user.UserDAO">
+	<resultMap type="user" id="userResult" />
+	<resultMap type="payment" id="paymentResult" />
+	<resultMap type="auctioneer" id="auctioneerResult" />
+	<resultMap type="item" id="itemResult" />
+	<resultMap type="bid" id="bidResult"/>
 	<!-- 테스트/관리자용 회원정보 -->
 	<select id="auctionUserList" resultType="user">
-		SELECT * FROM AUCTION_USER WHERE 1=1
+		SELECT * FROM
+		AUCTION_USER WHERE 1=1
 	</select>
 	<select id="loginCheck" resultType="user">
 		SELECT * FROM AUCTION_USER
@@ -16,23 +22,13 @@
 		INSERT INTO
 		AUCTION_USER
 		(EMAIL, PASSWORD, USER_NAME, REGISTER_DATE) VALUES
-		(#{email}, #{password}, #{user_name}, SYSDATE)
+		(#{email},
+		#{password}, #{user_name}, SYSDATE)
 	</select>
 
 	<select id="myPageUserInfo" resultType="user">
-		SELECT * FROM AUCTION_USER WHERE USER_ID = #{user_id }
-		<!-- SELECT
-		USER_ID
-		USER_NAME
-		EMAIL AS email, PASSWORD AS password,
-		REGISTER_DATE as registerDate, AUTH
-		AS auth, USER_POINT AS userPoint,
-		REAL_NAME AS realName, ADDRESS AS
-		address,
-		ZIP_CODE AS zipCode,
-		PHONE_NUMBER as phoneNumber, PICTURE AS picture FROM
-		AUCTION_USER WHERE
-		EMAIL = #{email} -->
+		SELECT * FROM
+		AUCTION_USER WHERE USER_ID = #{user_id }
 	</select>
 	<update id="myPageUserUpdate" parameterType="user">
 		UPDATE
@@ -43,45 +39,165 @@
 		#{phone_number},
 		USER_NAME = #{user_name},
 		PASSWORD = #{password}
-		WHERE USER_ID = ${user_id } 
+		WHERE
+		USER_ID = ${user_id }
 	</update>
-	
 	<delete id="myPageUserDelete">
+		DELETE FROM AUCTIONEER_INFO WHERE AUCTIONEER_ID = #{user_id}\;
 		DELETE FROM AUCTION_USER WHERE USER_ID = #{user_id}
 	</delete>
-	
-	
+
 	<update id="myPageLocUpdate" parameterType="user">
-	UPDATE
-	AUCTION_USER
-	SET
-	REAL_NAME = #{real_name},
-	ADDRESS = #{address},
-	ZIP_CODE = #{zip_code},
-	PHONE_NUMBER = #{phone_number}
-	WHERE USER_ID = ${user_id }
+		UPDATE
+		AUCTION_USER
+		SET
+		REAL_NAME = #{real_name},
+		ADDRESS = #{address},
+		ZIP_CODE =
+		#{zip_code},
+		PHONE_NUMBER = #{phone_number}
+		WHERE USER_ID = ${user_id }
 	</update>
-	
+
 	<select id="myPageUserPayment" resultType="payment">
-		SELECT * FROM USER_PAYMENT WHERE USER_ID = #{user_id}
+		SELECT * FROM
+		USER_PAYMENT WHERE USER_ID = #{user_id}
 	</select>
 	<update id="myPagePayUpdate" parameterType="payment">
-	UPDATE
-	USER_PAYMENT
-	SET
-	CARD_COMPANY = #{card_company},
-	SERIAL_NUMBER = #{serial_number},
-	CVC = #{cvc},
-	MONTH = #{month},
-	YEAR = #{year}
-	WHERE USER_ID = ${user_id }
+		UPDATE
+		USER_PAYMENT
+		SET
+		CARD_COMPANY = #{card_company},
+		SERIAL_NUMBER = #{serial_number},
+		CVC = #{cvc},
+		MONTH = #{month},
+		YEAR = #{year}
+		WHERE USER_ID = ${user_id}
 	</update>
 	<select id="myPagePayInsert" resultType="payment">
 		INSERT INTO
 		USER_PAYMENT
-		( USER_ID, CARD_COMPANY, SERIAL_NUMBER, CVC, MONTH, YEAR )	VALUES
+		( USER_ID, CARD_COMPANY, SERIAL_NUMBER, CVC, MONTH, YEAR )
+		VALUES
 		( ${user_id }, #{card_company}, #{serial_number}, #{cvc}, #{month}, #{year})
 	</select>
 
-
+	<select id="auctioneerAuctioneerInfo" resultType="auctioneer">
+		SELECT * FROM
+		AUCTIONEER_INFO WHERE AUCTIONEER_ID = #{auctioneer_id}
+	</select>
+	<update id="auctioneerAuctioneerUpdate" parameterType="auctioneer">
+		UPDATE
+		AUCTIONEER_INFO
+		SET
+		BANK_NAME = #{bank_name},
+		ACCOUNT_NAME =
+		#{account_name},
+		ACCOUNT_NUMBER = #{account_number}
+		WHERE AUCTIONEER_ID
+		= ${auctioneer_id }
+	</update>
+	<!-- auctioneer_id를 jsp에서 불러오기때문에, 경매자 id를 이용하여 AUCTION_USER 테이블 수정. -->
+	<update id="auctioneerAuctioneerAuth" parameterType="user">
+		UPDATE
+		AUCTION_USER
+		SET
+		AUTH = 2
+		WHERE USER_ID = ${auctioneer_id }
+	</update>
+	<select id="auctioneerAuctioneerInsert" resultType="auctioneer">
+		INSERT INTO
+		AUCTIONEER_INFO
+		( AUCTIONEER_ID, BANK_NAME, ACCOUNT_NAME,
+		ACCOUNT_NUMBER ) VALUES
+		( ${auctioneer_id }, #{bank_name},
+		#{account_name}, #{account_number})
+	</select>
+	
+	
+	<!-- 옥션확인내용. -->
+	<select id="auctionInfoBidding01" resultMap="itemResult">
+		SELECT 
+		AI.AUCTION_ID, AI.AUCTIONEER_ID, AI.ITEM_NAME, AI.ITEM_CONTENT, AI.START_DATE,
+		AI.END_DATE, AI.STATE_CODE, AI.CURRNET_BIDDER_ID, AI.CURRENT_BIDDER,
+		AI.CURRENT_BID_AMOUNT, AI.AUCTION_HIT, AI.CATEGORY_ID, AI.PICTURE_LOCATION
+		FROM
+		AUCTION_BID AB
+		LEFT OUTER JOIN AUCTION_ITEM AI ON AB.AUCTION_ID = AI.AUCTION_ID
+		WHERE AB.BIDDER_ID = 4 AND SYSDATE &lt; AI.END_DATE
+		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
+		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
+		GROUP BY AUCTION_ID );
+	</select>
+	<select id="auctionInfoBidding02" resultMap="bidResult">
+		SELECT
+		AB.BID_ID, AB.AUCTION_ID, AB.BIDDER_ID, AB.BIDDING_DATE, AB.BID_AMOUNT
+		FROM
+		AUCTION_BID AB
+		LEFT OUTER JOIN AUCTION_ITEM AI ON AB.AUCTION_ID = AI.AUCTION_ID
+		WHERE AB.BIDDER_ID = 4 AND SYSDATE &lt; AI.END_DATE
+		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
+		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
+		GROUP BY AUCTION_ID );
+	</select>
+	
+	
+	<!-- 유저 낙찰한 물품 -->
+	<select id="auctionInfoWinBid01" resultMap="itemResult">
+		SELECT 
+		AI.AUCTION_ID, AI.AUCTIONEER_ID, AI.ITEM_NAME, AI.ITEM_CONTENT, AI.START_DATE,
+		AI.END_DATE, AI.STATE_CODE, AI.CURRNET_BIDDER_ID, AI.CURRENT_BIDDER,
+		AI.CURRENT_BID_AMOUNT, AI.AUCTION_HIT, AI.CATEGORY_ID, AI.PICTURE_LOCATION
+		FROM
+		AUCTION_BID AB
+		LEFT OUTER JOIN AUCTION_ITEM AI ON AB.AUCTION_ID = AI.AUCTION_ID
+		WHERE AB.BIDDER_ID = 4 AND SYSDATE &gt; AI.END_DATE
+		AND AB.BIDDER_ID = AI.CURRNET_BIDDER_ID
+		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
+		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
+		GROUP BY AUCTION_ID );
+	</select>
+	<select id="auctionInfoWinBid02" resultMap="bidResult">
+		SELECT
+		AB.BID_ID, AB.AUCTION_ID, AB.BIDDER_ID, AB.BIDDING_DATE, AB.BID_AMOUNT
+		FROM
+		AUCTION_BID AB
+		LEFT OUTER JOIN AUCTION_ITEM AI ON AB.AUCTION_ID = AI.AUCTION_ID
+		WHERE AB.BIDDER_ID = 4 AND SYSDATE &gt; AI.END_DATE
+		AND AB.BIDDER_ID = AI.CURRNET_BIDDER_ID
+		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
+		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
+		GROUP BY AUCTION_ID );
+	</select>
+	
+	
+	
+	<!-- 유저 낙찰실패한 물품 -->
+	<select id="auctionInfoLoseBid01" resultMap="itemResult">
+		SELECT 
+		AI.AUCTION_ID, AI.AUCTIONEER_ID, AI.ITEM_NAME, AI.ITEM_CONTENT, AI.START_DATE,
+		AI.END_DATE, AI.STATE_CODE, AI.CURRNET_BIDDER_ID, AI.CURRENT_BIDDER,
+		AI.CURRENT_BID_AMOUNT, AI.AUCTION_HIT, AI.CATEGORY_ID, AI.PICTURE_LOCATION
+		FROM
+		AUCTION_BID AB
+		LEFT OUTER JOIN AUCTION_ITEM AI ON AB.AUCTION_ID = AI.AUCTION_ID
+		WHERE AB.BIDDER_ID = 4 AND SYSDATE &gt; AI.END_DATE
+		AND AB.BIDDER_ID != AI.CURRNET_BIDDER_ID
+		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
+		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
+		GROUP BY AUCTION_ID );
+	</select>
+	<select id="auctionInfoLoseBid02" resultMap="bidResult">
+		SELECT
+		AB.BID_ID, AB.AUCTION_ID, AB.BIDDER_ID, AB.BIDDING_DATE, AB.BID_AMOUNT
+		FROM
+		AUCTION_BID AB
+		LEFT OUTER JOIN AUCTION_ITEM AI ON AB.AUCTION_ID = AI.AUCTION_ID
+		WHERE AB.BIDDER_ID = 4 AND SYSDATE &gt; AI.END_DATE
+		AND AB.BIDDER_ID != AI.CURRNET_BIDDER_ID
+		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
+		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
+		GROUP BY AUCTION_ID );
+	</select>
+	
 </mapper>

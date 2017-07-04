@@ -47,36 +47,29 @@
 </style>
 </head>
 <body>
+<div class="container">
+<h3>답변하기</h3>
+
 	<form>
 		<input type="hidden" name="board_id" value="${reply.board_id }"/>
 		<input type="hidden" name="board_group" value="${reply.board_group }"/>
 		<input type="hidden" name="board_step" value="${reply.board_step }"/>
 		<input type="hidden" name="board_indent" value="${reply.board_indent }"/>
 		<input type="hidden" name="board_name" value="${reply.board_name }"/>
-		<table style="width: 500; cellpadding: 0; cellspacing: 0;" border="1">
-			<tr>
-				<th>번호</th>
-				<td>${reply.board_id }</td>
-			</tr>
-			<tr>
-				<th>히트</th>
-				<td>${reply.board_hit }</td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td><input name="board_title" id="board_title" value="${reply.board_title }"/></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea name="board_content" id="board_content">${reply.board_content }</textarea></td>
-			</tr>
-			<tr>
-				<td>
-					<input type="button" id="writeBtn" value="답변"/>
-					<input type="button" id="backBtn" value="취소"/>
-				</td>
-			</tr>							
-		</table>
+		
+		<div class="form-group">
+			<label for="board_title">제목</label>
+			<input class="form-control" name="board_title" id="board_title" value="${reply.board_title }"/>
+		</div>
+		<div class="form-group">
+			<label for="board_content">내용</label>
+			<textarea class="form-control" name="board_content" id="board_content" rows="15">${reply.board_content }</textarea>
+		</div>
+		<div class="form-group" style="text-align: center;">
+			<input class="btn btn-primary" type="button" id="writeBtn" value="답변하기"/>
+			<input class="btn btn-primary" type="button" id="backBtn" value="취소"/>
+		</div>
 	</form>
+</div>
 </body>
 </html>

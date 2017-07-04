@@ -64,8 +64,8 @@
 	<c:if test="${pageName == 'auctioneerPage/auctioneerInfo' }">
 		<c:import url="auctioneerPage/auctioneerInfo.jsp"/>
 	</c:if>
-	<c:if test="${pageName == 'auctioneerPage/saleReg' }">
-		<c:import url="auctioneerPage/saleReg.jsp"/>
+	<c:if test="${pageName == 'auctioneerPage/itemInsert' }">
+		<c:import url="auctioneerPage/itemInsert.jsp"/>
 	</c:if>
 	<c:if test="${pageName == 'auctioneerPage/saleInfo' }">
 		<c:import url="auctioneerPage/saleInfo.jsp"/>
@@ -73,7 +73,6 @@
 
 
 	<div>
-		
 		<h1>푸터 - 사이트맵</h1>
 	</div>
 </body>
