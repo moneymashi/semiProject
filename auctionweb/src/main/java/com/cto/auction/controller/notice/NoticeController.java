@@ -35,7 +35,7 @@ public class NoticeController {
 		map.put("boardPage", boardPage);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("map", map);
-		mav.setViewName("/menu/menu");
+		mav.setViewName("menu/menu");
 		mav.addObject("pageName", "notice/notice");
 		return mav;
 	}
@@ -51,7 +51,7 @@ public class NoticeController {
 	// 글쓰기화면
 	@RequestMapping("insert.do")
 	public String insert(){
-		return "notice/noticeInsert";
+		return "menu/notice/noticeInsert";
 	}
 	
 	// 글쓰기 로직
@@ -65,7 +65,7 @@ public class NoticeController {
 	@RequestMapping("update.do")
 	public ModelAndView update(@RequestParam int notice_id){
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("notice/noticeUpdate");
+		mav.setViewName("menu/notice/noticeUpdate");
 		mav.addObject("upt", service.readNotice(notice_id));
 		return mav;
 	}

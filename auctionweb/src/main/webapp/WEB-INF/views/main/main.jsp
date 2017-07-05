@@ -182,11 +182,10 @@ body {
 						<a
 							href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
 							<!-- //TODO: 정효형 게시글 링크. --> <img
-							src="${randomOne.picture_location }" alt="Random data"
+							src="${path }/resources/upload/${randomOne.picture_location }" alt="Random data"
 							style="width: 100%; height: 100%;" />
 							<div class="carousel-caption">
 								<h3>randomOne ${randomOne.item_name }</h3>
-								<p>randomOne ${randomOne.item_content }</p>
 							</div>
 						</a>
 					</div>
@@ -250,7 +249,7 @@ body {
 					href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
 					<!-- //TODO: 정효형 게시글 링크. -->
 					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="${highestHit.picture_location  }" alt="pic"
+						<img src="${path }/resources/upload/${highestHit.picture_location  }" alt="pic"
 							style="width: 100%; height: 100%; background: cover;" />
 					</div>
 				</a>
@@ -259,7 +258,6 @@ body {
 						href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
 						<!-- //TODO: 정효형 게시글 링크. -->
 						<div class="heading">item_name: ${highestHit.item_name }</div>
-						<div class="info">item_content: ${highestHit.item_content }</div>
 						<div class="style">auction_hit: ${highestHit.auction_hit }</div>
 						<div class="price">current_bid_amount:
 							${highestHit.current_bid_amount }</div>
@@ -286,7 +284,7 @@ body {
 					href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
 					<!-- //TODO: 정효형 게시글 링크. -->
 					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="${highestBid.picture_location  }" alt="pic"
+						<img src="${path }/resources/upload/${highestBid.picture_location  }" alt="pic"
 							style="width: 100%; height: 100%; background: cover;" />
 					</div>
 				</a>
@@ -295,7 +293,6 @@ body {
 						href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
 						<!-- //TODO: 정효형 게시글 링크. -->
 						<div class="heading">item_name: ${highestBid.item_name }</div>
-						<div class="info">item_content: ${highestBid.item_content }</div>
 						<div class="style">auction_hit: ${highestBid.auction_hit }</div>
 						<div class="price">current_bid_amount:
 							${highestBid.current_bid_amount }</div>

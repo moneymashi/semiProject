@@ -44,7 +44,9 @@
 </head>
 <body>
 	<!-- header 삽입 -->
-	<c:import url="../main/header.jsp"/>
+	<c:import url="../../main/header.jsp"/>
+	<br><br><br><br>
+	<br><br><br><br>
 	<h2>게시글 수정</h2>
 	<form method="post">
 	    <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
