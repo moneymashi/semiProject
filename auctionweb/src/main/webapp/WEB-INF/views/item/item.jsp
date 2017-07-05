@@ -37,7 +37,10 @@
 			alert("로그인 후 이용 가능합니다.");
 			$(location).attr("href", "${path}/member/login.do");
 		});
-
+		$("#payBtn").click(function() {
+			//alert("결제창으로 넘어갑니다.");
+			$(location).attr("href", "${path}/myPage/payTheWin.do");
+		});
 	});
 	// 서버단에서 받는 msg값이 있으면 알림창
 	var msg = "${msg}";

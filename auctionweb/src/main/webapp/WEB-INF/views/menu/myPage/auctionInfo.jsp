@@ -25,6 +25,7 @@
 	<div class="col-sm-3">
 		<jsp:include page="myPageNav.jsp" flush="false" />
 	</div>
+	<h1>입찰 물품관리 페이지</h1>
 	<div class="col-sm-9">
 		<form>
 			<input type="hidden" name="bidding1" id="bidding1" value="${bidding1 }" />
@@ -34,7 +35,7 @@
 			<input type="hidden" name="loseBid1" id="loseBid1" value="${loseBid1 }" />
 			<input type="hidden" name="loseBid2" id="loseBid2" value="${loseBid2 }" />
 			<div>
-				<div>Bidding</div>
+				<div><h1>Bidding(입찰중인물품)</h1></div>
 				<div>
 					<c:if test="${biddingMsg=='nothing' }">
 						<div>입찰된 물품이 없습니다.</div>
@@ -52,20 +53,11 @@
 							<div>가격 : ${bidding1JspOnly.current_bid_amount}</div>
 						</div>
 					</c:forEach>
-					현재비딩값 아직 안나옴
-					<c:forEach var="bidding2JspOnly" items="${bidding2 }">
-						<h3>테스트용 비드 테이블</h3>
-						<div>BID_ID : ${bidding2JspOnly.bid_id}</div>
-						<div>AUCTION_ID : ${bidding2JspOnly.auction_id}</div>
-						<div>BIDDER_ID : ${bidding2JspOnly.bidder_id}</div>
-						<div>BIDDING_DATE : ${bidding2JspOnly.bidding_date}</div>
-						<div>BID_AMOUNT : ${bidding2JspOnly.bid_amount}</div>
-					</c:forEach>
 				</div>
 			</div>
 			<br />
 			<div>
-				<div>WinBid</div>
+				<div><h1>WinBid(낙찰된물품)</h1></div>
 				<div>
 					<c:if test="${winBidMsg=='nothing' }">
 						<div>낙찰된 물품이 없습니다.</div>
@@ -86,7 +78,7 @@
 			</div>
 			<br />
 			<div>
-				<div>LoseBid</div>
+				<div><h1>LoseBid(낙찰 실패한 물품)</h1></div>
 				<div>
 					<c:if test="${loseBidMsg=='nothing' }">
 						<div>낙찰에 실패한 물품이 없습니다.</div>
