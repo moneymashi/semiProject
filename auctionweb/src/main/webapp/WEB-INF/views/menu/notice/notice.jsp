@@ -71,7 +71,7 @@
 						<tr class="collapse collapse${notice.notice_no }">
 							<td colspan="3">
 								<form method="post" action="${path}/notice/delete.do">
-									<input type="hidden" name="notice_id" value="${notice.notice_id }" id="${notice.notice_id }" />
+									<input  type="hidden" name="notice_id" value="${notice.notice_id }" />
 									<c:set value="${notice.notice_id }" var = "notice_id"/> 
 									<a class="btn btn-default" href="${path}/notice/update.do?notice_id=${notice.notice_id}">수정</a>
 									<button type="submit" class="delBtn">삭제</button>	

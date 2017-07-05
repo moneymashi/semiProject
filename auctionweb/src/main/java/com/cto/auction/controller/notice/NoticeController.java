@@ -35,7 +35,7 @@ public class NoticeController {
 		map.put("boardPage", boardPage);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("map", map);
-		mav.setViewName("menu/menu");
+		mav.setViewName("/menu/menu");
 		mav.addObject("pageName", "notice/notice");
 		return mav;
 	}
