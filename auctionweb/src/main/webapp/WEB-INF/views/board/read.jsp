@@ -46,7 +46,6 @@
 </head>
 <body>
 	<%-- header 삽입 --%>
-<c:import url="../main/header.jsp" />
 
 <div class="container">
 <br>

@@ -51,7 +51,6 @@
 </head>
 <body>
 	<%-- header.jsp 인클루드 --%>
-	<c:import url="../main/header.jsp"/><br>
 	<div class="container">
 		
 		${map.count }개의 게시물이 있습니다.
