@@ -20,7 +20,6 @@ public class mailController {
 	@RequestMapping("mailSending.do")
 	public String mailSending(HttpServletRequest request) {
 		   
-	    String setfrom = "hadbsgk@gmail.com";         
 	    String tomail  = request.getParameter("tomail"); 
 	    String title   = request.getParameter("title"); 
 	    String content = request.getParameter("content"); 
@@ -29,8 +28,7 @@ public class mailController {
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper 
 	                        = new MimeMessageHelper(message, true, "UTF-8");
-	 
-	      messageHelper.setFrom(setfrom); 
+
 	      messageHelper.setTo(tomail); 
 	      messageHelper.setSubject(title);
 	      messageHelper.setText(content); 
