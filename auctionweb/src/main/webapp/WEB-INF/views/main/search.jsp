@@ -179,13 +179,22 @@
 	
 </script>
 <style type="text/css">
-* {
+/* * {
 	border: 1px red dotted;
-}
+} */
 
 #block {
 	display: inline-block;
 }
+
+.block {
+  margin: 15px;
+  border-radius: 4px;
+  background: #fff;
+  padding: 23px;
+  box-shadow: 0 2px 55px rgba(0,0,0,0.1);
+}
+
 </style>
 </head>
 <body>
@@ -256,21 +265,43 @@
 
 	<%-- 조회결과 물품목록 list. --%>
 	<%-- items는 ArrayList<Item> 형태,  Model d.addAttribute로 가져옴. --%>
-	<c:forEach var="item" items="${itemList }">
-			<div id="block" style="width: 32%;">
+	<div class="card-deck">
+		<c:forEach var="item" items="${itemList }">
+			<a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >
+				<div class="card col-sm-4">
+					<div class="block">
+						<img class="card-img-top" src="${item.picture_location }"
+							alt="pictureNotUploaded" width="32%" height="32%">
+						<div class="card-block">
+							<h4 class="card-title">${item.item_name }</h4>
+							<p class="card-text">${item.item_content }</p>
+							<p class="card-text">
+								<small class="text-muted"> <fmt:formatDate var="edate"
+										value="${item.end_date }" pattern="yyyy-MM-dd hh:mm:ss" />
+									입찰마감: <c:out value="${edate }" /></small>
+							</p>
+						</div>
+						<div class="card-footer">
+							<div class="style">Hit: ${item.auction_hit }</div>
+							<div class="price">현재 입찰가: ${item.current_bid_amount }원</div>
+						</div>
+					</div>
+				</div>
+			</a>
+			<%-- <div id="block" style="width: 32%;">
 				<div class="top">
-					<ul><a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  <%-- //TODO: 정효형 링크 --%>
+					<ul><a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  //TODO: 정효형 링크
 						<li><span class="converse">Parent_category: ${item.parentName } </span></li>
 						<li><span class="converse">Child_category: ${item.childName } </span></li>
 					</a></ul>
 				</div>
 				<div class="middle">
-					<a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  <%-- //TODO: 정효형 링크 --%>
+					<a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  //TODO: 정효형 링크
 						<img src="${item.picture_location }" alt="pictureNotUploaded" style="width: 32%; height: 32%;" />
 					</a>
 				</div>
 				<div class="bottom">
-					<a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  <%-- //TODO: 정효형 링크 --%>
+					<a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  //TODO: 정효형 링크
 						<div class="heading">${item.item_name }</div> 
 						<div class="info" >
 							time due: 
@@ -286,8 +317,9 @@
 						</div>
 					</a>
 				</div>
-			</div>
-	</c:forEach>
+			</div> --%>
+		</c:forEach>
+	</div>
 
 	<%-- 페이징 처리 - 페이지당 물품수(pageSize) --%>
 	<div>
@@ -318,7 +350,6 @@
 		</c:choose>
 		</a>
 	</c:forEach>
-
-
+	
 </body>
 </html>
