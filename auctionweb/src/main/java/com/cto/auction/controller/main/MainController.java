@@ -40,13 +40,21 @@ public class MainController {
 		return mav;
 	}
 	
-	//공지 및 문의 가기
+	/*//공지 및 문의 가기
 	@RequestMapping("notice/notice.do")
 	public ModelAndView noticeNotice(ModelAndView mav){
 		mav.setViewName("menu/menu");
 		mav.addObject("pageName", "notice/notice");
 		return mav;
 	}
+	
+	// 문의하기로 넘어가기
+	@RequestMapping("notice/qna.do")
+	public ModelAndView noticeQna(ModelAndView mav){
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "notice/qna");
+		return mav;
+	}*/
 	
 	//판매자 전환하기
 	@RequestMapping("auctioneerPage/auctioneerAuth.do")

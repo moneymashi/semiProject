@@ -39,6 +39,9 @@
 	<c:if test="${pageName == 'notice/notice' }">
 		<c:import url="notice/notice.jsp"/>
 	</c:if>
+	<c:if test="${pageName == 'notice/qna' }">
+		<c:import url="notice/qna.jsp"/>
+	</c:if>
 	
 	<!-- myPage메뉴 입찰정보/쪽지함/낙찰배송/주소지/신용카드/회원정보 순서-->
 	<c:if test="${pageName == 'myPage/auctionInfo' }">

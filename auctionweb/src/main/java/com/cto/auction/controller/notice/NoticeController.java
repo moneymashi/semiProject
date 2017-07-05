@@ -35,7 +35,16 @@ public class NoticeController {
 		map.put("boardPage", boardPage);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("map", map);
-		mav.setViewName("notice/notice");
+		mav.setViewName("/menu/menu");
+		mav.addObject("pageName", "notice/notice");
+		return mav;
+	}
+	
+	// 문의하기로 넘어가기
+	@RequestMapping("qna.do")
+	public ModelAndView noticeQna(ModelAndView mav){
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "notice/qna");
 		return mav;
 	}
 	
