@@ -151,8 +151,6 @@ body {
 </style>
 </head>
 <body>
-
-
 	<!--  헤더 import -->
 	<div>
 		<c:import url="header.jsp" />
