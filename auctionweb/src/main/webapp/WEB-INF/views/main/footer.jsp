@@ -41,26 +41,26 @@ ul {
 		<div class="col-md-4" align="center">
 			<ul>
 				<h4 class="siteTitle">환영합니다</h4>
-				<li><a class="site" href="#">옥션물품 보기</a></li>
-				<li><a class="site" href="#">옥션에 대해</a></li>
-				<li><a class="site" href="#">옥션에 취직하기</a></li>
+				<li><a class="site" href="/auction/main.do">옥션물품 보기</a></li>
+				<li><a class="site" href="https://ko.wikipedia.org/wiki/%EC%98%A5%EC%85%98_(%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8)">옥션에 대해</a></li>
+				<li><a class="site" href="https://recruit.ebaykorea.com/">옥션에 취직하기</a></li>
 			</ul>
 		</div>
 		<div class="col-md-4" align="center">
 			<ul>
 				<h4 class="siteTitle">내 정보관리하기</h4>
-				<li><a class="site" href="#">내 입찰보기</a></li>
-				<li><a class="site" href="#">내 계정관리</a></li>
-				<li><a class="site" href="#">내 쪽지함관리</a></li>
-				<li><a class="site" href="#">내 결제관리</a></li>
-				<li><a class="site" href="#">내 배송관리</a></li>
+				<li><a class="site" href="/auction/myPage/auctionInfo.do">내 입찰보기</a></li>
+				<li><a class="site" href="/auction/myPage/userInfo.do">내 계정관리</a></li>
+				<li><a class="site" href="/auction/myPage/message.do">내 쪽지함관리</a></li>
+				<li><a class="site" href="/auction/myPage/userPayment.do">내 결제관리</a></li>
+				<li><a class="site" href="/auction/myPage/delivery.do">내 배송관리</a></li>
 			</ul>
 		</div>
 		<div class="col-md-4" align="center">
 			<ul>
 				<h4 class="siteTitle">도움받기</h4>
-				<li><a class="site" href="#">물어보세요</a></li>
-				<li><a class="site" href="#">공지사항 확인하기</a></li>
+				<li><a class="site" href="/auction/notice/qna.do">물어보세요</a></li>
+				<li><a class="site" href="/auction/notice/list.do">공지사항 확인하기</a></li>
 			</ul>
 		</div>
 	</div>
