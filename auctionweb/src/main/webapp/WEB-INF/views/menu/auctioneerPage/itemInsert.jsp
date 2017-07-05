@@ -59,7 +59,7 @@
 				return;
 			}
 			
-			$("form").attr("action", "${path}/item/insertProc.do");
+			$("form").attr("action", "${path}/auctioneerPage/itemInsertProc.do");
 			$("form").submit();
 		});
 	});
