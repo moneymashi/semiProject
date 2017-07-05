@@ -64,33 +64,24 @@
 			$("form").submit();
 		});
 	});
-/* 	function categoryShow(cVal){
+ 	function categoryShow(cVal){
 		
 		var f=document.forms.form01;
 		var leng = $("#category_id").length;
-		
+		alert(cVal);
 		if(cVal == ""){
 			num = new Array("선택하세요");
 			vnum = new Array("");
 		} else if (cVal == "1") {
-			num = new Array("카테고리1-1","카테고리1-2","카테고리1-3","카테고리1-4","카테고리1-5","카테고리1-6","카테고리1-7");
-			vnum = new Array("101","102","103","104","105","106","107");
-		} else if (cVal == "2") {
-			num = new Array("카테고리2-1","카테고리2-2","카테고리2-3","카테고리2-4","카테고리2-5","카테고리2-6","카테고리2-7");
-			vnum = new Array("201","202","203","204","205","206","207");
-		} else if (cVal == "3") {
-			num = new Array("카테고리3-1","카테고리3-2","카테고리3-3","카테고리3-4","카테고리3-5","카테고리3-6","카테고리3-7");
-			vnum = new Array("301","302","303","304","305","306","307");
-		} else if (cVal == "4") {
-			num = new Array("카테고리4-1","카테고리4-2","카테고리4-3","카테고리4-4","카테고리4-5","카테고리4-6","카테고리4-7");
-			vnum = new Array("401","402","403","404","405","406","407");
-		} else if (cVal == "5") {
-			num = new Array("카테고리5-1","카테고리5-2","카테고리5-3","카테고리5-4","카테고리5-5","카테고리5-6","카테고리5-7");
-			vnum = new Array("501","502","503","504","505","506","507");
-		} else if (cVal == "6") {
-			num = new Array("카테고리6-1","카테고리6-2","카테고리6-3","카테고리6-4","카테고리6-5","카테고리6-6","카테고리6-7");
-			vnum = new Array("601","602","603","604","605","606","607");
-		}
+			num = new Array("Apple","Apple","LG","Motorola","Nokia","Blackberry");
+			vnum = new Array("2","3","4","5","6","7");
+		} else if (cVal == "8") {
+			num = new Array("Apple","Acer","HP","Samsung","Sony");
+			vnum = new Array("9","10","11","12","13");
+		} else if (cVal == "14") {
+			num = new Array("DIY","Dell","Samsung","LG","Sony","ASUS");
+			vnum = new Array("15","16","17","18","19","20");
+		} 
 		
 		for( var i=0; i<leng; i++ ){
 			f.category_id.options[0] = null;
@@ -100,7 +91,7 @@
 			f.category_id.options[j] = new Option( num[j], vnum[j] );
 		}
 		
-	} */
+	} 
 </script>
 <style type="text/css">
 
@@ -127,11 +118,22 @@
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">상위카테고리:</label>
-						<div class="col-sm-10"><input class="form-control" name="parent_category_id" value="2"/></div>
+						<div class="col-sm-10">
+							<select class="form-control" id="parent_category_id" name="parent_category_id" onchange="categoryShow(this.value)">
+								<option value="1">Phone</option>
+								<option value="8">Laptop</option>
+								<option value="14">Desktop</option>
+							</select>
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">하위카테고리:</label>
-						<div  class="col-sm-10"><input class="form-control" name="category_id" value="4"></div>
+						<div  class="col-sm-10">
+							
+							<select class="form-control" id="category_id" name="category_id" >
+								<option></option>
+							</select>
+						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">경매시작가:</label>

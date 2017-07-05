@@ -42,6 +42,7 @@
 }
 
 body {
+	padding: 70px 0 0 ;
 	background: #f9fafa;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -151,19 +152,16 @@ body {
 </style>
 </head>
 <body>
+
+
 	<!--  헤더 import -->
 	<div>
 		<c:import url="header.jsp" />
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	<div class="box">
 		<!-- carousel 슬라이드쇼  -->
-		<div class="container">
+		<div class="container-fluid">
 			<!-- https://www.w3schools.com/bootstrap/bootstrap_carousel.asp 참고 -->
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators : 자동으로 갯수만큼 매핑해주는듯. -->
@@ -172,43 +170,39 @@ body {
 					<li data-target="#myCarousel" data-slide-to="1"></li>
 					<li data-target="#myCarousel" data-slide-to="2"></li>
 				</ol>
+				
 				<div class="carousel-inner">
-
-					<!-- 랜덤 입찰 물품 -->
-					<div class="item active box"
-						style="max-width: 700px; max-height: 150px;">
-						<a
-							href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
-							<!-- //TODO: 정효형 게시글 링크. --> <img
-							src="${path }/resources/upload/${randomOne.picture_location }" alt="Random data"
-							style="width: 100%; height: 100%;" />
+					<div class="item active" style="height: 600px; width:100%;">
+						<a href="http://www.samsung.com/sec/">
+							<img src="https://www.hartware.de/wp-content/uploads/2017/03/Samsung-Galaxy-S8-design.jpg"
+							alt="Galaxys8" style="width: 100%; height: auto;" />
 							<div class="carousel-caption">
-								<h3>randomOne ${randomOne.item_name }</h3>
+								<h3>SAMSUNG</h3>
+								<p>Galaxy S8 | S8+</p>
 							</div>
 						</a>
 					</div>
 
 					<!-- 카테고리 홍보: phone -->
-					<div class="item box" style="max-width: 700px; max-height: 150px;">
-						<a href="${path }/search.do?schParentDept=&schDept=phone"> <img
-							src="http://cfile1.uf.tistory.com/image/230CD4385334098709CFFC"
-							alt="Category Ads - Phone" style="width: 100%; height: 100%;" />
+					<div class="item " style="height: 600px; width:100%;">
+						<a href="https://www.apple.com/kr/iphone/">
+						<img src="http://cfile24.uf.tistory.com/attach/21055A3357D2569A12450D"
+							alt="iPhone7" style="width: 100%; height: auto;" />
 							<div class="carousel-caption">
-								<h3>category Ads</h3>
-								<p>try Smart Phone!</p>
+								<h3>APPLE</h3>
+								<p>iPhone7</p>
 							</div>
 						</a>
 					</div>
 
 					<!-- 공지사항 게시글 -->
-					<div class="item box" style="max-width: 700px; max-height: 150px;">
-						<a href="### 홍보/공지게시판링크 ###"> <!-- //TODO: 종원형 게시글 링크. ex) ${path }/notice.do  =>관련 입찰목록창 -->
-							image03 <img
-							src="http://images.kbench.com:8080/kbench/article/2013_08/k121978p1n1.jpg"
-							alt="Board Ads" style="width: 100%; height: 100%;" />
+					<div class="item " style="height: 600px; width:100%;">
+						<a href="http://www.lge.co.kr/lgekor/product/mobile/categoryMain.do">
+						<img src="https://s3.amazonaws.com/poderpda/2017/03/LG-G6-tecnologia-FullVision.jpg"
+							alt="g6" style="width: 100%; height: auto;" />
 							<div class="carousel-caption">
-								<h3>Board Ads</h3>
-								<p>Board Ads Content</p>
+								<h3>LG</h3>
+								<p>G6+</p>
 							</div>
 						</a>
 					</div>
@@ -247,7 +241,7 @@ body {
 					href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
 					<!-- //TODO: 정효형 게시글 링크. -->
 					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="${path }/resources/upload/${highestHit.picture_location  }" alt="pic"
+						<img src="${highestHit.picture_location  }" alt="pic"
 							style="width: 100%; height: 100%; background: cover;" />
 					</div>
 				</a>
@@ -256,6 +250,7 @@ body {
 						href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
 						<!-- //TODO: 정효형 게시글 링크. -->
 						<div class="heading">item_name: ${highestHit.item_name }</div>
+						<div class="info">item_content: ${highestHit.item_content }</div>
 						<div class="style">auction_hit: ${highestHit.auction_hit }</div>
 						<div class="price">current_bid_amount:
 							${highestHit.current_bid_amount }</div>
@@ -282,7 +277,7 @@ body {
 					href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
 					<!-- //TODO: 정효형 게시글 링크. -->
 					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="${path }/resources/upload/${highestBid.picture_location  }" alt="pic"
+						<img src="${highestBid.picture_location  }" alt="pic"
 							style="width: 100%; height: 100%; background: cover;" />
 					</div>
 				</a>
@@ -291,6 +286,7 @@ body {
 						href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
 						<!-- //TODO: 정효형 게시글 링크. -->
 						<div class="heading">item_name: ${highestBid.item_name }</div>
+						<div class="info">item_content: ${highestBid.item_content }</div>
 						<div class="style">auction_hit: ${highestBid.auction_hit }</div>
 						<div class="price">current_bid_amount:
 							${highestBid.current_bid_amount }</div>
