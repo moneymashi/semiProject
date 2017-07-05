@@ -23,14 +23,46 @@
 	</div>
 	<div class="col-sm-9">
 		<form>
-			<%--<input type="hidden" name="userId" value="${mem.userId }" /> --%>
+			<input type="hidden" name="bidding1" id="bidding1" value="${bidding1 }" />
+			<input type="hidden" name="bidding2" id="bidding2" value="${bidding2 }" />
+			<input type="hidden" name="winBid1" id="winBid1" value="${winBid1 }" />
+			<input type="hidden" name="winBid2" id="winBid2" value="${winBid2 }" />
+			<input type="hidden" name="loseBid1" id="loseBid1" value="${loseBid1 }" />
+			<input type="hidden" name="loseBid2" id="loseBid2" value="${loseBid2 }" />
+			<div>
+				<div>Bidding</div>
+				<div>
+					<c:if test="${biddingMsg=='nothing' }">
+						<div>입찰된 물품이 없습니다.</div>
+					</c:if>
+					<!-- TODO 남은시간 넣으면 좋을듯. -->
+					<c:forEach var="bidding1JspOnly" items="${bidding1}">
+						<div>
+							<!-- 해당 물품 테이블 클릭시 해당 페이지로 이동  -->
+							<input type="hidden" name="auction_id"
+								value="${bidding1JspOnly.auction_id }" />
+							<div>이미지 : ${bidding1JspOnly.picture_location}</div>
+							<div>물품명 : ${bidding1JspOnly.item_name}</div>
+							<div>마감날짜 : ${bidding1JspOnly.end_date}</div>
+							<div>현재상태 : ${bidding1JspOnly.state_code}</div>
+							<div>가격 : ${bidding1JspOnly.current_bid_amount}</div>
+						</div>
+					</c:forEach>
+					현재비딩값 아직 안나옴
+					<c:forEach var="bidding2JspOnly" items="${bidding2}">
+						엥?
+						<div>현재 내 비딩값 : ${bidding2JspOnly.bid_amount}</div>
+					</c:forEach>
+				</div>
+			</div>
+			<br />
 			<div>
 				<div>WinBid</div>
 				<div>
 					<c:if test="${winBidMsg=='nothing' }">
 						<div>낙찰된 물품이 없습니다.</div>
 					</c:if>
-					<c:forEach var="winBidJspOnly" items="${winBid }">
+					<c:forEach var="winBidJspOnly" items="${winBid1 }">
 						<div>
 							<!-- 해당 물품 테이블 클릭시 해당 페이지로 이동 -->
 							<input type="hidden" name="auction_id"
@@ -46,34 +78,12 @@
 			</div>
 			<br />
 			<div>
-				<div>Bidding</div>
-				<div>
-					<c:if test="${biddingMsg=='nothing' }">
-						<div>입찰된 물품이 없습니다.</div>
-					</c:if>
-					<!-- TODO 남은시간 넣으면 좋을듯. -->
-					<c:forEach var="biddingJspOnly" items="${bidding }">
-						<div>
-							<!-- 해당 물품 테이블 클릭시 해당 페이지로 이동  -->
-							<input type="hidden" name="auction_id"
-								value="${biddingJspOnly.auction_id }" />
-							<div>이미지 : ${biddingJspOnly.picture_location}</div>
-							<div>물품명 : ${biddingJspOnly.item_name}</div>
-							<div>마감날짜 : ${biddingJspOnly.end_date}</div>
-							<div>현재상태 : ${biddingJspOnly.state_code}</div>
-							<div>가격 : ${biddingJspOnly.current_bid_amount}</div>
-						</div>
-					</c:forEach>
-				</div>
-			</div>
-			<br />
-			<div>
 				<div>LoseBid</div>
 				<div>
 					<c:if test="${loseBidMsg=='nothing' }">
 						<div>낙찰에 실패한 물품이 없습니다.</div>
 					</c:if>
-					<c:forEach var="loseBidJspOnly" items="${loseBid }">
+					<c:forEach var="loseBidJspOnly" items="${loseBid1 }">
 						<div>
 							<!-- 해당 물품 테이블 클릭시 해당 페이지로 이동  -->
 							<input type="hidden" name="auction_id"
