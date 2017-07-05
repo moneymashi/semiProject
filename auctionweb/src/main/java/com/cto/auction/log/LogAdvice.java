@@ -37,7 +37,7 @@ public class LogAdvice {
      if (type.indexOf("Controller") > -1) {
          name = "Controller:";
      } else if (type.indexOf("Service") > -1) {
-         name = "ServiceImpl:";
+         name = "Service:";
      } else if (type.indexOf("DAO") > -1) {
          name = "DAO:";
      }
