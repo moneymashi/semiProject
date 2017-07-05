@@ -24,6 +24,13 @@
 .site {
 	color: white;
 	font-size: 0.9em;
+	
+}
+
+.site:hover { 
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .siteTitle {
