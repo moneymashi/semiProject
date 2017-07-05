@@ -39,7 +39,6 @@
 </head>
 <body>
 	<%-- header 삽입 --%>
-	<c:import url="../main/header.jsp" />
 	<div class="container">
 		<h3>게시글 수정</h3>
 

@@ -51,7 +51,6 @@
 </style>
 </head>
 <body>
-	<c:import url="../main/header.jsp"/><br>
 	<div class="container">
 		<h3>문의하기</h3>
 		
