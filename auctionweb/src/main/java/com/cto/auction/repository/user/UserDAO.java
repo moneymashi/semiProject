@@ -48,11 +48,11 @@ public interface UserDAO {
 
 	
 	public List<Item> auctionInfoBidding01(Item item);
-	public List<Item> auctionInfoBidding02(Bid bid);
+	public List<Bid> auctionInfoBidding02(Bid bid);
 
 	public List<Item> auctionInfoWinBid01(Item item);
-	public List<Item> auctionInfoWinBid02(Bid bid);
+	public List<Bid> auctionInfoWinBid02(Bid bid);
 
 	public List<Item> auctionInfoLoseBid01(Item item);
-	public List<Item> auctionInfoLoseBid02(Bid bid);
+	public List<Bid> auctionInfoLoseBid02(Bid bid);
 }

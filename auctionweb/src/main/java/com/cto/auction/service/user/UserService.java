@@ -91,7 +91,7 @@ public class UserService {
 		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoBidding01(item);
 	}
-	public List<Item> auctionInfoBidding02(Bid bid, HttpSession session) {
+	public List<Bid> auctionInfoBidding02(Bid bid, HttpSession session) {
 		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoBidding02(bid);
 	}
@@ -100,7 +100,7 @@ public class UserService {
 		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoWinBid01(item);
 	}
-	public List<Item> auctionInfoWinBid02(Bid bid, HttpSession session) {
+	public List<Bid> auctionInfoWinBid02(Bid bid, HttpSession session) {
 		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoWinBid02(bid);
 	}
@@ -109,7 +109,7 @@ public class UserService {
 		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoLoseBid01(item);
 	}
-	public List<Item> auctionInfoLoseBid02(Bid bid, HttpSession session) {
+	public List<Bid> auctionInfoLoseBid02(Bid bid, HttpSession session) {
 		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoLoseBid02(bid);
 	}

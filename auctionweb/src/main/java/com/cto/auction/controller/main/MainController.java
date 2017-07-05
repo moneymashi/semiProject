@@ -1,6 +1,9 @@
 package com.cto.auction.controller.main;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cto.auction.service.item.ItemService;
+import com.cto.auction.vo.board.BoardPage;
 
 
 
@@ -16,6 +20,7 @@ import com.cto.auction.service.item.ItemService;
 public class MainController {
 	@Autowired(required=false)
 	private ItemService itemService;
+	/*private ItemService itemService;*/
 	
 	@RequestMapping("main.do")
 	public ModelAndView main(ModelAndView mav) {
@@ -58,6 +63,22 @@ public class MainController {
 		mav.addObject("pageName",pl);
 		return mav;
 	}
+	
+	
+/*	@RequestMapping("pageNav.do")
+	public ModelAndView pageNav(@RequestParam(defaultValue="1") int curPage){
+		int count = service.countPage();
+		BoardPage boardPage = new BoardPage(count, curPage);
+		int start = boardPage.getPageBegin();
+		int end = boardPage.getPageEnd();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("noticeList", service.noticeList(start, end));
+		map.put("boardPage", boardPage);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map", map);
+		mav.setViewName("notice/notice");
+		return mav;
+	}*/
 /*	// 아이템 리스트
 	@RequestMapping("item.do")
 	public ModelAndView itemList(ModelAndView mav, Model m, HttpSession session){
