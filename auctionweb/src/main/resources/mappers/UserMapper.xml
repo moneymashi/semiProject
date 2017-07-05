@@ -17,11 +17,7 @@
 		SELECT * FROM AUCTION_USER
 		WHERE email = #{email} AND password = #{password}
 	</select>
-	<!-- 
-	<select id="sessionUpdate" resultType="user">
-		SELECT * FROM AUCTION_USER WHERE USER_ID = #{user_id }
-	</select> -->	
- 	<!-- 회원가입 : USER_ID자동생성 ,권한 및 포인트 기본 0 -->
+	<!-- 회원가입 : USER_ID자동생성 ,권한 및 포인트 기본 0 -->
 	<select id="signUpProc" resultType="user">
 		INSERT INTO
 		AUCTION_USER
@@ -117,8 +113,10 @@
 		( ${auctioneer_id }, #{bank_name},
 		#{account_name}, #{account_number})
 	</select>
+	
+	
 	<!-- 옥션확인내용. -->
-	<select id="auctionInfoBidding01" resultType="item">
+	<select id="auctionInfoBidding01" resultMap="itemResult">
 		SELECT 
 		AI.AUCTION_ID, AI.AUCTIONEER_ID, AI.ITEM_NAME, AI.ITEM_CONTENT, AI.START_DATE,
 		AI.END_DATE, AI.STATE_CODE, AI.CURRNET_BIDDER_ID, AI.CURRENT_BIDDER,
@@ -129,7 +127,7 @@
 		WHERE AB.BIDDER_ID = 4 AND SYSDATE &lt; AI.END_DATE
 		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
 		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
-		GROUP BY AUCTION_ID )
+		GROUP BY AUCTION_ID );
 	</select>
 	<select id="auctionInfoBidding02" resultMap="bidResult">
 		SELECT
@@ -140,7 +138,7 @@
 		WHERE AB.BIDDER_ID = 4 AND SYSDATE &lt; AI.END_DATE
 		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
 		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
-		GROUP BY AUCTION_ID )
+		GROUP BY AUCTION_ID );
 	</select>
 	
 	
@@ -157,7 +155,7 @@
 		AND AB.BIDDER_ID = AI.CURRNET_BIDDER_ID
 		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
 		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
-		GROUP BY AUCTION_ID )
+		GROUP BY AUCTION_ID );
 	</select>
 	<select id="auctionInfoWinBid02" resultMap="bidResult">
 		SELECT
@@ -169,7 +167,7 @@
 		AND AB.BIDDER_ID = AI.CURRNET_BIDDER_ID
 		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
 		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
-		GROUP BY AUCTION_ID )
+		GROUP BY AUCTION_ID );
 	</select>
 	
 	
@@ -187,7 +185,7 @@
 		AND AB.BIDDER_ID != AI.CURRNET_BIDDER_ID
 		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
 		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
-		GROUP BY AUCTION_ID )
+		GROUP BY AUCTION_ID );
 	</select>
 	<select id="auctionInfoLoseBid02" resultMap="bidResult">
 		SELECT
@@ -199,7 +197,7 @@
 		AND AB.BIDDER_ID != AI.CURRNET_BIDDER_ID
 		AND (AB.BID_AMOUNT, AB.AUCTION_ID) IN
 		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
-		GROUP BY AUCTION_ID )
+		GROUP BY AUCTION_ID );
 	</select>
 	
 </mapper>

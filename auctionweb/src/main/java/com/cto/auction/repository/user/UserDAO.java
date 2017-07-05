@@ -19,8 +19,6 @@ public interface UserDAO {
 	public List<User> auctionUserList(User list);
 
 	public User loginCheck(User mem);
-	
-	public User sessionUpdate(User mem);
 
 	public void signUpProc(User ins);
 

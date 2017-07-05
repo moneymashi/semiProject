@@ -23,7 +23,7 @@
 	</div>
 	<div class="col-sm-9">
 		<form>
-			<input type="hidden" name="userId" value="${mem.userId }" />
+			<%--<input type="hidden" name="userId" value="${mem.userId }" /> --%>
 			<div>
 				<div>WinBid</div>
 				<div>
@@ -52,7 +52,7 @@
 						<div>입찰된 물품이 없습니다.</div>
 					</c:if>
 					<!-- TODO 남은시간 넣으면 좋을듯. -->
-					<c:forEach var="biddingJspOnly" items="${bidding1 }">
+					<c:forEach var="biddingJspOnly" items="${bidding }">
 						<div>
 							<!-- 해당 물품 테이블 클릭시 해당 페이지로 이동  -->
 							<input type="hidden" name="auction_id"

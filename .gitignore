@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+
 # Created by https://www.gitignore.io/api/java-web
 
 ### Java-Web ###
@@ -5,4 +7,6 @@
 auctionweb/target/
 
 # End of https://www.gitignore.io/api/java-web
-
+=======
+auctionweb/target/
+>>>>>>> bc3f6e7811befb876f433a4c92405b3b6d7031e7
