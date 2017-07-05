@@ -1,0 +1,9 @@
+diff a/auctionweb/src/main/java/com/cto/auction/repository/user/UserDAO.java b/auctionweb/src/main/java/com/cto/auction/repository/user/UserDAO.java	(rejected hunks)
+@@ -19,7 +19,6 @@
+ 	public List<User> auctionUserList(User list);
+ 
+ 	public User loginCheck(User mem);
+-	public User sessionUpdate(User mem);
+ 
+ 	public void signUpProc(User ins);
+ 

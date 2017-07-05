@@ -44,6 +44,7 @@ public class Item {
 	private MultipartFile file;
 	private String parentName;  // 부모카테고리로 별명값 가져오기
 	private String childName; // 자식카테고리로 별명값 가져오기
+	private Integer user_id; // db에 없는 유저 id
 	
 	public String getParentName() {
 		return parentName;
@@ -158,6 +159,12 @@ public class Item {
 	}
 	public void setPicture_location(String picture_location) {
 		this.picture_location = picture_location;
+	}
+	public Integer getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
 	}
 	
 	

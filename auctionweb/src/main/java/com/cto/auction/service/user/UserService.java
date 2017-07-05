@@ -88,7 +88,7 @@ public class UserService {
 	
 	
 	public List<Item> auctionInfoBidding01(Item item, HttpSession session) {
-		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		item.setUser_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoBidding01(item);
 	}
 	public List<Bid> auctionInfoBidding02(Bid bid, HttpSession session) {
@@ -97,7 +97,7 @@ public class UserService {
 	}
 	
 	public List<Item> auctionInfoWinBid01(Item item, HttpSession session) {
-		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		item.setUser_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoWinBid01(item);
 	}
 	public List<Bid> auctionInfoWinBid02(Bid bid, HttpSession session) {
@@ -106,12 +106,25 @@ public class UserService {
 	}
 	
 	public List<Item> auctionInfoLoseBid01(Item item, HttpSession session) {
-		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		item.setUser_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoLoseBid01(item);
 	}
 	public List<Bid> auctionInfoLoseBid02(Bid bid, HttpSession session) {
 		bid.setBidder_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoLoseBid02(bid);
+	}
+	
+	public List<Item> saleInfoBidding01(Item item, HttpSession session) {
+		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.saleInfoBidding01(item);
+	}
+	public List<Item> saleInfoWinBid01(Item item, HttpSession session) {
+		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.saleInfoWinBid01(item);
+	}
+	public List<Item> saleInfoLoseBid01(Item item, HttpSession session) {
+		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
+		return dao.saleInfoLoseBid01(item);
 	}
 	
 	// 낙찰 데이터 부르기(임시)
