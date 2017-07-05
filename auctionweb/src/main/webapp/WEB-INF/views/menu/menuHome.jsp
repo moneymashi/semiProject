@@ -26,7 +26,7 @@
 	<h1>MenuHome(필요없는 페이지... 삭제 고민중.)</h1>
 	<div>
 		<!-- TODO 공지 문의 게시판 주소 -->
-		<a href="${path }/notice/notice.do">공지/문의</a>
+		<a href="${path }/notice/list.do">공지/문의</a>
 	</div>
 	<div>
 		<a href="${path }/myPage/auctionInfo.do">MY PGAE(기본 입찰정보창)</a>

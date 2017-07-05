@@ -38,7 +38,7 @@ public class BoardController {
 	public ModelAndView boardList(@RequestParam(defaultValue="board_title") String option,
 			@RequestParam(defaultValue="") String keyword, @RequestParam(defaultValue="1") int curPage, 
 			@RequestParam int auction_id, ModelAndView mav, HttpSession session) throws ParseException{
-
+		service.itemHit(auction_id);
 		// 세션 itemInfo : 해당 물품에 대한 셍서정보. 탭 변환시에도 해당 아이템을 유지하기 위한 세션
 	    session.setAttribute("itemInfo", service.itemInfo(auction_id));
 	    // 세션 aucion_id : 해당 물품에 대한 auction_id. 탭 변환시에도 해당 아이템정보를 유지하기 위한 세션
