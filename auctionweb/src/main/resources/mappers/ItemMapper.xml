@@ -14,7 +14,6 @@
 		END_DATE,
 		CURRENT_BID_AMOUNT,
 		CATEGORY_ID,
-		PARENT_CATEGORY_ID,
 		PICTURE_LOCATION)
 		VALUES(#{auctioneer_id},
 		#{item_name},
@@ -22,7 +21,6 @@
 		SYSDATE+7,
 		#{current_bid_amount},
 		#{category_id},
-		#{parent_category_id},
 		#{picture_location})
 		<!-- insert into auction_item ( auctioneer_id , item_name , item_content 
 			, end_date , current_bid_amount , category_id , parent_category_id , picture_location) 
