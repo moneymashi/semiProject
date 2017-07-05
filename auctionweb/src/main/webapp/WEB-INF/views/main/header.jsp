@@ -131,7 +131,7 @@ nav{ height: 70px;}
                            <li class="dropdown-header">기본메뉴</li>
                            <li><a href="${path }/menuHome.do">메뉴홈</a></li>
                            <%-- TODO 공지사항 및 문의 주소 변경 해야됨 --%>
-                           <li><a href="${path }/notice/notice.do">공지/문의</a></li>
+                           <li><a href="${path }/notice/list.do">공지/문의</a></li>
                            <%-- 회원정보(메뉴) : 개인정보,입찰정보,배송지정보,카드정보,쪽지함 페이지로~ --%>
                            <li><a href="${path }/myPage/userInfo.do">회원정보(메뉴)</a></li>
                            <li class="divider"></li>
