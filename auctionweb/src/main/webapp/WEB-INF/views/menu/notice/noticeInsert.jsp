@@ -52,8 +52,9 @@
 </style>
 </head>
 <body>
-	<c:import url="../main/header.jsp"/>
-	<br><br><br>
+	<c:import url="../../main/header.jsp"/>
+	<br><br><br><br>
+	<br><br><br><br>
 	<form method="post" action="${path }/notice/insertProc.do">
 		<div class="container">
 			<div class="form-group">

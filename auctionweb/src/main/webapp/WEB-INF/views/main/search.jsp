@@ -371,11 +371,10 @@
 				href='${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />'>
 				<div class="card col-sm-4">
 					<div class="block">
-						<img class="card-img-top" src="${item.picture_location }"
+						<img class="card-img-top" src="${path }/resources/upload/${item.picture_location}"
 							alt="pictureNotUploaded" width="32%" height="32%">
 						<div class="card-block">
 							<h4 class="card-title">${item.item_name }</h4>
-							<p class="card-text">${item.item_content }</p>
 							<p class="card-text">
 								<small class="text-muted"> <fmt:formatDate var="edate"
 										value="${item.end_date }" pattern="yyyy-MM-dd hh:mm:ss" />
