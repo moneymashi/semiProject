@@ -55,4 +55,10 @@ public interface UserDAO {
 
 	public List<Item> auctionInfoLoseBid01(Item item);
 	public List<Bid> auctionInfoLoseBid02(Bid bid);
+	// 낙찰 데이터부르기(임시)
+	public Item winpay1(Item sch);
+	public User mem(User sch);
+	
+	// 낙찰후 포인트 차감 업데이트.
+	public void memProc(User sch);
 }

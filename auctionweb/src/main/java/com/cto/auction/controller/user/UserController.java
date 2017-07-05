@@ -204,6 +204,37 @@ public class UserController {
 		return mav;
 	}
 	
+	// 낙찰 작업:  서비스들은 임시 데이터 부르기.
+	@RequestMapping("myPage/payTheWin.do")
+	public String payTheWin(
+			@ModelAttribute("userSch") User userSch,
+			@ModelAttribute("item01") Item item01,
+			HttpSession session,
+			Model d
+			){
+		userSch.setUser_id((int)session.getAttribute("id"));
+		item01.setCurrent_bidder_id((int)session.getAttribute("id"));
+		item01.setAuction_id((int) session.getAttribute("auction_id"));
+		
+		d.addAttribute("mem", service.mem(userSch) );
+		d.addAttribute("winpay1", service.winpay1(item01) );
+		// nullpointer if size() == 0 >> 처리필수.
+		
+		System.out.println("################ 1 // " + service.mem(userSch).getUser_point());
+		System.out.println("################ 2 // " + service.mem(userSch).getUser_id() );
+		System.out.println("################ 3 // " + service.winpay1(item01).getItem_name());
+		System.out.println("################ 4 // " + service.winpay1(item01).getCurrent_bidder_id() );
+		
+		return "menu/myPage/payTheWin";
+	}
+	// 낙찰후 포인트 차감 업데이트
+	@RequestMapping("myPage/payTheWinProc.do")
+	public String payTheWinProc(
+			@ModelAttribute("userUpt") User userUpt
+			){
+		service.memProc(userUpt);
+		return "redirect:/myPage/auctionInfo.do";
+	}
 
 	
 	// 판매자 페이지

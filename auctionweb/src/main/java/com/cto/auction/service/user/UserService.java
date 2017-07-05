@@ -114,7 +114,18 @@ public class UserService {
 		return dao.auctionInfoLoseBid02(bid);
 	}
 	
-	
+	// 낙찰 데이터 부르기(임시)
+	public Item winpay1(Item sch){
+		return dao.winpay1(sch);
+	}
+	public User mem(User sch){
+		return dao.mem(sch);
+	}
+	// 낙찰 포인트 차감후 업데이트
+	public void memProc(User upt){
+		dao.memProc(upt);
+	}
+		
 	
 	
 	

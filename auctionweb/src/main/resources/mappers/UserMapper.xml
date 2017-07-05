@@ -202,7 +202,23 @@
 		(SELECT MAX(BID_AMOUNT), AUCTION_ID FROM AUCTION_BID
 		GROUP BY AUCTION_ID )
 	</select>
-	
+	<select id="winpay1" resultType="item">
+	select * from auction_item    
+	 where current_bidder_id = #{current_bidder_id } 
+	 and auction_id = #{auction_id }
+	</select>
+	<select id="mem" resultType="user">
+		SELECT * FROM auction_user
+		WHERE USER_ID = #{user_id}
+	</select>
+		<!-- 낙찰 후, 포인트 차감. -->
+	<update id="memProc"  >
+		UPDATE
+		AUCTION_USER
+		SET
+		user_point = #{user_point}
+		WHERE USER_ID = #{user_id }
+	</update>
 	
 	
 </mapper>

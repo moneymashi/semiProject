@@ -14,16 +14,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
    $(document).ready(function() {
@@ -50,7 +46,7 @@ nav{ height: 70px;}
 
 <nav class="nav navbar-inverse  navbar-fixed-top">
    <div class="container-fluid">
-         <div class="nav navbar-nav navbar-left col-sm-7">
+        <div class="nav navbar-nav navbar-left col-sm-7">
             <div class="navbar-header">
                <%-- nav 맨왼쪽 로고 부분. --%>
                <a class="navbar-brand" href="${path }/main.do">AUCTION</a>
@@ -59,34 +55,39 @@ nav{ height: 70px;}
             <ul class="nav navbar-nav">
                <%-- 드랍다운 카테고리부분 --%>
                <%-- 부모카테고리 - Electronic --%>
-               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Electronics<span class="caret"></span></a>
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Phone<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                     <li><a href="${path }/search.do?schParentDept=electronics">Electronics</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Phone">Phone</a></li>
                      <li class="divider"></li>
-                     <li><a href="${path }/search.do?schParentDept=electronics&schDept=phone">Phone</a></li>
-                     <li><a href="${path }/search.do?schParentDept=electronics&schDept=laptop">Laptop</a></li>
-                     <li><a href="${path }/search.do?schParentDept=electronics&schDept=desktop">Desktop</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Phone&schDept=Apple">Apple</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Phone&schDept=Samsung">Samsung</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Phone&schDept=LG">LG</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Phone&schDept=Motorola">Motorola</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Phone&schDept=Nokia">Nokia</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Phone&schDept=Blackberry">Blackberry</a></li>
                   </ul>
                </li>
-               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Clothes<span class="caret"></span></a>
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Laptop<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                     <li><a href="${path }/search.do?schParentDept=clothes">Clothes</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Laptop">Laptop</a></li>
                      <li class="divider"></li>
-                     <li><a href="${path }/search.do?schParentDept=women">Women</a></li>
-                     <li><a href="${path }/search.do?schParentDept=clothes&schDept=men">Men</a></li>
-                     <li><a href="${path }/search.do?schParentDept=clothes&schDept=girl">Girl</a></li>
-                     <li><a href="${path }/search.do?schParentDept=clothes&schDept=boys">Boys</a></li>
-                     <li><a href="${path }/search.do?schParentDept=clothes&schDept=baby">Baby</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Laptop&schDept=Apple">Apple</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Laptop&schDept=Acer">Acer</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Laptop&schDept=Hp">HP</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Laptop&schDept=Samsung">Samsung</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Laptop&schDept=Sony">Sony</a></li>
                   </ul>
                </li>
-               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Foods<span class="caret"></span></a>
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Desktop<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                     <li><a href="${path }/search.do?schParentDept=foods">Foods</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Desktop">Desktop</a></li>
                      <li class="divider"></li>
-                     <li><a href="${path }/search.do?schParentDept=foods&schDept=fruits">Fruits</a></li>
-                     <li><a href="${path }/search.do?schParentDept=foods&schDept=herbs">Herbs</a></li>
-                     <li><a href="${path }/search.do?schParentDept=foods&schDept=dried">Dried</a></li>
-                     <li><a href="${path }/search.do?schParentDept=foods&schDept=canned">Canned</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Desktop&schDept=DIY">DIY</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Desktop&schDept=Dell">Dell</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Desktop&schDept=Samsung">Samsung</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Desktop&schDept=LG">LG</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Desktop&schDept=Sony">Sony</a></li>
+                     <li><a href="${path }/search.do?schParentDept=Desktop&schDept=Asus">Asus</a></li>
                   </ul>
                </li>
             </ul>
@@ -131,7 +132,7 @@ nav{ height: 70px;}
                            <li class="dropdown-header">기본메뉴</li>
                            <li><a href="${path }/menuHome.do">메뉴홈</a></li>
                            <%-- TODO 공지사항 및 문의 주소 변경 해야됨 --%>
-                           <li><a href="${path }/notice/notice.do">공지/문의</a></li>
+                           <li><a href="${path }/notice/list.do">공지/문의</a></li>
                            <%-- 회원정보(메뉴) : 개인정보,입찰정보,배송지정보,카드정보,쪽지함 페이지로~ --%>
                            <li><a href="${path }/myPage/userInfo.do">회원정보(메뉴)</a></li>
                            <li class="divider"></li>
@@ -165,14 +166,7 @@ nav{ height: 70px;}
             
          </div>
          
-         
-         
-         
-         
    </div>
-   
-   
-                     
 
                    
    

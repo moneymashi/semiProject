@@ -16,13 +16,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 입찰input창 포커싱 처리
@@ -39,7 +37,10 @@
 			alert("로그인 후 이용 가능합니다.");
 			$(location).attr("href", "${path}/member/login.do");
 		});
-
+		$("#payBtn").click(function() {
+			//alert("결제창으로 넘어갑니다.");
+			$(location).attr("href", "${path}/myPage/payTheWin.do");
+		});
 	});
 	// 서버단에서 받는 msg값이 있으면 알림창
 	var msg = "${msg}";
