@@ -109,7 +109,6 @@ public class BoardService {
 	}
 	// 물품상세정보
 	public Item itemInfo(int auction_id){
-		dao.itemHit(auction_id);
 		return dao.itemInfo(auction_id);
 	}
 	// 입찰테이블 작성
@@ -135,5 +134,8 @@ public class BoardService {
 	// status 변경
 	public void changeStaus(int auction_id){
 		dao.changeStaus(auction_id);
+	}
+	public void itemHit(int auction_id){
+		dao.itemHit(auction_id);
 	}
 }

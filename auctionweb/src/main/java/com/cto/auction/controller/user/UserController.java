@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.w3c.dom.css.Counter;
 
-import com.cto.auction.service.item.ItemService;
 import com.cto.auction.service.user.UserService;
 import com.cto.auction.vo.user.User;
 import com.cto.auction.vo.bid.Bid;
@@ -26,7 +24,6 @@ import com.cto.auction.vo.user.Payment;
 public class UserController {
 	@Autowired(required = false)
 	private UserService service;
-	private ItemService serviceItem;
 	
 	@RequestMapping("whyNot.do")
 	public String auctionUserList(@ModelAttribute("testCtrlModelAttribute") User sch, Model m) {
@@ -161,6 +158,8 @@ public class UserController {
 		if (aib1.size() != 0) {
 			mav.addObject("bidding1", aib1);
 			mav.addObject("bidding2", aib2);
+			System.out.println("테에에에에에슷트트트트으드드ㅡㅇ으:"+aib2.size());
+			System.out.println("테에에에에에슷트트트트으드드ㅡㅇ으:"+aib1.size());
 		} else {
 			mav.addObject("biddingMsg", "nothing");
 		}

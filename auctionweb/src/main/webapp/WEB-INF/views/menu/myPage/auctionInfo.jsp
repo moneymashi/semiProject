@@ -49,9 +49,13 @@
 						</div>
 					</c:forEach>
 					현재비딩값 아직 안나옴
-					<c:forEach var="bidding2JspOnly" items="${bidding2}">
-						엥?
-						<div>현재 내 비딩값 : ${bidding2JspOnly.bid_amount}</div>
+					<c:forEach var="bidding2JspOnly" items="${bidding2 }">
+						<h3>테스트용 비드 테이블</h3>
+						<div>BID_ID : ${bidding2JspOnly.bid_id}</div>
+						<div>AUCTION_ID : ${bidding2JspOnly.auction_id}</div>
+						<div>BIDDER_ID : ${bidding2JspOnly.bidder_id}</div>
+						<div>BIDDING_DATE : ${bidding2JspOnly.bidding_date}</div>
+						<div>BID_AMOUNT : ${bidding2JspOnly.bid_amount}</div>
 					</c:forEach>
 				</div>
 			</div>

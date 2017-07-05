@@ -92,7 +92,7 @@ public class UserService {
 		return dao.auctionInfoBidding01(item);
 	}
 	public List<Bid> auctionInfoBidding02(Bid bid, HttpSession session) {
-		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
+		bid.setBidder_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoBidding02(bid);
 	}
 	
@@ -101,7 +101,7 @@ public class UserService {
 		return dao.auctionInfoWinBid01(item);
 	}
 	public List<Bid> auctionInfoWinBid02(Bid bid, HttpSession session) {
-		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
+		bid.setBidder_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoWinBid02(bid);
 	}
 	
@@ -110,7 +110,7 @@ public class UserService {
 		return dao.auctionInfoLoseBid01(item);
 	}
 	public List<Bid> auctionInfoLoseBid02(Bid bid, HttpSession session) {
-		bid.setBid_id((Integer)session.getAttribute("sessionUser_id"));
+		bid.setBidder_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.auctionInfoLoseBid02(bid);
 	}
 	
