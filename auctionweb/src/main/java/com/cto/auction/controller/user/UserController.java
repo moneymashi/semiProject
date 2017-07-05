@@ -158,8 +158,6 @@ public class UserController {
 		if (aib1.size() != 0) {
 			mav.addObject("bidding1", aib1);
 			mav.addObject("bidding2", aib2);
-			System.out.println("테에에에에에슷트트트트으드드ㅡㅇ으:"+aib2.size());
-			System.out.println("테에에에에에슷트트트트으드드ㅡㅇ으:"+aib1.size());
 		} else {
 			mav.addObject("biddingMsg", "nothing");
 		}
