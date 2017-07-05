@@ -19,7 +19,7 @@ public interface UserDAO {
 	public List<User> auctionUserList(User list);
 
 	public User loginCheck(User mem);
-
+	
 	public void signUpProc(User ins);
 
 	public void logout(HttpSession session);
@@ -55,6 +55,11 @@ public interface UserDAO {
 
 	public List<Item> auctionInfoLoseBid01(Item item);
 	public List<Bid> auctionInfoLoseBid02(Bid bid);
+	
+	public List<Item> saleInfoBidding01(Item item);
+	public List<Item> saleInfoWinBid01(Item item);
+	public List<Item> saleInfoLoseBid01(Item item);
+	
 	// 낙찰 데이터부르기(임시)
 	public Item winpay1(Item sch);
 	public User mem(User sch);

@@ -103,8 +103,9 @@ public class UserController {
 
 	// 회원정보 수정
 	@RequestMapping("myPage/update.do")
-	public String myPageUserUpdate(User upt) {
+	public String myPageUserUpdate(User upt, HttpSession session) {
 		service.myPageUserUpdate(upt);
+		session.setAttribute("mem", service.myPageUserInfo(upt, session));
 		return "redirect:/myPage/userInfo.do";
 	}
 	@RequestMapping("myPage/locUpdate.do")
@@ -251,17 +252,38 @@ public class UserController {
 		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
 	@RequestMapping("auctioneerPage/auctioneerInsert.do")
-	public String auctioneerAuctioneerInsert(Auctioneer ins, HttpSession session) {
+	public String auctioneerAuctioneerInsert(Auctioneer ins, User upt, HttpSession session) {
 		service.auctioneerAuctioneerInsert(ins);
+		session.setAttribute("mem", service.myPageUserInfo(upt, session));
 		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
 	
 	
 	@RequestMapping("auctioneerPage/saleInfo.do")
-	public ModelAndView auctioneerSaleInfo(ModelAndView mav) {
+	public ModelAndView auctioneerSaleInfo(Item item, HttpSession session, ModelAndView mav) {
 		mav.setViewName("menu/menu");
 		mav.addObject("pageName", "auctioneerPage/saleInfo");
+		List<Item> aib3 = service.saleInfoBidding01(item, session);
+		List<Item> aiw3 = service.saleInfoWinBid01(item, session);
+		List<Item> ail3 = service.saleInfoLoseBid01(item, session);
+		if (aib3.size() != 0) { 
+			mav.addObject("bidding1", aib3);
+		} else {
+			mav.addObject("biddingMsg", "nothing");
+		}
+		if (aiw3.size() != 0) { 
+			mav.addObject("winBid1", aiw3);
+		} else {
+			mav.addObject("winBidMsg", "nothing");
+		}
+		if (ail3.size() != 0) { 
+			mav.addObject("loseBid1", ail3);
+		} else {
+			mav.addObject("loseBidMsg", "nothing");
+		}
 		return mav;
 	}
+
+	
 
 }
