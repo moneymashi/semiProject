@@ -232,7 +232,7 @@ public class BoardController {
 			service.itemUpdate(upt);
 		}
 	    // view화면은 item/item
-		return "redirect:list.do?auction_id="+session.getAttribute("auction_id");
+		return "forward:list.do?auction_id="+session.getAttribute("auction_id");
 	}
 
 }
