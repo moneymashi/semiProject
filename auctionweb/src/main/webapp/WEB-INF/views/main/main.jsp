@@ -317,20 +317,7 @@ body {
 				</div>
 			</div>
 		</div>
-	
-	
-	
-	////////////////
-	<div class="item active" style = "max-width: 700px; max-height:150px;">
-					<a href = '${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />' >  <!-- //TODO: 정효형 게시글 링크. -->
-					<img src="${randomOne.picture_location }" alt="Random data" style="width: 100%; height: 100%;" /> -->
-					<div class="carousel-caption">
-						<h3>randomOne ${randomOne.item_name } </h3>
-						<p>randomOne ${randomOne.item_content } </p>
-					</div>
-					</a>
-				</div>
-	
+	</div>
 	
 	
 	<div class="footer">
