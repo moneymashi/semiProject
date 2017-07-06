@@ -66,12 +66,19 @@
 			</thead>
 			<tbody>
 				<%-- 게시글 넘버링 처리 및 리스트 불러오기 --%>
-				<c:forEach var="board" items="${map.list }" varStatus="sts" begin="0" end="${map.list.size() }" step="1">
+				<c:forEach var="board" items="${map.list }">
 					<tr>
 						<%-- 게시글 넘버링 --%>
-						<td>${sts.count }</td>
+						<td>${board.board_no }</td>
 						<%-- 게시글 제목 클릭시 게시글 보기(상세내용) --%>
-						<td><a href="${path}/board/read.do?board_id=${board.board_id}&board_group=${board.board_group}">${board.board_title}</a></td>
+						<td>
+						<c:if test="${board.board_indent!=0 }">
+							<c:forEach begin="0" end="${board.board_indent }" step="1">
+								&nbsp;&nbsp;&nbsp;
+							</c:forEach>
+							<img src='${path }/resources/upload/reply_icon.gif' />
+						</c:if>
+						<a href="${path}/board/read.do?board_id=${board.board_id}&board_group=${board.board_group}">${board.board_title}</a></td>
 						<td>${board.board_name }</td>
 						<td><fmt:formatDate value="${board.board_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						<td>${board.board_hit }</td>

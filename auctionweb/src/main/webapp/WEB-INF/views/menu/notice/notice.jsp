@@ -37,7 +37,9 @@
 	<div class="col-sm-3">
 		<jsp:include page="noticeNav.jsp" flush="false" />
 	</div>
-	<div class="col-sm-9">
+	<div class="col-sm-1">
+	</div>
+	<div class="col-sm-7">
 		<table class="table table-hover">
 			<thead>
 				<tr>
