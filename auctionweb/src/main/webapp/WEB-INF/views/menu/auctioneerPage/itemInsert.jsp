@@ -119,7 +119,7 @@
 						<label class="col-sm-2 control-label">상위카테고리:</label>
 						<div class="col-sm-10">
 							<select class="form-control" id="parent_category_id" name="parent_category_id" onchange="categoryShow(this.value)">
-								<option value="">상위 카테고리를 선택하세요</option>
+								<option value="">선택하세요</option>
 								<option value="1">Phone</option>
 								<option value="8">Laptop</option>
 								<option value="14">Desktop</option>
@@ -131,7 +131,7 @@
 						<div  class="col-sm-10">
 							
 							<select class="form-control" id="category_id" name="category_id" >
-								<option></option>
+								<option>선택하세요</option>
 							</select>
 						</div>
 					</div>

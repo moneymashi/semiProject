@@ -141,7 +141,7 @@ body {
 }
 
 .panel-body{
-	font-famliy: "MS Sans Serif";
+	font-famliy: 'Raleway', Arial, sans-serif;;
 }
 
 
@@ -149,6 +149,9 @@ body {
 	font-famliy: Impact;
 	font-weight: bold;
 }
+
+
+
 
 </style>
 </head>
@@ -233,7 +236,7 @@ body {
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
-						<img src="${path }/resources/upload/${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
+						<img src="${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
