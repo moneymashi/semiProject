@@ -100,8 +100,7 @@
 	<div class="col-sm-3">
 		<jsp:include page="auctioneerPageNav.jsp" flush="false" />
 	</div>
-	<div class="container col-sm-9">
-	<br><br><br><br>
+	<div class="container col-sm-7">
 		<div class="panel panel-primary">
 			<div class="panel-heading" style="text-align:center;"><h2>물품등록</h2></div>
 			<div class="panel-body">
@@ -154,5 +153,6 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-sm-2"></div>
 </body>
 </html>

@@ -39,7 +39,7 @@
 	<div class="col-sm-3">
 		<jsp:include page="auctioneerPageNav.jsp" flush="false" />
 	</div>
-	<div class="col-sm-9">
+	<div class="col-sm-7">
 		<h1><c:out value="${sessionScope.mem.auth }"/></h1>
 		<form>
 			<%-- <input type="hidden" name="user_id" value="${mem.user_id }" /> --%>
@@ -101,5 +101,6 @@
 			</div> --%>
 		</form>
 	</div>
+	<div class="col-sm-2"></div>
 </body>
 </html>
