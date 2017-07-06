@@ -32,14 +32,14 @@
 		<jsp:include page="myPageNav.jsp" flush="false" />
 	</div>
 	<h1>입찰 물품관리 페이지</h1>
-	<div class="col-sm-9">
+	<div class="col-sm-7">
 		<div>
 			<div>
 				<h1>Bidding(입찰중인물품)</h1>
 			</div>
 			<div>
 				<c:if test="${biddingMsg=='nothing' }">
-					<div>입찰된 물품이 없습니다.</div>
+					<div class="alert alert-success">입찰된 물품이 없습니다.</div>
 				</c:if>
 				<!-- TODO 남은시간 넣으면 좋을듯. -->
 				<c:forEach var="bidding1JspOnly" items="${bidding1}">
@@ -89,7 +89,7 @@
 			</div>
 			<div>
 				<c:if test="${winBidMsg=='nothing' }">
-					<div>낙찰된 물품이 없습니다.</div>
+					<div class="alert alert-danger" role="alert">낙찰된 물품이 없습니다.</div>
 				</c:if>
 				<c:forEach var="winBidJspOnly" items="${winBid1 }">
 					<div class="panel panel-danger itemSend">
@@ -112,7 +112,7 @@
 							</div>
 						</div>
 					</div>
-						<%-- <form class="itemSend">
+					<%-- <form class="itemSend">
 						<div>
 							<!-- 해당 물품 테이블 클릭시 해당 페이지로 이동 -->
 							<input type="hidden" name="auction_id"
@@ -134,7 +134,7 @@
 			</div>
 			<div>
 				<c:if test="${loseBidMsg=='nothing' }">
-					<div>낙찰에 실패한 물품이 없습니다.</div>
+					<div class="alert alert-warning" role="alert">낙찰에 실패한 물품이 없습니다.</div>
 				</c:if>
 				<c:forEach var="loseBidJspOnly" items="${loseBid1 }">
 					<div class="panel panel-warning itemSend">
@@ -175,7 +175,7 @@
 			</div>
 		</div>
 		<br />
-
 	</div>
+	<div class="col-sm-2"></div>
 </body>
 </html>
