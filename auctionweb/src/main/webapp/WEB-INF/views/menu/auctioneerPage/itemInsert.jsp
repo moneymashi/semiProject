@@ -67,7 +67,7 @@
 		
 		var f=document.forms.form01;
 		var leng = $("#category_id").length;
-		alert(cVal);
+	
 		if(cVal == ""){
 			num = new Array("선택하세요");
 			vnum = new Array("");
@@ -100,7 +100,8 @@
 	<div class="col-sm-3">
 		<jsp:include page="auctioneerPageNav.jsp" flush="false" />
 	</div>
-	<div class="container col-sm-7">
+	<div class="container col-sm-9">
+	<br><br><br><br>
 		<div class="panel panel-primary">
 			<div class="panel-heading" style="text-align:center;"><h2>물품등록</h2></div>
 			<div class="panel-body">
@@ -118,6 +119,7 @@
 						<label class="col-sm-2 control-label">상위카테고리:</label>
 						<div class="col-sm-10">
 							<select class="form-control" id="parent_category_id" name="parent_category_id" onchange="categoryShow(this.value)">
+								<option value="">상위 카테고리를 선택하세요</option>
 								<option value="1">Phone</option>
 								<option value="8">Laptop</option>
 								<option value="14">Desktop</option>
@@ -153,6 +155,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-2"></div>
 </body>
 </html>
