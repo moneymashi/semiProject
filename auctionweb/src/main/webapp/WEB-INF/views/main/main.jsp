@@ -291,30 +291,35 @@ body {
 			<div class="block box">
 				<div class="top">
 					<ul>
-						<a href='#### 공지/회원가입 링크 ####'> <!-- //TODO: 종원형 게시글 링크. -->
-							<li><i class="fa fa-star-o" aria-hidden="true"> 공지/회원가입
-									링크 </i></li>
-							<li><span class="converse"> 게시자 // 카테고리 </span></li>
+						<a href = '${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />' >
+							<!-- //TODO: 정효형 게시글 링크. -->
+							<li><i class="fa fa-star-o" aria-hidden="true">randomOne</i></li>
 						</a>
 					</ul>
 				</div>
-				<a href='#### 공지/회원가입 링크 ####'> <!-- //TODO: 종원형 게시글 링크. -->
+				<a
+					href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
+					<!-- //TODO: 정효형 게시글 링크. -->
 					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="https://www.sw.or.kr/img/join/m_mem_n.gif" alt="pic"
+						<img src="${randomOne.picture_location  }" alt="pic"
 							style="width: 100%; height: 100%; background: cover;" />
 					</div>
 				</a>
 				<div class="bottom">
-					<a href='#### 공지/회원가입 링크 ####'> <!-- //TODO: 종원형 게시글 링크. -->
-						<div class="heading">HeadLine</div>
-						<div class="info">Content</div>
-						<div class="style">관리자: 누구누구</div>
-						<div class="price">????</div>
+					<a
+						href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
+						<!-- //TODO: 정효형 게시글 링크. -->
+						<div class="heading">item_name: ${randomOne.item_name }</div>
+						<div class="style">auction_hit: ${randomOne.auction_hit }</div>
+						<div class="price">current_bid_amount:
+							${randomOne.current_bid_amount }</div>
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	
 	<div class="footer">
 		<c:import url="../main/footer.jsp" />
 	</div>
