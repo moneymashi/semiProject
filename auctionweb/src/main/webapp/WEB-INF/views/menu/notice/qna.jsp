@@ -30,7 +30,9 @@
 	<div class="col-sm-3">
 		<jsp:include page="noticeNav.jsp" flush="false" />
 	</div>
-	<div class="col-sm-9">
+	<div class="col-sm-1">
+	</div>
+	<div class="col-sm-7">
 		<form action="${path }/mail/mailSending.do" method="post">
 			<div class="form-group">
 				<label for="tomail">받는사람:</label> 
