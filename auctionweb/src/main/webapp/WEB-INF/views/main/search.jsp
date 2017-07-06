@@ -262,6 +262,10 @@
 /* * {
 	border: 1px red dotted;
 } */
+body {
+	padding-top: 60px;
+}
+
 #block {
 	display: inline-block;
 }
@@ -274,6 +278,12 @@
 	box-shadow: 0 2px 55px rgba(0, 0, 0, 0.1);
 }
 
+.box {
+	display: inline-block;
+	width: 100%;
+	margin: 1em;
+}
+
 .footer {
 	width: 100% !important;
 	margin: 0;
@@ -281,14 +291,6 @@
 </style>
 </head>
 <body>
-	<%
-		
-	%>
-	<br />
-	<%-- README: br br br br 이거 해결법?? 잇나요? --%>
-	<br />
-	<br />
-	<br />
 	<div>
 		<c:import url="header.jsp" />
 	</div>
@@ -297,17 +299,17 @@
 	<%-- filter
 	README: toggle에 문제잇음. 클릭마다 열고 닫는방법 모색중..
 	 --%>
-	<button data-toggle="collapse" data-target="#demo">Adv. Search</button>
+	<button class="btn btn-info" data-toggle="collapse" data-target="#demo">
+		세부 검색 <span class="caret"></span>
+	</button>
 	<div id="demo" class="collapse">
 		<form id="filter" method="post">
 			<br />
 			<%-- // 입찰가 정렬필터  - html) select option형식 --%>
 			<select name="priceOrder" class="btn btn-primary active">
 				<option class="btn btn-primary active" value="">가격정렬</option>
-				<option class="btn btn-primary active" value="asc">
-					가격올림차순</option>
-				<option class="btn btn-primary active" value="desc">
-					가격내림차순</option>
+				<option class="btn btn-primary active" value="asc">가격올림차순</option>
+				<option class="btn btn-primary active" value="desc">가격내림차순</option>
 			</select>
 			<%-- // 물품 입찰마감날짜 정렬필터 - select option형식 --%>
 			<select name="endDateOrder" class="btn btn-primary active">
@@ -343,34 +345,39 @@
 		</form>
 	</div>
 
-	<h3>
-		<%-- 부모카테고리 - 자식카테고리 링크.  --%>
-		<a
-			href="${path }/search.do?schParentDept=<c:out value ="${itemSch.schParentDept }"/>">
-			${itemSch.schParentDept } </a> <a
-			href="${path }/search.do?schParentDept=<c:out value ="${itemSch.schParentDept }"/>&schDept=<c:out value = "${itemSch.schDept }"/>">
-			${itemSch.schDept } </a>
-		<%-- 총데이터건수. --%>
-		department에 대한 데이터 건수: ${itemSch.count }건.
-	</h3>
+	<div class="page-header">
+		<h1>
+			<%-- 부모카테고리 - 자식카테고리 링크.  --%>
+			<a
+				href="${path }/search.do?schParentDept=<c:out value ="${itemSch.schParentDept }"/>">
+				${itemSch.schParentDept } </a> <a
+				href="${path }/search.do?schParentDept=<c:out value ="${itemSch.schParentDept }"/>&schDept=<c:out value = "${itemSch.schDept }"/>">
+				${itemSch.schDept } </a>
+			<%-- 총데이터건수. --%>
+			검색 건수: ${itemSch.count }건
+			<small id="showTime"></small>
+		</h1>
+	</div>
+
+	<%-- 현재시간 조회 - setInterval --%>
+	<h4 id="showTime"></h4>
+
 	<%-- 검색결과 조회물품이 없는경우. --%>
 	<c:if test="${itemList.size() == 0 }">
 		<button class="btn btn-primary active" onclick="goBack();">
 			이전 페이지로</button>
 	</c:if>
 
-	<%-- 현재시간 조회 - setInterval --%>
-	<h3 id="showTime">~</h3>
-
 	<%-- 조회결과 물품목록 list. --%>
 	<%-- items는 ArrayList<Item> 형태,  Model d.addAttribute로 가져옴. --%>
-	<div class="card-deck">
+	<div class="card-deck box">
 		<c:forEach var="item" items="${itemList }">
 			<a
 				href='${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />'>
 				<div class="card col-sm-4">
 					<div class="block">
-						<img class="card-img-top" src="${path }/resources/upload/${item.picture_location}"
+						<img class="card-img-top"
+							src="${path }/resources/upload/${item.picture_location}"
 							alt="pictureNotUploaded" width="32%" height="32%">
 						<div class="card-block">
 							<h4 class="card-title">${item.item_name }</h4>

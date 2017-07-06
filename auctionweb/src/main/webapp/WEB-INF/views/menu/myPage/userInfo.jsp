@@ -46,9 +46,6 @@
 </head>
 <body>
 	<div>
-		<c:import url="../main/header.jsp" />
-	</div>
-	<div>
 		<div class="col-sm-3">
 			<jsp:include page="myPageNav.jsp" flush="false" />
 		</div>

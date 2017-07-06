@@ -31,21 +31,15 @@
 	width: 100%;
 	margin: 1em;
 }
+body {
+	padding-top: 60px;
+}
 </style>
 </head>
 <body>
 	<div>
 		<c:import url="../main/header.jsp" />
 	</div>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
 	<div class="box">
 		<!-- 공지사항 게시판위치 -->
 		<c:if test="${pageName == 'notice/notice' }">
