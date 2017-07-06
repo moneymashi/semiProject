@@ -12,7 +12,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("input[name=auction_id]").closest("div").dbclick(function() {
+		$("input[name=auction_id]").closest("div").click(function() {
 			$(location).attr("href","${path}/auction/board/list.do?auction_id="+$(this).children().val());
 		});
 	});
@@ -40,7 +40,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#"> <img class="media-object"
-									src="${bidding1JspOnly.picture_location}"
+									src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
 									style="width: 70px; height: auto;">
 								</a>
 							</div>
@@ -88,7 +88,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#"> <img class="media-object"
-									src="${bidding1JspOnly.picture_location}"
+									src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
 									style="width: 70px; height: auto;">
 								</a>
 							</div>
@@ -132,7 +132,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#"> <img class="media-object"
-									src="${bidding1JspOnly.picture_location}"
+									src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
 									style="width: 70px; height: auto;">
 								</a>
 							</div>
