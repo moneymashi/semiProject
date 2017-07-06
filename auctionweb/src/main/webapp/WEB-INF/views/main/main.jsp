@@ -139,6 +139,17 @@ body {
 	width: 100% !important;
 	margin: 0;
 }
+
+.panel-body{
+	font-famliy: "MS Sans Serif";
+}
+
+
+.panel-footer{
+	font-famliy: Impact;
+	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
@@ -217,34 +228,26 @@ body {
 		<div class="col-sm-4">
 			<div class="block box">
 				<div class="top">
-					<ul>
-						<a
-							href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
-							<!-- //TODO: 정효형 게시글 링크. -->
-							<li><i class="fa fa-star-o" aria-hidden="true">highestHit</i></li>
-							<li><span class="converse"> 카테고리id;
-									${highestHit.category_id } // 옥션id; ${highestHit.auction_id }</span></li>
-						</a>
-					</ul>
+					<i class="fa fa-star-o" aria-hidden="true">highestHit</i>
+					<i class="pull-right">hit: ${highestHit.auction_hit }</i>
 				</div>
-				<a
-					href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
-					<!-- //TODO: 정효형 게시글 링크. -->
-					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="${highestHit.picture_location  }" alt="pic"
-							style="width: 100%; height: 100%; background: cover;" />
-					</div>
-				</a>
-				<div class="bottom">
-					<a
-						href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
-						<!-- //TODO: 정효형 게시글 링크. -->
-						<div class="heading">item_name: ${highestHit.item_name }</div>
-						<div class="info">item_content: ${highestHit.item_content }</div>
-						<div class="style">auction_hit: ${highestHit.auction_hit }</div>
-						<div class="price">current_bid_amount:
-							${highestHit.current_bid_amount }</div>
+				<div class="middle">
+					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
+						<img src="${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
+				</div>
+				<div class="bottom">
+					<div class=" panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title" >
+								<a data-toggle="collapse" href="#item01">${highestHit.item_name }</a>
+							</h4>
+						</div>
+						<div id="item01" class="panel-collapse collapse">
+							<div class="panel-body" id="panel-body">${highestHit.item_content }</div>
+							<div class="panel-footer" >Price: ${highestHit.current_bid_amount }</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -253,71 +256,62 @@ body {
 		<div class="col-sm-4">
 			<div class="block box">
 				<div class="top">
-					<ul>
-						<a
-							href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
-							<!-- //TODO: 정효형 게시글 링크. -->
-							<li><i class="fa fa-star-o" aria-hidden="true">highestBid</i></li>
-							<li><span class="converse"> 카테고리id;
-									${highestBid.category_id } // 옥션id; ${highestBid.auction_id }</span></li>
-						</a>
-					</ul>
+					<i class="fa fa-star-o" aria-hidden="true">highestBid</i>
+					<i class="pull-right">hit: ${highestBid.auction_hit }</i>
 				</div>
-				<a
-					href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
-					<!-- //TODO: 정효형 게시글 링크. -->
-					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="${highestBid.picture_location  }" alt="pic"
-							style="width: 100%; height: 100%; background: cover;" />
-					</div>
-				</a>
-				<div class="bottom">
-					<a
-						href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
-						<!-- //TODO: 정효형 게시글 링크. -->
-						<div class="heading">item_name: ${highestBid.item_name }</div>
-						<div class="info">item_content: ${highestBid.item_content }</div>
-						<div class="style">auction_hit: ${highestBid.auction_hit }</div>
-						<div class="price">current_bid_amount:
-							${highestBid.current_bid_amount }</div>
+				<div class="middle">
+					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
+						<img src="${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
+				</div>
+				<div class="bottom">
+					<div class=" panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title" >
+								<a data-toggle="collapse" href="#item02">${highestBid.item_name }</a>
+							</h4>
+						</div>
+						<div id="item02" class="panel-collapse collapse">
+							<div class="panel-body">${highestBid.item_content }</div>
+							<div class="panel-footer">Price: ${highestBid.current_bid_amount }</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<!--  공지/회원가입 게시글 -->
-		<!-- //TODO: 종원형 게시판보고 판단할문제.. -->
+
 		<div class="col-sm-4">
 			<div class="block box">
 				<div class="top">
-					<ul>
-						<a href = '${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />' >
-							<!-- //TODO: 정효형 게시글 링크. -->
-							<li><i class="fa fa-star-o" aria-hidden="true">randomOne</i></li>
-						</a>
-					</ul>
+					<i class="fa fa-star-o" aria-hidden="true">randomOne</i>
+					<i class="pull-right">hit: ${randomOne.auction_hit }</i>
 				</div>
-				<a
-					href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
-					<!-- //TODO: 정효형 게시글 링크. -->
-					<div class="middle" style="width: 33%; height: 33%;">
-						<img src="${randomOne.picture_location  }" alt="pic"
-							style="width: 100%; height: 100%; background: cover;" />
-					</div>
-				</a>
-				<div class="bottom">
-					<a
-						href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
-						<!-- //TODO: 정효형 게시글 링크. -->
-						<div class="heading">item_name: ${randomOne.item_name }</div>
-						<div class="style">auction_hit: ${randomOne.auction_hit }</div>
-						<div class="price">current_bid_amount:
-							${randomOne.current_bid_amount }</div>
+				<div class="middle">
+					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${randomOneBid.auction_id }" />'>
+						<img src="${randomOne.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
+				</div>
+				<div class="bottom">
+					<div class=" panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title" >
+								<a data-toggle="collapse" href="#item03">${randomOne.item_name }</a>
+							</h4>
+						</div>
+						<div id="item03" class="panel-collapse collapse">
+							<div class="panel-body">${randomOne.item_content }</div>
+							<div class="panel-footer">Price: ${randomOne.current_bid_amount }</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	
+
+	
 	
 	
 	<div class="footer">
