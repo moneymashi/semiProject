@@ -52,7 +52,7 @@ public class UserController {
 			// 세션 name : 로그인 한 계정의 이름
 			session.setAttribute("name", service.loginCheck(mem).getUser_name());
 			// 보여주는 view 경로 설정( 로그인이 성공 했으면 main으로)
-			mav.setViewName("main/main");
+			mav.setViewName("redirect:/main.do");
 			// 해당 view에 포함시킬 객체 설정(로그인 여부 msg를 설정함-success)
 			mav.addObject("msg", "success");
 		} else {
@@ -80,7 +80,7 @@ public class UserController {
 	@RequestMapping("login/logout.do")
 	public ModelAndView logout(HttpSession session, ModelAndView mav) {
 		service.logout(session);
-		mav.setViewName("/main/main");
+		mav.setViewName("redirect:/main.do");
 		mav.addObject("msg", "logout");
 		return mav;
 	}

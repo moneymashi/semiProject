@@ -90,7 +90,7 @@ public class ItemService {
 	// 아이템 등록
 	public void itemInsert(Item ins, MultipartFile file) throws IOException{
 		//임시저장소에서 이동시킬 경로
-		String realPath = "C:/a01_prog/eclipse/workspace_auction/auctionweb/src/main/webapp/resources/upload/";
+		String realPath = "C:/Users/acorn/git/muz_auction/auctionweb/src/main/webapp/resources/upload/";
 		// uuid 생성(Universal Unique IDentifier, 범용 고유 식별자)
 		UUID uuid = UUID.randomUUID();
 		// 파일명 : uuid_기존파일명 ==> 파일명 중복 안되게 처리

@@ -48,7 +48,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#"> <img class="media-object"
-									src="${bidding1JspOnly.picture_location}"
+									src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
 									style="width: 70px; height: auto;">
 								</a>
 							</div>
@@ -96,7 +96,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#"> <img class="media-object"
-									src="${bidding1JspOnly.picture_location}"
+									src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
 									style="width: 70px; height: auto;">
 								</a>
 							</div>
@@ -140,7 +140,7 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#"> <img class="media-object"
-									src="${bidding1JspOnly.picture_location}"
+									src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
 									style="width: 70px; height: auto;">
 								</a>
 							</div>

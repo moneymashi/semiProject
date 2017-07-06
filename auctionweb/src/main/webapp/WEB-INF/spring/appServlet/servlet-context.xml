@@ -44,7 +44,7 @@
 	<beans:bean id="tempPath" class="java.lang.String">
 		<!-- 파일업로드 디렉토리 -->
 		<beans:constructor-arg
-			value="C:\Users\acorn\Documents\workspace-sts-3.8.4.RELEASE\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\muz_final\resources\upload\" />
+			value="C:\a01_prog\eclipse\teamPrj\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\auctionweb\resources\upload\" />
 	</beans:bean>
 	
 	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
