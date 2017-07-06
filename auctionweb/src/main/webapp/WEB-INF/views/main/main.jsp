@@ -139,6 +139,17 @@ body {
 	width: 100% !important;
 	margin: 0;
 }
+
+.panel-body{
+	font-famliy: "MS Sans Serif";
+}
+
+
+.panel-footer{
+	font-famliy: Impact;
+	font-weight: bold;
+}
+
 </style>
 </head>
 <body>
@@ -222,7 +233,7 @@ body {
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
-						<img src="${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; background: cover;" />
+						<img src="${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -233,8 +244,8 @@ body {
 							</h4>
 						</div>
 						<div id="item01" class="panel-collapse collapse">
-							<div class="panel-body">${highestHit.item_content }</div>
-							<div class="panel-footer">price: ${highestHit.current_bid_amount }</div>
+							<div class="panel-body" id="panel-body">${highestHit.item_content }</div>
+							<div class="panel-footer" >Price: ${highestHit.current_bid_amount }</div>
 						</div>
 					</div>
 				</div>
@@ -250,7 +261,7 @@ body {
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
-						<img src="${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; background: cover;" />
+						<img src="${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -262,7 +273,7 @@ body {
 						</div>
 						<div id="item02" class="panel-collapse collapse">
 							<div class="panel-body">${highestBid.item_content }</div>
-							<div class="panel-footer">price: ${highestBid.current_bid_amount }</div>
+							<div class="panel-footer">Price: ${highestBid.current_bid_amount }</div>
 						</div>
 					</div>
 				</div>
@@ -278,7 +289,7 @@ body {
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${randomOneBid.auction_id }" />'>
-						<img src="${randomOne.picture_location  }" alt="pic" style="width: 100%; height: 100%; background: cover;" />
+						<img src="${randomOne.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -290,7 +301,7 @@ body {
 						</div>
 						<div id="item03" class="panel-collapse collapse">
 							<div class="panel-body">${randomOne.item_content }</div>
-							<div class="panel-footer">price: ${randomOne.current_bid_amount }</div>
+							<div class="panel-footer">Price: ${randomOne.current_bid_amount }</div>
 						</div>
 					</div>
 				</div>
