@@ -199,11 +199,16 @@ div.section>div>input {
 		padding-left: 0;
 	}
 }
+body {
+		padding-top: 80px;
+}
 </style>
 </head>
 <body>
 	<%-- 헤더삽입 --%>
-	<c:import url="../main/header.jsp" />
+	<div>
+		<c:import url="../main/header.jsp" />
+	</div>
 	<br>
 	<br>
 	<div class="container">
