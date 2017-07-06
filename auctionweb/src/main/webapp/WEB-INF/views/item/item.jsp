@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="${path }/resources/js/jquery.loupe.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -40,6 +41,7 @@
 			//alert("결제창으로 넘어갑니다.");
 			$(location).attr("href", "${path}/myPage/payTheWin.do");
 		});
+		$('.demo').loupe();
 	});
 	// 서버단에서 받는 msg값이 있으면 알림창
 	var msg = "${msg}";
@@ -198,6 +200,14 @@ div.section>div>input {
 	}
 }
 </style>
+<style type="text/css" media="screen">
+a.demo { float:left; }
+a img { border:none; }
+.item-photo { position:relative; }
+img.demo { float:right; }
+.demo { position:relative; top:-120px; }
+.loupe { background-color:#555; background:rgba(0, 0, 0, 0.25); border:5px solid rgba(0, 0, 0, 0); cursor:url(blank.png), url(blank.cur), none; }
+</style>
 </head>
 <body>
 	<%-- 헤더삽입 --%>
@@ -207,8 +217,9 @@ div.section>div>input {
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-4 item-photo">
-				<img style="max-width: 100%;"
-					src="${path }/resources/upload/${itemInfo.picture_location}" />
+				<a class="demo" href="${path }/resources/upload/${itemInfo.picture_location}">
+					<img src="${path }/resources/upload/${itemInfo.picture_location}"/>
+				</a>
 			</div>
 			<div class="col-xs-5" style="border: 0px solid gray">
 				<%-- 물품명, 물품번호, 물품번호 숨기기 --%>
