@@ -95,6 +95,20 @@ public class BoardService {
 	public void replyInsert(Board reply){
 		// 답글 모양 설정
 		dao.shapeReply(reply);
+		// 설정
+		String title = reply.getBoard_title();
+		String content = reply.getBoard_content();
+// 		*태그문자 처리 (< ==> &lt; > ==> &gt;)
+// 		replace(A, B) A를 B로 변경
+		title = title.replace("<", "&lt;");
+	    title = title.replace("<", "&gt;");
+
+// 		*공백문자 처리
+		title = title.replace("  ", "&nbsp;&nbsp;");
+// 		*줄바꿈 문자처리
+		content = content.replace("\n", "<br>");
+		reply.setBoard_title(title);
+		reply.setBoard_content(content);
 		// 답글 입력
 		dao.insertReply(reply);
 	}
@@ -103,7 +117,7 @@ public class BoardService {
 		Board reply = null;
 		// 게시글 불러오기
 		reply = dao.read(board_id);
-		reply.setBoard_title(reply.getBoard_title()+"의 답변입니다.");
+		reply.setBoard_title(reply.getBoard_title());
 		reply.setBoard_content("\n\n\n\n===이전 내용====\n"+reply.getBoard_content()+"\n");
 		return reply;
 	}
