@@ -32,7 +32,7 @@
 	<div class="col-sm-3">
 		<jsp:include page="myPageNav.jsp" flush="false" />
 	</div>
-	<div class="col-sm-9">
+	<div class="col-sm-7">
 		<form>
 			<input type="hidden" name="user_id" value="${userInfo.user_id }"/>
 			<div class="form-group">
@@ -74,6 +74,7 @@
 		</div> --%>
 		</form>
 	</div>
+	<div class="col-sm-2"></div>
 </body>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>

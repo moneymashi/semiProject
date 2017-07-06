@@ -25,7 +25,7 @@
 		<form>
 		<%--<input type="hidden" name="userId" value="${mem.userId }" /> --%>
 			<div>
-				<h1>현재 이 페이지에 대한 조 내 결정사항 없음.(없는 페이지)</h1>
+				<img src="http://mokpo.mof.go.kr/images/contents/nopage.gif">
 			</div>
 		</form>
 	</div>

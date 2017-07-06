@@ -49,7 +49,7 @@
 		<div class="col-sm-3">
 			<jsp:include page="myPageNav.jsp" flush="false" />
 		</div>
-		<div class="col-sm-9">
+		<div class="col-sm-7">
 			<form>
 				<input type="hidden" name="user_id" value="${userInfo.user_id }"/>
 				<div class="form-group">
@@ -103,5 +103,6 @@
 			</form>
 		</div>
 	</div>
+	<div class="col-sm-2"></div>
 </body>
 </html>
