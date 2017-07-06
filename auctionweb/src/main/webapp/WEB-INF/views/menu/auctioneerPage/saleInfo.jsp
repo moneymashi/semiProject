@@ -48,7 +48,6 @@
 								<input type="hidden" name="auction_id"
 									value="${bidding1JspOnly.auction_id }" />
 								<h4 class="media-heading">${bidding1JspOnly.item_name}</h4>
-								${bidding1JspOnly.item_content}
 								<div>마감날짜 : ${bidding1JspOnly.end_date}</div>
 								<div>현재상태 : ${bidding1JspOnly.state_code}</div>
 								<div>가격 : ${bidding1JspOnly.current_bid_amount}</div>
@@ -97,7 +96,6 @@
 								<input type="hidden" name="auction_id"
 									value="${winBidJspOnly.auction_id }" />
 								<h4 class="media-heading">${winBidJspOnly.item_name}</h4>
-								${winBidJspOnly.item_content}
 								<div>마감날짜 : ${winBidJspOnly.end_date}</div>
 								<div>현재상태 : ${winBidJspOnly.state_code}</div>
 								<div>가격 : ${winBidJspOnly.current_bid_amount}</div>
@@ -142,7 +140,6 @@
 								<input type="hidden" name="auction_id"
 									value="${loseBidJspOnly.auction_id }" />
 								<h4 class="media-heading">${loseBidJspOnly.item_name}</h4>
-								${loseBidJspOnly.item_content}
 								<div>마감날짜 : ${loseBidJspOnly.end_date}</div>
 								<div>현재상태 : ${loseBidJspOnly.state_code}</div>
 								<div>가격 : ${loseBidJspOnly.current_bid_amount}</div>
