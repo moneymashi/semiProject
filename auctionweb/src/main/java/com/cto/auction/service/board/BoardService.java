@@ -103,7 +103,7 @@ public class BoardService {
 		Board reply = null;
 		// 게시글 불러오기
 		reply = dao.read(board_id);
-		reply.setBoard_title(" RE: "+reply.getBoard_title());
+		reply.setBoard_title(reply.getBoard_title()+"의 답변입니다.");
 		reply.setBoard_content("\n\n\n\n===이전 내용====\n"+reply.getBoard_content()+"\n");
 		return reply;
 	}
