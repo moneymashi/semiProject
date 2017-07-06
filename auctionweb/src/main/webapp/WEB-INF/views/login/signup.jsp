@@ -115,7 +115,7 @@
 </script>
 <style type="text/css">
 body {
-	padding: 60px 0;
+	padding-top: 60px;
 }
 
 form>div {
@@ -124,7 +124,9 @@ form>div {
 </style>
 </head>
 <body>
-	<c:import url="../main/header.jsp" />
+	<div>
+		<c:import url="../main/header.jsp" />
+	</div>
 	<br>
 	<br>
 

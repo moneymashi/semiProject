@@ -14,8 +14,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <!-- <script
@@ -31,19 +30,10 @@
 	});
 </script>
 <style type="text/css">
-* {
-	font-family: "Roboto";
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
-	letter-spacing: 1px;
-	box-sizing: border-box;
-}
 
 body {
-	padding: 70px 0 0 ;
-	background: #f9fafa;
+	padding-top: 40px;
+	/* background: #f9fafa;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -51,7 +41,7 @@ body {
 	-ms-flex-pack: center;
 	justify-content: center;
 	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
+	flex-wrap: wrap; */
 }
 
 .block {
