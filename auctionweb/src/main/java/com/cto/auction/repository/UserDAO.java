@@ -39,15 +39,6 @@ public interface UserDAO {
 
 	public void myPagePayInsert(Payment ins);
 
-	public Auctioneer auctioneerAuctioneerInfo(Auctioneer info);
-
-	public void auctioneerAuctioneerUpdate(Auctioneer upt);
-
-	public void auctioneerAuctioneerInsert(Auctioneer ins);
-
-	public void auctioneerAuctioneerAuth(Auctioneer auth);
-
-	
 	public List<Item> auctionInfoBidding01(Item item);
 	public List<Bid> auctionInfoBidding02(Bid bid);
 
@@ -57,10 +48,6 @@ public interface UserDAO {
 	public List<Item> auctionInfoLoseBid01(Item item);
 	public List<Bid> auctionInfoLoseBid02(Bid bid);
 	
-	public List<Item> saleInfoBidding01(Item item);
-	public List<Item> saleInfoWinBid01(Item item);
-	public List<Item> saleInfoLoseBid01(Item item);
-	
 	// 낙찰 데이터부르기(임시)
 	public Item winpay1(Item sch);
 	public User mem(User sch);
@@ -69,9 +56,5 @@ public interface UserDAO {
 	public void memProc(User sch);
 	
 	public int chkDupEmail(User cnt);
-	
-	public void myPageMessageInsert(Message ins);
-	
-	public List<Item> messageReceive(Message msg);
-	public List<Item> messageSend(Message msg);
+
 }

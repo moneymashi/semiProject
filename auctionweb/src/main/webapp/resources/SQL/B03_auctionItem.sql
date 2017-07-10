@@ -13,7 +13,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  NULL,
                   392,
                   101,
-                  'https://images-na.ssl-images-amazon.com/images/I/51b5CupugyL._AC_US218_.jpg');
+                  'phone01.png');
 				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -25,7 +25,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   412,
                   101,
-                  'https://images-na.ssl-images-amazon.com/images/I/41bAcRCjWtL._AC_US218_.jpg');
+                  'phone02.png');
 				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -37,7 +37,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   333,
                   102,
-                  'https://images-na.ssl-images-amazon.com/images/I/41gRR3m1txL._SX466_.jpg');
+                  'phone03.png');
 				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -49,7 +49,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   227,
                   106,
-                  'https://images-na.ssl-images-amazon.com/images/I/61LdTUNvj6L._SL1000_.jpg');
+                  'phone04.png');
 				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -62,7 +62,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   372,
                   103,
-                  'https://images-na.ssl-images-amazon.com/images/I/818Zf5kC96L._SL1500_.jpg');
+                  'phone05.png');
 
 --Desktop
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
@@ -79,7 +79,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  '유반장',
                   2012,
                   303,
-                  'https://images-na.ssl-images-amazon.com/images/I/31wkosRf1HL._AC_US218_.jpg');
+                  'desktop01.png');
 				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -92,7 +92,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   431,
                   303,
-                  'https://images-na.ssl-images-amazon.com/images/I/413SrvW2vXL._AC_US218_.jpg');
+                  'desktop02.png');
 				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -106,7 +106,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   399,
                   302,
-                  'https://images-na.ssl-images-amazon.com/images/I/413yxWb2yJL._AC_US218_.jpg');
+                  'desktop03.png');
 
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -122,7 +122,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  NULL,
                   139,
                   302,
-                  'https://images-na.ssl-images-amazon.com/images/I/512kMN01GqL._AC_US218_.jpg');
+                  'desktop04.png');
 
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -139,7 +139,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   1899,
                   302,
-                  'https://images-na.ssl-images-amazon.com/images/I/51ggH0mJn2L._AC_US218_.jpg');
+                  'desktop05.png');
 
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -151,7 +151,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   1899,
                   306,
-                  'https://images-na.ssl-images-amazon.com/images/I/51Yv9G0mBqL.jpg');
+                  'desktop06.png');
 				  			  
 --laptop
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
@@ -171,7 +171,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   1199,
                   201,
-                  'https://images-na.ssl-images-amazon.com/images/I/51P8gX+AUyL._AC_US218_.jpg');
+                  'laptop01.png');
 				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -188,7 +188,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   779,
                   203,
-                  'https://images-na.ssl-images-amazon.com/images/I/41mvjJYPupL._AC_US218_.jpg');
+                  'laptop02.png');
 
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -203,7 +203,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  'dumy',
                   701,
                   202,
-                  'https://images-na.ssl-images-amazon.com/images/I/61pTItfW3OL._SL1000_.jpg');
+                  'laptop03.png');
 
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
@@ -215,5 +215,5 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 				  NULL,
                   701,
                   203,
-                  'https://images-na.ssl-images-amazon.com/images/I/61mwc9DAaxL._SL1228_.jpg');
+                  'laptop04.png');
 				  

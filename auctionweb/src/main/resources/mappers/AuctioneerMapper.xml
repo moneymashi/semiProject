@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cto.auction.repository.AuctioneerDAO">
+	<resultMap type="auctioneer" id="auctioneerResult" />
+	<resultMap type="user" id="userResult" />
+	<resultMap type="item" id="itemResult" />
+
+	<select id="auctioneerAuctioneerInfo" resultType="auctioneer">
+		SELECT * FROM
+		AUCTIONEER_INFO WHERE AUCTIONEER_ID = #{auctioneer_id}
+	</select>
+	<update id="auctioneerAuctioneerUpdate" parameterType="auctioneer">
+		UPDATE
+		AUCTIONEER_INFO
+		SET
+		BANK_NAME = #{bank_name},
+		ACCOUNT_NAME =
+		#{account_name},
+		ACCOUNT_NUMBER = #{account_number}
+		WHERE AUCTIONEER_ID
+		= ${auctioneer_id }
+	</update>
+	<!-- auctioneer_id를 jsp에서 불러오기때문에, 경매자 id를 이용하여 AUCTION_USER 테이블 수정. -->
+	<update id="auctioneerAuctioneerAuth" parameterType="user">
+		UPDATE
+		AUCTION_USER
+		SET
+		AUTH = 2
+		WHERE USER_ID = ${auctioneer_id }
+	</update>
+	<select id="auctioneerAuctioneerInsert" resultType="auctioneer">
+		INSERT INTO
+		AUCTIONEER_INFO
+		( AUCTIONEER_ID, BANK_NAME, ACCOUNT_NAME,
+		ACCOUNT_NUMBER ) VALUES
+		( ${auctioneer_id }, #{bank_name},
+		#{account_name}, #{account_number})
+	</select>
+		<!-- 경매인 -->
+	<select id="saleInfoBidding01" resultMap="itemResult">
+		SELECT * FROM AUCTION_ITEM
+		WHERE AUCTIONEER_ID = #{auctioneer_id} AND SYSDATE &lt; END_DATE
+	</select>
+	
+	<select id="saleInfoWinBid01" resultMap="itemResult">
+		SELECT * FROM AUCTION_ITEM
+		WHERE AUCTIONEER_ID = #{auctioneer_id} AND SYSDATE &gt; END_DATE AND CURRENT_BIDDER_ID IS NOT NULL
+	</select>
+	
+	<select id="saleInfoLoseBid01" resultMap="itemResult">
+		SELECT * FROM AUCTION_ITEM
+		WHERE AUCTIONEER_ID = #{auctioneer_id} AND SYSDATE &gt; END_DATE AND CURRENT_BIDDER_ID IS NULL
+	</select>
+
+</mapper>

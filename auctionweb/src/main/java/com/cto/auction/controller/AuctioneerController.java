@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cto.auction.service.AuctioneerService;
 import com.cto.auction.service.UserService;
 import com.cto.auction.vo.Auctioneer;
 import com.cto.auction.vo.Item;
@@ -19,7 +20,8 @@ import com.cto.auction.vo.User;
 @RequestMapping("/*")
 public class AuctioneerController {
 	@Autowired(required = false)
-	private UserService service;
+	private AuctioneerService service;
+	private UserService userService;
 	
 	//판매자 전환하기, 판메자 페이지로 대체 가능
 /*	@RequestMapping("auctioneerPage/auctioneerAuth.do")
@@ -48,7 +50,7 @@ public class AuctioneerController {
 	public String auctioneerAuctioneerInsert(Auctioneer ins, User upt, HttpSession session) {
 		service.auctioneerAuctioneerInsert(ins);
 		//판매자 권한이 user테이블에 있기때문에, 세션 정보(auth) 업데이트위해 아래 코드 실행.
-		session.setAttribute("mem", service.myPageUserInfo(upt, session));
+		session.setAttribute("mem", userService.myPageUserInfo(upt, session));
 		return "redirect:/auctioneerPage/auctioneerInfo.do";
 	}
 	// 판매자 판매물품 정보

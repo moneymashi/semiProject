@@ -29,7 +29,12 @@ public class UserService {
 	public User loginCheck(User mem) {
 		return dao.loginCheck(mem);
 	}
-
+	
+	// 회원가입 아이디 체크
+	public int chkDupEmail(User cnt) {
+		return dao.chkDupEmail(cnt);
+	}
+	
 	// 회원가입
 	public void signUpProc(User ins) {
 		dao.signUpProc(ins);
@@ -72,21 +77,6 @@ public class UserService {
 	}
 
 	
-	public Auctioneer auctioneerAuctioneerInfo(Auctioneer info, HttpSession session) {
-		info.setAuctioneer_id((Integer) session.getAttribute("sessionUser_id"));
-		return dao.auctioneerAuctioneerInfo(info);
-	}
-	
-	public void auctioneerAuctioneerUpdate(Auctioneer upt) {
-		dao.auctioneerAuctioneerUpdate(upt);
-	}
-	public void auctioneerAuctioneerInsert(Auctioneer ins) {
-		dao.auctioneerAuctioneerInsert(ins);
-		dao.auctioneerAuctioneerAuth(ins);
-	}
-	
-	
-	
 	
 	public List<Item> auctionInfoBidding01(Item item, HttpSession session) {
 		item.setUser_id((Integer)session.getAttribute("sessionUser_id"));
@@ -115,19 +105,6 @@ public class UserService {
 		return dao.auctionInfoLoseBid02(bid);
 	}
 	
-	public List<Item> saleInfoBidding01(Item item, HttpSession session) {
-		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
-		return dao.saleInfoBidding01(item);
-	}
-	public List<Item> saleInfoWinBid01(Item item, HttpSession session) {
-		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
-		return dao.saleInfoWinBid01(item);
-	}
-	public List<Item> saleInfoLoseBid01(Item item, HttpSession session) {
-		item.setAuctioneer_id((Integer)session.getAttribute("sessionUser_id"));
-		return dao.saleInfoLoseBid01(item);
-	}
-	
 	// 낙찰 데이터 부르기(임시)
 	public Item winpay1(Item sch){
 		return dao.winpay1(sch);
@@ -140,27 +117,5 @@ public class UserService {
 		dao.memProc(upt);
 	}
 		
-	public int chkDupEmail(User cnt) {
-		return dao.chkDupEmail(cnt);
-	}
 		
-	public void myPageMessageInsert(Message ins) {
-		dao.myPageMessageInsert(ins);
-	}
-	
-	public List<Item> messageReceive(Message msg, HttpSession session) {
-		msg.setUser_id((Integer)session.getAttribute("sessionUser_id"));
-		return dao.messageReceive(msg);
-	}
-	public List<Item> messageSend(Message msg, HttpSession session) {
-		msg.setSender_id((Integer)session.getAttribute("sessionUser_id"));
-		return dao.messageSend(msg);
-	}
-	
-	
-	
-	
-	
-	
-	
 }

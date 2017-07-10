@@ -19,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cto.auction.service.UserService;
-import com.cto.auction.vo.Auctioneer;
 import com.cto.auction.vo.Bid;
 import com.cto.auction.vo.Item;
-import com.cto.auction.vo.Message;
 import com.cto.auction.vo.Payment;
 import com.cto.auction.vo.User;
 
@@ -197,6 +195,9 @@ public class UserController {
 		return "redirect:/myPage/userPayment.do";
 	}
 
+	
+	
+	
 	// 입찰중, 낙찰, 낙찰 실패 페이지
 	@RequestMapping("myPage/auctionInfo.do")
 	public ModelAndView myPageAuctionInfo(Item item, Bid bid, HttpSession session, ModelAndView mav) {
@@ -236,6 +237,17 @@ public class UserController {
 		return mav;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 배송화면 아무런 로직 구현 안됨.
 	@RequestMapping("myPage/delivery.do")
 	public ModelAndView myPageDelivery(ModelAndView mav) {
@@ -244,37 +256,10 @@ public class UserController {
 		return mav;
 	}
 
-	// 메세지함
-	@RequestMapping("myPage/message.do")
-	public ModelAndView myPageMessage(Message msg, HttpSession session, ModelAndView mav) {
-		mav.setViewName("menu/menu");
-		mav.addObject("pageName", "myPage/message");
-		List<Item> mr = service.messageReceive(msg, session);
-		List<Item> ms = service.messageSend(msg, session);
-		/*
-		 * System.out.println("#####테스트스스스스스 : " + mr.size() + "테스트트트트: "+
-		 * ms.size());
-		 */
-		if (mr.size() != 0) {
-			mav.addObject("receiveBox", mr);
-		} else {
-			mav.addObject("receiveBox", "nothing");
-		}
-		if (ms.size() != 0) {
-			mav.addObject("sendBox", ms);
-		} else {
-			mav.addObject("sendBox", "nothing");
-		}
-		return mav;
-	}
-
-	// 메세지 보내기
-	@RequestMapping("myPage/messageInsert.do")
-	public String myPageMessageInsert(Message ins) {
-		service.myPageMessageInsert(ins);
-		return "redirect:/myPage/message.do";
-	}
-
+	
+	
+	
+	
 	// 재현
 	// 낙찰 작업: 서비스들은 임시 데이터 부르기.
 	@RequestMapping("myPage/payTheWin.do")

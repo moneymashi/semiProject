@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cto.auction.repository.MessageDAO">
+	<resultMap type="message" id="messageResult"/>
+
+	<select id="myPageMessageInsert" resultType="message">
+		INSERT INTO
+		USER_MESSAGE
+		( SENDER_ID, USER_ID, MESSAGE_TITLE, MESSAGE_CONTENT )
+		VALUES
+		(#{sender_id }, #{user_id}, #{message_title}, #{message_content})
+	</select>
+	
+	<select id="messageReceive" resultMap="messageResult">
+		SELECT * FROM
+		USER_MESSAGE
+		WHERE USER_ID = #{user_id}
+	</select>
+	<select id="messageSend" resultMap="messageResult">
+		SELECT * FROM
+		USER_MESSAGE
+		WHERE SENDER_ID = #{sender_id}
+	</select>
+
+
+	
+</mapper>

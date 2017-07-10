@@ -1,7 +1,6 @@
 package com.cto.auction.controller;
 
 import java.io.IOException; 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
