@@ -4,14 +4,15 @@
 <configuration>
 	<typeAliases>
 		<!-- 별명 설정 -->
-		<typeAlias alias="user" type="com.cto.auction.vo.user.User"/>
-		<typeAlias alias="board" type="com.cto.auction.vo.board.Board"/>
-		<typeAlias alias="item" type="com.cto.auction.vo.item.Item"/>
-		<typeAlias alias="itemSch" type="com.cto.auction.vo.item.Item_Sch"/>
-		<typeAlias alias="bid" type="com.cto.auction.vo.bid.Bid"/>
-		<typeAlias alias="payment" type="com.cto.auction.vo.user.Payment"/>
-		<typeAlias alias="notice" type="com.cto.auction.vo.notice.Notice"/>
-		<typeAlias alias="auctioneer" type="com.cto.auction.vo.user.Auctioneer"/>
+		<typeAlias alias="user" type="com.cto.auction.vo.User"/>
+		<typeAlias alias="board" type="com.cto.auction.vo.Board"/>
+		<typeAlias alias="item" type="com.cto.auction.vo.Item"/>
+		<typeAlias alias="itemSch" type="com.cto.auction.vo.Item_Sch"/>
+		<typeAlias alias="bid" type="com.cto.auction.vo.Bid"/>
+		<typeAlias alias="payment" type="com.cto.auction.vo.Payment"/>
+		<typeAlias alias="notice" type="com.cto.auction.vo.Notice"/>
+		<typeAlias alias="auctioneer" type="com.cto.auction.vo.Auctioneer"/>
+		<typeAlias alias="message" type="com.cto.auction.vo.Message"/>
 	</typeAliases>
 </configuration>
 	

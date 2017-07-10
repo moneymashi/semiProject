@@ -14,16 +14,13 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$("input[name=auction_id]").closest("div").click(
-						function() {
-							$(location).attr(
-									"href",
-									"${path}/auction/board/list.do?auction_id="
-											+ $(this).children().val());
-						});
-			});
+	$(function() {
+		$("input[name=auction_id]").closest("div").click(
+				function() {
+					$(location).attr("href","${path}/auction/board/list.do?auction_id="+$(this).children().val());
+					alert($(this).children().val());
+				});
+	});
 </script>
 <style type="text/css"></style>
 </head>
@@ -77,6 +74,15 @@
 						</form>
 					</div> --%>
 				</c:forEach>
+<%-- 				<jsp:include page="../../main/paging.jsp" flush="true">
+					<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+					<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+					<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+					<jsp:param name="pageNo" value="${paging.pageNo}" />
+					<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+					<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+					<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+				</jsp:include> --%>
 
 			</div>
 		</div>
@@ -132,7 +138,8 @@
 			</div>
 			<div>
 				<c:if test="${loseBidMsg=='nothing' }">
-					<div class="alert alert-warning" role="alert">낙찰에 실패한 물품이 없습니다.</div>
+					<div class="alert alert-warning" role="alert">낙찰에 실패한 물품이
+						없습니다.</div>
 				</c:if>
 				<c:forEach var="loseBidJspOnly" items="${loseBid1 }">
 					<div class="panel panel-warning itemSend">

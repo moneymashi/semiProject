@@ -27,11 +27,11 @@
 			var email = $("#email").val();
 			var password = $("#password").val();
 			var password2 = $("#password2").val();
-			if (email == "") {
-				alert("E-mail을 입력하세요");
-				$("#email").focus();
-				return;
-			}
+			/* 			if (email == "") {
+			 alert("E-mail을 입력하세요");
+			 $("#email").focus();
+			 return;
+			 } */
 			if (password == "") {
 				alert("비밀번호를 입력하세요.");
 				$("#password").focus();
@@ -67,11 +67,35 @@
 			} else {
 				code = "" + randomCode;
 			}
-			$("#signUpCode").val(code);
+			$("#signMailContent").val("귀하의 인증번호는 [ "+code+" ] 입니다");
 			clearTimeout(timeout);
-			codeTimer(5);
-			alert("1:" + code);
-			alert("2:" + $("#signUpCode").val());
+			codeTimer(180);
+			
+			var email = $("#email").val();
+			var signMailTitle = $("#signMailTitle").val();
+			var signMailContent = $("#signMailContent").val();
+			
+			$.ajax({
+				type : 'POST',
+				data : "email=" + email+"&signMailTitle="+signMailTitle+"&signMailContent="+signMailContent,
+				dataType : 'text',
+				url : '${path}login/codeSend.do',
+				success : alert("인증번호가"+ $("#email").val()+"(으)로 발송되었습니다.")
+					/* function(rData, textStatus, xhr) {
+					var chkRst = rData;
+					if (chkRst == 0) {
+						alert("등록 가능 합니다.");
+						$("#emailChk").val('Y');
+					} else {
+						alert("중복 되어 있습니다.");
+						$("#emailChk").val('N');
+					}
+				} */,
+				error : function(xhr, status, e) {
+					alert("에러:"+e);
+				}
+			});
+			
 		});
 	});
 	var code = "notnull";
@@ -112,6 +136,46 @@
 	    }
 	    return result;
 	} */
+	function chkDupEmail() {
+		var prmEmail = $('#email').val();
+		if ($("#email").val() == '') {
+			alert('email를 입력해주세요.');
+			$("#email").focus();
+			return;
+		}
+
+		$.ajax({
+			type : 'POST',
+			data : "prmEmail=" + prmEmail,
+			dataType : 'text',
+			url : '${path}login/chkDupEmail.do',
+			success : function(rData, textStatus, xhr) {
+				var chkRst = rData;
+				if (chkRst == 0) {
+					alert("등록 가능 합니다.");
+					$("#emailChk").val('Y');
+				} else {
+					alert("중복 되어 있습니다.");
+					$("#emailChk").val('N');
+				}
+			},
+			error : function(xhr, status, e) {
+				alert("에러:"+e);
+			}
+		});
+	}
+	
+
+	// 등록....
+	function insertChk() {
+		var frm = document.companyForm;
+		if (!chkVal('email', '이메일'))
+			return false;
+		if ($("#emailChk").val() == 'N') {
+			alert('Email 중복확인을 해주세요');
+			return;
+		}
+	}
 </script>
 <style type="text/css">
 body {
@@ -145,30 +209,37 @@ form>div {
 							</div>
 							<div class=" col-sm-9">
 								<!-- Text input-->
-								<input class=" form-control " id="email" name="email" type="text" placeholder="E-mail을 입력하세요." autofocus>
+								<input type="hidden" id="emailChk" value="N" />
+								<!-- ID체크 했는지, 안했는지. -->
+								<input class=" form-control " id="email" name="email"
+									type="text" placeholder="E-mail을 입력하세요." autofocus>
 							</div>
 							<div class=" col-sm-3">
-								<input class=" form-control btn btn-primary " type="button" value="중복확인" />
+								<input class=" form-control btn btn-primary " type="button"
+									value="중복확인" onclick="javascript:chkDupEmail();" />
 							</div>
 						</div>
 						<div class="form-group col-sm-12">
 							<div class="">
 								<!-- Text input-->
 								<label class=" control-label" for="user_name">USER_NAME</label>
-								<input class="form-control" id="user_name" name="user_name" type="text" placeholder="이름을 입력하세요.">
+								<input class="form-control" id="user_name" name="user_name"
+									type="text" placeholder="이름을 입력하세요.">
 							</div>
 						</div>
 						<div class="form-group ">
 							<div class="col-sm-12">
-							<!-- Password input-->
-							<label class=" control-label" for="password">PASSWORD</label>
-							<input id="password" name="password" type="password" placeholder="비밀번호를 입력하세요" class="form-control input-md">
+								<!-- Password input-->
+								<label class=" control-label" for="password">PASSWORD</label> <input
+									id="password" name="password" type="password"
+									placeholder="비밀번호를 입력하세요" class="form-control input-md">
 							</div>
 						</div>
-						<div class="form-group col-sm-12">	
+						<div class="form-group col-sm-12">
 							<!-- Password input-->
-							<label class=" control-label" for="password2">REPEAT PASSWORD</label>
-							<input id="password2" type="password" placeholder="비밀번호를 다시 입력하세요." class="form-control input-md">
+							<label class=" control-label" for="password2">REPEAT
+								PASSWORD</label> <input id="password2" type="password"
+								placeholder="비밀번호를 다시 입력하세요." class="form-control input-md">
 						</div>
 
 
@@ -177,16 +248,21 @@ form>div {
 								<label class=" control-label" for="signUpCode">인증번호(미구현)</label>
 							</div>
 							<div class=" col-sm-9">
-								<input id="signUpCode" type="text" placeholder="인증번호" class="form-control input-md">
+								<input id="signUpCode" type="text" placeholder="인증번호"
+									class="form-control input-md">
 							</div>
 							<div class=" col-sm-3">
-								<div id="signCodeBtn" class="btn btn-primary">인증번호발송</div>
+								<div id="signCodeBtn" class="btn btn-primary">	인증번호발송</div>
+								<input type="hidden" class="form-control" name="signMailTitle" id="signMailTitle"
+									value="옥션 인증번호입니다.">
+								<input type="hidden" class="form-control" name="signMailContent" id="signMailContent"
+									value="">
 							</div>
-							<div class=" col-sm-12" >
-							<div id="signUpCode2" style="display:inline"></div>
-							<span class="glyphicon glyphicon-time"></span>
-							<div id="codeTime" style="display:inline"></div>
-						</div>
+							<div class=" col-sm-12">
+								<div id="signUpCode2" style="display: inline"></div>
+								<span class="glyphicon glyphicon-time"></span>
+								<div id="codeTime" style="display: inline"></div>
+							</div>
 						</div>
 						<!-- Button -->
 						<div class="form-group col-md-12">

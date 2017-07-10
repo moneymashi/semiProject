@@ -133,7 +133,7 @@
 							</ul>
 						</li>
 						<ul class="nav navbar-nav row list-inline">
-							<li><a>[${sessionScope.mem.user_name }]님 환영합니다.</a></li>
+							<li><a>[${sessionScope.mem.user_name }]님</a></li>
 							<li><a>새메세지<span class="badge">222</span></a></li>
 							<li><a>Point :[ ${sessionScope.mem.user_point } ]</a></li>
 						</ul>

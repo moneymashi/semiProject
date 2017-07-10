@@ -2,12 +2,13 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cto.auction.repository.user.UserDAO">
+<mapper namespace="com.cto.auction.repository.UserDAO">
 	<resultMap type="user" id="userResult" />
 	<resultMap type="payment" id="paymentResult" />
 	<resultMap type="auctioneer" id="auctioneerResult" />
 	<resultMap type="item" id="itemResult" />
 	<resultMap type="bid" id="bidResult"/>
+	<resultMap type="message" id="messageResult"></resultMap>
 	<!-- 테스트/관리자용 회원정보 -->
 	<select id="auctionUserList" resultType="user">
 		SELECT * FROM
@@ -239,5 +240,30 @@
 		WHERE USER_ID = #{user_id }
 	</update>
 	
+		<select id="chkDupEmail" resultType="int">
+		SELECT COUNT(*)
+		FROM AUCTION_USER
+		WHERE 1 = 1
+		AND email = #{email}
+	</select>
+	
+	<select id="myPageMessageInsert" resultType="message">
+		INSERT INTO
+		USER_MESSAGE
+		( SENDER_ID, USER_ID, MESSAGE_TITLE, MESSAGE_CONTENT )
+		VALUES
+		(#{sender_id }, #{user_id}, #{message_title}, #{message_content})
+	</select>
+	
+	<select id="messageReceive" resultMap="messageResult">
+		SELECT * FROM
+		USER_MESSAGE
+		WHERE USER_ID = #{user_id}
+	</select>
+	<select id="messageSend" resultMap="messageResult">
+		SELECT * FROM
+		USER_MESSAGE
+		WHERE SENDER_ID = #{sender_id}
+	</select>
 	
 </mapper>

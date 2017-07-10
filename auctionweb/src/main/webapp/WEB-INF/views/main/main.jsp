@@ -264,7 +264,7 @@ body {
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
-						<img src="${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
+						<img src="${path }/resources/upload/${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
