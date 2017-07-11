@@ -11,39 +11,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>LoginLogin</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-/* TODO 인증번호 만들고 작업..  */
-	$(document).ready(function(){
-		$("#loginBtn").click(function(){
-			
-/*	의미 없음 삭제...
-			var email = $("#email").val();
-			var password = $("#password").val();
-			if(email == ""){
-				alert("E-mail을 입력하세요//작동할때 CSS작동");
-				$("#errorMsg").html("E-mail을 입력하세요");
-				$("#email").focus();
-				return;
-			}
-			if(password == ""){
-				alert("비밀번호를 입력하세요.");
-				$("#errorMsg").html("비밀번호를 입력하세요.//작동할때 CSS작동");
-				alert("E-mail을 입력하세요//작동할때 CSS작동");
-				$("#password").focus();
-				return;
-			} */
-			$("form").attr("action", "${path}/login/loginCheck.do");
-			$("form").submit();
-		});
-	});
-</script>
+<c:import url="../structure/head.jsp" />
 <style type="text/css">
     body {
         background: #f8f8f8;
@@ -54,9 +22,7 @@
         margin: 15px 0;
     }
 </style>
-</head>
 <body>
-	<c:import url="../main/header.jsp"/><br><br>
 	<div class="container">
 	    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 	        <div class="panel panel-success">
@@ -69,14 +35,20 @@
 	            <!-- 로그인 중 얼럿창뜰때 css 작동해야됨 -->
 	            <div class="panel-body">
 	                <form id="login-form" method="post">
+	                	<div class="col-sm-12">
+							<div class="form-group label-floating">
+								<label class="control-label">E-mail</label>
+								<input type="email" class="form-control" name="email"  id="email">
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group label-floating">
+								<label class="control-label">Password</label>
+								<input type="password" class="form-control" name="password"  id="password">
+							</div>
+						</div>
 	                    <div>
-	                        <input type="text" class="form-control" name="email"  id="email" placeholder="E-mail" autofocus>
-	                    </div>
-	                    <div>
-	                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-	                    </div>
-	                    <div>
-	                        <button type="button" class="form-control btn btn-primary" id="loginBtn" >로그인</button>
+	                        <button type="button" class="form-control btn btn-primary btn-round" id="loginBtn" >로그인</button>
 	                    </div>
 	                </form>
 	            </div>
@@ -84,4 +56,16 @@
 	    </div>
 	</div>
 </body>
+<c:import url="../structure/tail.jsp" />
+<script type="text/javascript">
+/* TODO 인증번호 만들고 작업..  */
+	$(document).ready(function(){
+		alert("tt2");
+		$("#loginBtn").click(function(){
+			$("form").attr("action", "${path}/login/loginCheck.do");
+			$("form").submit();
+		});
+	});
+</script>
+
 </html>
