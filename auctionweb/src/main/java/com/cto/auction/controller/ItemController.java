@@ -43,7 +43,7 @@ public class ItemController {
 		mav.addObject("highestBid", service.highestBid());
 		// 랜덤물품 조회처리
 		mav.addObject("randomOne", service.randomOne());
-		mav.setViewName("main/main");
+		mav.setViewName("home");
 		return mav;
 	}
 

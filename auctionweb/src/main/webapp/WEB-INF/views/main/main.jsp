@@ -30,7 +30,6 @@
 	});
 </script>
 <style type="text/css">
-
 body {
 	padding-top: 40px;
 	/* background: #f9fafa;
@@ -43,7 +42,6 @@ body {
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap; */
 }
-
 .block {
 	margin: 15px;
 	border-radius: 4px;
@@ -51,12 +49,10 @@ body {
 	padding: 23px;
 	box-shadow: 0 2px 55px rgba(0, 0, 0, 0.1);
 }
-
 .top {
 	border-bottom: 1px solid #e5e5e5;
 	padding-bottom: 10px;
 }
-
 .top ul {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -65,30 +61,24 @@ body {
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
-
 .top a {
 	color: #9e9e9e;
 }
-
 .top a:hover {
 	color: #c7ccdb;
 }
-
 .converse {
 	padding: 2px 10px;
 	border-radius: 20px;
 	text-transform: uppercase;
 	font-size: 14px;
 }
-
 .middle {
 	margin-bottom: 40px;
 }
-
 .middle img {
 	width: 100%;
 }
-
 .bottom {
 	text-align: center;
 	display: -webkit-box;
@@ -105,54 +95,41 @@ body {
 	-ms-flex-positive: 1;
 	flex-grow: 1;
 }
-
 .heading {
 	font-size: 17px;
 	text-transform: uppercase;
 	margin-bottom: 5px;
 	letter-spacing: 0;
 }
-
 .info {
 	font-size: 14px;
 	color: #969696;
 	margin-bottom: 10px;
 }
-
 .style {
 	font-size: 16px;
 	margin-bottom: 20px;
 }
-
 .old-price {
 	color: #f00;
 	text-decoration: line-through;
 }
-
 .box {
 	display: inline-block;
 	width: 100%;
 	margin: 1em;
 }
-
 .footer {
 	width: 100% !important;
 	margin: 0;
 }
-
 .panel-body{
 	font-famliy: 'Raleway', Arial, sans-serif;;
 }
-
-
 .panel-footer{
 	font-famliy: Impact;
 	font-weight: bold;
 }
-
-
-
-
 </style>
 </head>
 <body>
@@ -176,7 +153,7 @@ body {
 				</ol>
 				
 				<div class="carousel-inner">
-					<div class="item active" style="height: 150px; width:100%;">
+					<div class="item active" style="height: 600px; width:100%;">
 						<a href="http://www.samsung.com/sec/">
 							<img src="https://www.hartware.de/wp-content/uploads/2017/03/Samsung-Galaxy-S8-design.jpg"
 							alt="Galaxys8" style="width: 100%; height: auto;" />
@@ -188,7 +165,7 @@ body {
 					</div>
 
 					<!-- 카테고리 홍보: phone -->
-					<div class="item " style="height: 150px; width:100%;">
+					<div class="item " style="height: 600px; width:100%;">
 						<a href="https://www.apple.com/kr/iphone/">
 						<img src="http://cfile24.uf.tistory.com/attach/21055A3357D2569A12450D"
 							alt="iPhone7" style="width: 100%; height: auto;" />
@@ -200,7 +177,7 @@ body {
 					</div>
 
 					<!-- 공지사항 게시글 -->
-					<div class="item " style="height: 150px; width:100%;">
+					<div class="item " style="height: 600px; width:100%;">
 						<a href="http://www.lge.co.kr/lgekor/product/mobile/categoryMain.do">
 						<img src="https://s3.amazonaws.com/poderpda/2017/03/LG-G6-tecnologia-FullVision.jpg"
 							alt="g6" style="width: 100%; height: auto;" />
@@ -230,14 +207,13 @@ body {
 		<!--  최다 조회 물품 -->
 		<div class="col-sm-4">
 			<div class="block box">
-			<c:forEach var = "highestHit" items ="${highestHit }" varStatus = "status" >
 				<div class="top">
-					<i class="fa fa-star-o" aria-hidden="true">highestHit TOP ${status.index + 1 }</i>
+					<i class="fa fa-star-o" aria-hidden="true">highestHit</i>
 					<i class="pull-right">hit: ${highestHit.auction_hit }</i>
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
-						<img src="${path }/resources/upload/${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:150px; max-width:150px; background: cover;" />
+						<img src="${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -253,21 +229,19 @@ body {
 						</div>
 					</div>
 				</div>
-				</c:forEach>
 			</div>
 		</div>
 
 		<!--  최고 입찰금 물품 -->
 		<div class="col-sm-4">
 			<div class="block box">
-			<c:forEach var = "highestBid" items ="${highestBid }" >
 				<div class="top">
-					<i class="fa fa-star-o" aria-hidden="true">highestBid TOP ${status.index + 1 }</i>
+					<i class="fa fa-star-o" aria-hidden="true">highestBid</i>
 					<i class="pull-right">hit: ${highestBid.auction_hit }</i>
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
-						<img src="${path }/resources/upload/${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:150px; max-width:150px; background: cover;" />
+						<img src="${path }/resources/upload/${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -283,21 +257,19 @@ body {
 						</div>
 					</div>
 				</div>
-				</c:forEach>
 			</div>
 		</div>
 
 
 		<div class="col-sm-4">
 			<div class="block box">
-			<c:forEach var = "randomOne" items ="${randomOne }" >
 				<div class="top">
-					<i class="fa fa-star-o" aria-hidden="true">latestList Recent ${status.index + 1 }</i>
+					<i class="fa fa-star-o" aria-hidden="true">randomOne</i>
 					<i class="pull-right">hit: ${randomOne.auction_hit }</i>
 				</div>
 				<div class="middle">
-					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
-						<img src="${path }/resources/upload/${randomOne.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:150px; max-width:150px; background: cover;" />
+					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${randomOneBid.auction_id }" />'>
+						<img src="${randomOne.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -313,7 +285,6 @@ body {
 						</div>
 					</div>
 				</div>
-				</c:forEach>
 			</div>
 		</div>
 	</div>
