@@ -32,231 +32,145 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(document)
-			.ready(
-					function() {
+$(document).ready(function() {
+	
+	////////////// README::
+	////////////// AJAX 보류.
+	////////////// 버그: 필터 적용후, 검색결과 2페이지로 넘기고 다른 filter선택하면 ERROR 500 뜸.. 
+	////////////// 
+	////////////// 
+	////////////// 
+	
+	var schParentDept = "${itemSch.schParentDept}" != "" ? "schParentDept=" + "${itemSch.schParentDept }" : "" ;
+	var schDept = "${itemSch.schDept}" != "" ? "&schDept=" + "${itemSch.schDept }" : "" ;
+	var schAll =  "${itemSch.schAll}" != "" ? "&schAll=" + "${itemSch.schAll }" : "" ;
+	
+	// 각 페이지의 최대 게시물수.
+		$("select[name=pageSize]").val("${itemSch.pageSize}");
+		$("select[name=pageSize]").change(function() {
+			var priceOrder = ("${itemSch.priceOrder}" != (""))  ? "&priceOrder="+ "${itemSch.priceOrder}": "";
+			var userStartDate = ("${itemSch.userStartDate}" != (""))  ? "&userStartDate="+ "${itemSch.userStartDate}": "";
+			var userEndDate = ("${itemSch.userEndDate}" != (""))  ? "&userEndDate="+ "${itemSch.userEndDate}": "";
+			var endDateOrder = ("${itemSch.endDateOrder}" != (""))  ? "&endDateOrder="+ "${itemSch.endDateOrder}": "";
+			var aucStatus = ("${itemSch.aucStatus}" != (""))  ? "&aucStatus="+ "${itemSch.aucStatus}": "";
+			var minCurrentBidPrice = ("${itemSch.minCurrentBidPrice}" != (""))  ? "&minCurrentBidPrice="+ "${itemSch.minCurrentBidPrice}": "";
+			var maxCurrentBidPrice = ("${itemSch.maxCurrentBidPrice}" != (""))  ? "&maxCurrentBidPrice="+ "${itemSch.maxCurrentBidPrice}": "";
+			$("#pageSize").attr("action","${path}/search.do?" + schParentDept + schDept + schAll + priceOrder
+				+ userStartDate + userEndDate + endDateOrder + aucStatus + minCurrentBidPrice + maxCurrentBidPrice );
+			$("#pageSize").submit();
+		});
 
-						////////////// README::
-						////////////// AJAX 보류.
-						////////////// 버그: 필터 적용후, 검색결과 2페이지로 넘기고 다른 filter선택하면 ERROR 500 뜸.. 
-						////////////// 
-						// 각 페이지의 최대 게시물수.
-						$("select[name=pageSize]").val("${itemSch.pageSize}");
-						// select- option이 변할때 페이징처리.
-						$("select[name=pageSize]")
-								.change(
-										function() {
-											var priceOrder = "${itemSch.priceOrder}" != "" ? "&priceOrder="
-													+ "${itemSch.priceOrder}"
-													: "";
-											var userStartDate = "${itemSch.userStartDate}" != "" ? "&userStartDate="
-													+ "${itemSch.userStartDate}"
-													: "";
-											var userEndDate = "${itemSch.userEndDate}" != "" ? "&userEndDate="
-													+ "${itemSch.userEndDate}"
-													: "";
-											var endDateOrder = "${itemSch.endDateOrder}" != "" ? "&endDateOrder="
-													+ "${itemSch.endDateOrder}"
-													: "";
-											var aucStatus = "${itemSch.aucStatus}" != "" ? "&aucStatus="
-													+ "${itemSch.aucStatus}"
-													: "";
-											var minCurrentBidPrice = "${itemSch.minCurrentBidPrice}" != "" ? "&minCurrentBidPrice="
-													+ "${itemSch.minCurrentBidPrice}"
-													: "";
-											var maxCurrentBidPrice = "${itemSch.maxCurrentBidPrice}" != "" ? "&maxCurrentBidPrice="
-													+ "${itemSch.maxCurrentBidPrice}"
-													: "";
-											$("#pageSize")
-													.attr(
-															"action",
-															"${path}/search.do?"
-																	+ "schParentDept="
-																	+ "${itemSch.schParentDept }"
-																	+ "&schDept="
-																	+ "${itemSch.schDept }"
-																	+ "&schAll="
-																	+ "${itemSch.schAll }"
-																	+ priceOrder
-																	+ userStartDate
-																	+ userEndDate
-																	+ endDateOrder
-																	+ aucStatus
-																	+ minCurrentBidPrice
-																	+ maxCurrentBidPrice);
-											$("#pageSize").submit();
-										});
+	//filter처리용 . 기본적으로 부모, 자식, 전체검색은 url에 보이도록설정.
+	//alert('수정8.1');
+	
+	// 입찰가 정렬필터  - html) select option형식
+	$("select[name=priceOrder]").val("${itemSch.priceOrder}"); 
+	$("select[name= priceOrder]").change(function(){
+		var priceOrder = "&priceOrder="+$(this).val() ;
+		var sendData = schParentDept + schDept + schAll + priceOrder;
+		$("#filter").attr("action", "search.do?"+sendData);
+		$("#filter").submit();
+		});
+	
+	// 물품 입찰시작, 마감날짜 필터 - input date형식
+	$("select[name=userStartDate]").val("${itemSch.userStartDate}"); 
+	$("select[name=userEndDate]").val("${itemSch.userEndDate}"); 
+	 $("input[name=userPreferDate]").click(function(){
+		var userStartDate = "${itemSch.userStartDate}" != "" ?  "&userStartDate="+"${itemSch.userStartDate}" : "" ;
+		var userEndDate ="${itemSch.userEndDate}" != "" ? "&userEndDate="+"${itemSch.userEndDate}" :  "" ;
+		if ($("input[name=userEndDate]").val() < $( "input[name=userStartDate]").val()) {
+			alert("최대입찰기한이 최소입찰기한보다 빠르면 안됩니다.");
+			return "";
+		}
+		var sendData =  schParentDept+schDept+ schAll + userStartDate + userEndDate ;
+		$("#filter").attr("action", "search.do?"+sendData);
+		$("#filter").submit();
+	});
+	
+	 // 물품 입찰마감날짜 정렬필터 - select option형식
+	$("select[name=endDateOrder]").val("${itemSch.endDateOrder}"); 
+	$("select[name= endDateOrder]").change(function(){
+		var endDateOrder = "&endDateOrder="+$(this).val() ;
+		var sendData = schParentDept + schDept + schAll + endDateOrder;
+		$("#filter").attr("action","${path}/search.do?" + sendData);
+		$("#filter").submit();
+		}); 
 
-						//filter처리용 . 기본적으로 부모, 자식, 전체검색은 url에 보이도록설정.
-						var schParentDept = "${itemSch.schParentDept}" != "" ? "schParentDept="
-								+ "${itemSch.schParentDept }"
-								: "";
-						var schDept = "${itemSch.schDept}" != "" ? "&schDept="
-								+ "${itemSch.schDept }" : "";
-						var schAll = "${itemSch.schAll}" != "" ? "&schAll="
-								+ "${itemSch.schAll }" : "";
-						//alert('수정8.2');
+	// 입찰상태 필터 - select option형식
+	$("select[name=aucStatus]").val("${itemSch.aucStatus}"); 
+	$("select[name= aucStatus]").change(function(){
+		var aucStatus = "&aucStatus="+$(this).val() ;
+		var sendData = schParentDept + schDept + schAll + aucStatus;
+		$("#filter").attr("action","${path}/search.do?" + sendData);
+		$("#filter").submit();
+		}); 
+	
+	// 유저 입찰가 필터 적용 - input text기입 형식
+	$("select[name=minCurrentBidPrice]").val( "${itemSch.minCurrentBidPrice}");
+	$("select[name=maxCurrentBidPrice]").val( "${itemSch.maxCurrentBidPrice}");
+	$("input[name=userPreferPrice]").click(	function() {
+		var minCurrentBidPrice = "${itemSch.minCurrentBidPrice}" != "" ? "&minCurrentBidPrice=" + "${itemSch.minCurrentBidPrice}" : "";
+		var maxCurrentBidPrice = "${itemSch.maxCurrentBidPrice}" != "" ? "&maxCurrentBidPrice=" + "${itemSch.maxCurrentBidPrice}" : "";
+		var sendData = schParentDept
+			+ schDept
+			+ schAll
+			+ minCurrentBidPrice
+			+ maxCurrentBidPrice;
+		$("#filter").attr("method", "get");
+		$("#filter").attr("action", "${path}/search.do?" + sendData);
+		$("#filter").submit();
+	});
+	// 현재 시각 setinterval()
+	setTime();
+});
 
-						// 입찰가 정렬필터  - html) select option형식
-						$("select[name=priceOrder]").val(
-								"${itemSch.priceOrder}");
-						$("select[name= priceOrder]").change(
-								function() {
-									var priceOrder = "&priceOrder="
-											+ $(this).val();
-									//			alert("priceOrder "+priceOrder);
-									var sendData = schParentDept + schDept
-											+ schAll + priceOrder;
-									$(location).attr("href",
-											"${path}/search.do?" + sendData);
-									//			alert("sendData "+sendData);
-									$("#filter").submit();
-								});
+//페이징처리 - 페이지번호(curPage)로 넘어갈때 ROWNUM between 처리를 한다.
+function go(curPage) {
+	var priceOrder = ("${itemSch.priceOrder}" != (""))  ? "&priceOrder="+ "${itemSch.priceOrder}": "";
+	var userStartDate = ("${itemSch.userStartDate}" != (""))  ? "&userStartDate="+ "${itemSch.userStartDate}": "";
+	var userEndDate = ("${itemSch.userEndDate}" != (""))  ? "&userEndDate="+ "${itemSch.userEndDate}": "";
+	var endDateOrder = ("${itemSch.endDateOrder}" != (""))  ? "&endDateOrder="+ "${itemSch.endDateOrder}": "";
+	var aucStatus = ("${itemSch.aucStatus}" != (""))  ? "&aucStatus="+ "${itemSch.aucStatus}": "";
+	var minCurrentBidPrice = ("${itemSch.minCurrentBidPrice}" != (""))  ? "&minCurrentBidPrice="+ "${itemSch.minCurrentBidPrice}": "";
+	var maxCurrentBidPrice = ("${itemSch.maxCurrentBidPrice}" != (""))  ? "&maxCurrentBidPrice="+ "${itemSch.maxCurrentBidPrice}": "";
+	$("input[name=curPage]").val(curPage);
+	$("form").attr(	"action","${path}/search.do?" + "schParentDept=" + "${itemSch.schParentDept }" 
+												+ "&schDept=" + "${itemSch.schDept }" 
+												+ "&schAll=" + "${itemSch.schAll }"
+												+ priceOrder
+												+ userStartDate
+												+ userEndDate	
+												+ endDateOrder
+												+ aucStatus
+												+ minCurrentBidPrice
+												+ maxCurrentBidPrice
+												);
+	$("form").submit();
+}
 
-						// 물품 입찰시작, 마감날짜 필터 - input date형식
-						$("select[name=userStartDate]").val(
-								"${itemSch.userStartDate}");
-						$("select[name=userEndDate]").val(
-								"${itemSch.userEndDate}");
-						$("input[name=userPreferDate]")
-								.click(
-										function() {
-											var userStartDate = "${itemSch.userStartDate}" != "" ? "&userStartDate="
-													+ "${itemSch.userStartDate}"
-													: "";
-											var userEndDate = "${itemSch.userEndDate}" != "" ? "&userEndDate="
-													+ "${itemSch.userEndDate}"
-													: "";
-											if ($("input[name=userEndDate]")
-													.val() < $(
-													"input[name=userStartDate]")
-													.val()) {
-												alert("최대입찰기한이 최소입찰기한보다 빠르면 안됩니다.");
-												return "";
-											}
-											var sendData = schParentDept
-													+ schDept + schAll
-													+ userStartDate
-													+ userEndDate;
-											$(location).attr("href",
-													"search.do?" + sendData);
-											$("#filter").submit();
-										});
+// 현재시각 - java.util.Date
+function setTime() {
+	var sysday = new Date();
+	var month = sysday.getMonth() + 1; //months from 1-12
+	var day = sysday.getDate();
+	var year = sysday.getFullYear();
+	var hours = sysday.getHours();
+	var minutes = sysday.getMinutes();
+	var seconds = sysday.getSeconds();
+	$("#showTime").html( 
+			"현재시간: " + year + "년 " + month + "월 " + day + "일 " + hours + "시 " + minutes + "분 " + seconds + "초 ");
+}
 
-						// 물품 입찰마감날짜 정렬필터 - select option형식
-						$("select[name=endDateOrder]").val(
-								"${itemSch.endDateOrder}");
-						$("select[name= endDateOrder]").change(
-								function() {
-									var endDateOrder = "&endDateOrder="
-											+ $(this).val();
-									var sendData = schParentDept + schDept
-											+ schAll + endDateOrder;
-									$(location).attr("href",
-											"${path}/search.do?" + sendData);
-									$("#filter").submit();
-								});
 
-						// 입찰상태 필터 - select option형식
-						$("select[name=aucStatus]").val("${itemSch.aucStatus}");
-						$("select[name= aucStatus]").change(
-								function() {
-									var aucStatus = "&aucStatus="
-											+ $(this).val();
-									var sendData = schParentDept + schDept
-											+ schAll + aucStatus;
-									$(location).attr("href",
-											"${path}/search.do?" + sendData);
-									$("#filter").submit();
-								});
 
-						// 유저 입찰가 필터 적용 - input text기입 형식
-						$("select[name=minCurrentBidPrice]").val(
-								"${itemSch.minCurrentBidPrice}");
-						$("select[name=maxCurrentBidPrice]").val(
-								"${itemSch.maxCurrentBidPrice}");
-						$("input[name=userPreferPrice]")
-								.click(
-										function() {
-											var minCurrentBidPrice = "${itemSch.minCurrentBidPrice}" != "" ? "&minCurrentBidPrice="
-													+ "${itemSch.minCurrentBidPrice}"
-													: "";
-											var maxCurrentBidPrice = "${itemSch.maxCurrentBidPrice}" != "" ? "&maxCurrentBidPrice="
-													+ "${itemSch.maxCurrentBidPrice}"
-													: "";
-											if ($(
-													"input[name=maxCurrentBidPrice]")
-													.val() < $(
-													"input[name=minCurrentBidPrice]")
-													.val()) {
-												alert("최대입찰가격이 최소입찰가격보다 적으면 안됩니다.");
-												return "";
-											}
-											var sendData = schParentDept
-													+ schDept + schAll
-													+ minCurrentBidPrice
-													+ maxCurrentBidPrice;
-											$(location).attr("href",
-													"search.do?" + sendData);
-											$("#filter").submit();
-										});
+	
+// setInterval initiation, 매초마다.
+var count = setInterval(setTime, 1000);
 
-						// 현재 시각 setinterval()
-						setTime();
-					});
-
-	//페이징처리 - 페이지번호(curPage)로 넘어갈때 ROWNUM between 처리를 한다.
-	function go(curPage) {
-		var priceOrder = "${itemSch.priceOrder}" != "" ? "&priceOrder="
-				+ "${itemSch.priceOrder}" : "";
-		var userStartDate = "${itemSch.userStartDate}" != "" ? "&userStartDate="
-				+ "${itemSch.userStartDate}"
-				: "";
-		var userEndDate = "${itemSch.userEndDate}" != "" ? "&userEndDate="
-				+ "${itemSch.userEndDate}" : "";
-		var endDateOrder = "${itemSch.endDateOrder}" != "" ? "&endDateOrder="
-				+ "${itemSch.endDateOrder}" : "";
-		var aucStatus = "${itemSch.aucStatus}" != "" ? "&aucStatus="
-				+ "${itemSch.aucStatus}" : "";
-		var minCurrentBidPrice = "${itemSch.minCurrentBidPrice}" != "" ? "&minCurrentBidPrice="
-				+ "${itemSch.minCurrentBidPrice}"
-				: "";
-		var maxCurrentBidPrice = "${itemSch.maxCurrentBidPrice}" != "" ? "&maxCurrentBidPrice="
-				+ "${itemSch.maxCurrentBidPrice}"
-				: "";
-
-		$("input[name=curPage]").val(curPage);
-		$("form").attr(
-				"action",
-				"${path}/search.do?" + "schParentDept="
-						+ "${itemSch.schParentDept }" + "&schDept="
-						+ "${itemSch.schDept }" + "&schAll="
-						+ "${itemSch.schAll }" + priceOrder + userStartDate
-						+ userEndDate + endDateOrder + aucStatus
-						+ minCurrentBidPrice + maxCurrentBidPrice);
-		$("form").submit();
-	}
-
-	// 현재시각 - java.util.Date
-	function setTime() {
-		var sysday = new Date();
-		var month = sysday.getMonth() + 1; //months from 1-12
-		var day = sysday.getDate();
-		var year = sysday.getFullYear();
-		var hours = sysday.getHours();
-		var minutes = sysday.getMinutes();
-		var seconds = sysday.getSeconds();
-		$("#showTime").html(
-				"현재시간: " + year + "년 " + month + "월 " + day + "일 " + hours
-						+ "시 " + minutes + "분 " + seconds + "초 ");
-	}
-	// setInterval initiation, 매초마다.
-	var count = setInterval(setTime, 1000);
-
-	//검색결과없는경우 - 이전페이지로
-	function goBack() {
-		window.history.back();
-	}
+//검색결과없는경우 - 이전페이지로
+function goBack() {
+    window.history.back();
+}
 </script>
 <style type="text/css">
 /* * {
@@ -303,7 +217,7 @@ body {
 		세부 검색 <span class="caret"></span>
 	</button>
 	<div id="demo" class="collapse">
-		<form id="filter" method="post">
+		<form id="filter" method="get">
 			<br />
 			<%-- // 입찰가 정렬필터  - html) select option형식 --%>
 			<select name="priceOrder" class="btn btn-primary active">
@@ -341,7 +255,9 @@ body {
 				value="${itemSch.userStartDate }" /> 최대입찰기한:<input
 				name="userEndDate" type="date" value="${itemSch.userEndDate }" /> <input
 				type="button" name="userPreferDate" value="날짜선택완료" />
-
+			<input type = "hidden" name = "schParentDept" value = "${itemSch.schParentDept }" />
+			<input type = "hidden" name = "schDept" value = "${itemSch.schDept }" />
+			<input type = "hidden" name = "schAll" value = "${itemSch.schAll }" />
 		</form>
 	</div>
 
@@ -380,7 +296,7 @@ body {
 							src="${path }/resources/upload/${item.picture_location}"
 							alt="pictureNotUploaded" width="32%" height="32%">
 						<div class="card-block">
-							<h4 class="card-title">${item.item_name }</h4>
+							<h4 class="card-title">name: ${item.item_name }   item_id: ${item.auction_id }</h4>
 							<p class="card-text">
 								<small class="text-muted"> <fmt:formatDate var="edate"
 										value="${item.end_date }" pattern="yyyy-MM-dd hh:mm:ss" />
@@ -394,36 +310,6 @@ body {
 					</div>
 				</div>
 			</a>
-			<%-- <div id="block" style="width: 32%;">
-				<div class="top">
-					<ul><a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  //TODO: 정효형 링크
-						<li><span class="converse">Parent_category: ${item.parentName } </span></li>
-						<li><span class="converse">Child_category: ${item.childName } </span></li>
-					</a></ul>
-				</div>
-				<div class="middle">
-					<a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  //TODO: 정효형 링크
-						<img src="${item.picture_location }" alt="pictureNotUploaded" style="width: 32%; height: 32%;" />
-					</a>
-				</div>
-				<div class="bottom">
-					<a href = '${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' >  //TODO: 정효형 링크
-						<div class="heading">${item.item_name }</div> 
-						<div class="info" >
-							time due: 
-							<jsp:useBean id="nowTime" class="java.util.Date" />
-							<fmt:formatDate var = "ndate" pattern="yyyy-MM-dd hh:mm:ss" value="${nowTime}" />
-							<fmt:formatDate var = "edate" value="${item.end_date }"
-								pattern="yyyy-MM-dd hh:mm:ss" />
-							<br/>입찰마감: <c:out value = "${edate }" />
-						</div>
-						<div class="style">auction_hit: ${item.auction_hit }</div> 
-						<div class="price">
-							current_bid_amount: ${item.current_bid_amount }원 
-						</div>
-					</a>
-				</div>
-			</div> --%>
 		</c:forEach>
 	</div>
 

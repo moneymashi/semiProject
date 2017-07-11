@@ -176,7 +176,7 @@ body {
 				</ol>
 				
 				<div class="carousel-inner">
-					<div class="item active" style="height: 600px; width:100%;">
+					<div class="item active" style="height: 150px; width:100%;">
 						<a href="http://www.samsung.com/sec/">
 							<img src="https://www.hartware.de/wp-content/uploads/2017/03/Samsung-Galaxy-S8-design.jpg"
 							alt="Galaxys8" style="width: 100%; height: auto;" />
@@ -188,7 +188,7 @@ body {
 					</div>
 
 					<!-- 카테고리 홍보: phone -->
-					<div class="item " style="height: 600px; width:100%;">
+					<div class="item " style="height: 150px; width:100%;">
 						<a href="https://www.apple.com/kr/iphone/">
 						<img src="http://cfile24.uf.tistory.com/attach/21055A3357D2569A12450D"
 							alt="iPhone7" style="width: 100%; height: auto;" />
@@ -200,7 +200,7 @@ body {
 					</div>
 
 					<!-- 공지사항 게시글 -->
-					<div class="item " style="height: 600px; width:100%;">
+					<div class="item " style="height: 150px; width:100%;">
 						<a href="http://www.lge.co.kr/lgekor/product/mobile/categoryMain.do">
 						<img src="https://s3.amazonaws.com/poderpda/2017/03/LG-G6-tecnologia-FullVision.jpg"
 							alt="g6" style="width: 100%; height: auto;" />
@@ -230,13 +230,14 @@ body {
 		<!--  최다 조회 물품 -->
 		<div class="col-sm-4">
 			<div class="block box">
+			<c:forEach var = "highestHit" items ="${highestHit }" varStatus = "status" >
 				<div class="top">
-					<i class="fa fa-star-o" aria-hidden="true">highestHit</i>
+					<i class="fa fa-star-o" aria-hidden="true">highestHit TOP ${status.index + 1 }</i>
 					<i class="pull-right">hit: ${highestHit.auction_hit }</i>
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
-						<img src="${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
+						<img src="${path }/resources/upload/${highestHit.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:150px; max-width:150px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -252,19 +253,21 @@ body {
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 		</div>
 
 		<!--  최고 입찰금 물품 -->
 		<div class="col-sm-4">
 			<div class="block box">
+			<c:forEach var = "highestBid" items ="${highestBid }" >
 				<div class="top">
-					<i class="fa fa-star-o" aria-hidden="true">highestBid</i>
+					<i class="fa fa-star-o" aria-hidden="true">highestBid TOP ${status.index + 1 }</i>
 					<i class="pull-right">hit: ${highestBid.auction_hit }</i>
 				</div>
 				<div class="middle">
 					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
-						<img src="${path }/resources/upload/${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
+						<img src="${path }/resources/upload/${highestBid.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:150px; max-width:150px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -280,19 +283,21 @@ body {
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 		</div>
 
 
 		<div class="col-sm-4">
 			<div class="block box">
+			<c:forEach var = "randomOne" items ="${randomOne }" >
 				<div class="top">
-					<i class="fa fa-star-o" aria-hidden="true">randomOne</i>
+					<i class="fa fa-star-o" aria-hidden="true">latestList Recent ${status.index + 1 }</i>
 					<i class="pull-right">hit: ${randomOne.auction_hit }</i>
 				</div>
 				<div class="middle">
-					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${randomOneBid.auction_id }" />'>
-						<img src="${randomOne.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:600px; background: cover;" />
+					<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />'>
+						<img src="${path }/resources/upload/${randomOne.picture_location  }" alt="pic" style="width: 100%; height: 100%; max-height:150px; max-width:150px; background: cover;" />
 					</a>
 				</div>
 				<div class="bottom">
@@ -308,6 +313,7 @@ body {
 						</div>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

@@ -90,20 +90,19 @@
 		<if test="maxCurrentBidPrice != null and maxCurrentBidPrice != '' ">
 			AND ai.current_bid_amount &lt;= to_number( #{maxCurrentBidPrice } )
 		</if>
-		<if
-			test="endDateOrder != null and priceOrder != null and endDateOrder != '' and priceOrder != '' ">
-			ORDER BY ai.current_bid_amount ${priceOrder}, ai.end_date
-			${endDateOrder}
+		<if test="endDateOrder != null and endDateOrder != '' and priceOrder != null and priceOrder != '' ">
+			ORDER BY
+			ai.current_bid_amount ${priceOrder}, ai.end_date ${endDateOrder}
 		</if>
-		<if test="endDateOrder != '' and priceOrder == '' ">
+		<if test="endDateOrder != null and endDateOrder != '' and (priceOrder == null or priceOrder == '') ">
 			ORDER BY
 			ai.end_date ${endDateOrder}
 		</if>
-		<if test="priceOrder != ''  and endDateOrder == '' ">
+		<if test="priceOrder != null and priceOrder != '' and (endDateOrder == null or endDateOrder == '') ">
 			ORDER BY
 			ai.current_bid_amount ${priceOrder}
 		</if>
-		<if test="priceOrder == '' and endDateOrder == '' ">
+		<if test=" (priceOrder == null and endDateOrder == null) or (priceOrder == '' and endDateOrder == '') ">
 			ORDER BY
 			ai.auction_id desc
 		</if>
@@ -114,27 +113,24 @@
 
 	<!-- 최고입찰가 : subquery로 max(입찰가)값을 추출. -->
 	<select id="highestBid" resultMap="itemResult">
-		SELECT * FROM auction_item
-		WHERE current_bid_amount =(
-		SELECT MAX(current_bid_amount)
-		FROM auction_item)
-		AND ROWNUM = 1
+		SELECT * 
+		FROM (select * from auction_item 
+			ORDER BY current_bid_amount desc )
+		WHERE ROWNUM between 1 and 5
 	</select>
 	<!-- 최다 조회물품 : subquery로 max(조회)값을 추출. -->
 	<select id="highestHit" resultMap="itemResult">
-		SELECT * FROM auction_item
-		WHERE auction_hit = (
-		SELECT MAX(auction_hit)
-		FROM auction_item)
-		AND ROWNUM = 1
+		SELECT * 
+		FROM (select * from auction_item 
+			ORDER BY auction_hit desc )
+		WHERE ROWNUM between 1 and 5
 	</select>
 	<!-- 랜덤 물품 조회 : 랜덤함수 -->
-	<select id="randomOne" resultType="item">
-		SELECT * FROM
-		( SELECT * FROM
-		auction_item
-		ORDER BY DBMS_RANDOM.RANDOM)
-		WHERE ROWNUM =1
+	<select id="randomOne" resultMap="itemResult">
+		SELECT * 
+		FROM (select * from auction_item 
+			ORDER BY auction_id desc )
+		WHERE ROWNUM between 1 and 5
 	</select>
 
 	<!-- 검색결과 전체 물품수 카운트. 내용물은 searchLists와 동일. -->
@@ -189,19 +185,19 @@
 		<if test="maxCurrentBidPrice != null and maxCurrentBidPrice != '' ">
 			AND ai.current_bid_amount &lt;= to_number( #{maxCurrentBidPrice } )
 		</if>
-		<if test="endDateOrder != null and priceOrder != null ">
+		<if test="endDateOrder != null and endDateOrder != '' and priceOrder != null and priceOrder != '' ">
 			ORDER BY
 			ai.current_bid_amount ${priceOrder}, ai.end_date ${endDateOrder}
 		</if>
-		<if test="endDateOrder != null and priceOrder == null ">
+		<if test="endDateOrder != null and endDateOrder != '' and (priceOrder == null or priceOrder == '') ">
 			ORDER BY
 			ai.end_date ${endDateOrder}
 		</if>
-		<if test="priceOrder != null and endDateOrder == null ">
+		<if test="priceOrder != null and priceOrder != '' and (endDateOrder == null or endDateOrder == '') ">
 			ORDER BY
 			ai.current_bid_amount ${priceOrder}
 		</if>
-		<if test="priceOrder == null and endDateOrder == null ">
+		<if test=" (priceOrder == null and endDateOrder == null) or (priceOrder == '' and endDateOrder == '') ">
 			ORDER BY
 			ai.auction_id desc
 		</if>
@@ -210,3 +206,4 @@
 
 
 </mapper>
+	
