@@ -32,6 +32,9 @@
 						<c:if test="${pageName == 'notice/notice' }">
 							<c:import url="notice/notice.jsp" />
 						</c:if>
+						<c:if test="${pageName == 'notice/insert' }">
+							<c:import url="notice/noticeInsert.jsp" />
+						</c:if>
 						<c:if test="${pageName == 'notice/qna' }">
 							<c:import url="notice/qna.jsp" />
 						</c:if>

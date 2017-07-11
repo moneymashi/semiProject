@@ -97,8 +97,8 @@
 							<ul class="dropdown-menu">
 								<li class="dropdown-header">기본메뉴</li>
 								<li><a href="${path }/menuHome.do">메뉴홈</a></li>
+								<li><a href="${path }/myPage/userInfo.do">회원정보</a></li>
 								<li><a href="${path }/notice/list.do">공지/문의</a></li>
-								<li><a href="${path }/myPage/userInfo.do">회원정보(메뉴)</a></li>
 								<li class="divider"></li>
 								<li class="dropdown-header">판매자메뉴</li>
 								<c:if test="${sessionScope.mem.auth == 1 }">

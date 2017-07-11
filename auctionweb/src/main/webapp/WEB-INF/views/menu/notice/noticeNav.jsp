@@ -4,47 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <fmt:requestEncoding value="UTF-8" />
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>myPageNav</title>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-	});
-</script>
-<style type="text/css"></style>
-</head>
-<body>
-	<ul class="list-group">
-	  <li class="list-group-item">
-	  	<a href="${path }/notice/list.do">공지사항</a>
-		<!-- TODO 입찰중인 상품 갯수 -->
-	  </li>
-	  <li class="list-group-item">
-	  	<a href="${path }/notice/qna.do">Q & A</a>
-	  </li>
-	</ul>
-	<%-- <div>
-		<a href="${path }/myPage/auctionInfo.do">입찰정보</a>
-		<!-- TODO 입찰중인 상품 갯수 -->
-	</div>
-	<div>
-		<a href="${path }/myPage/message.do">쪽지함</a>
-	</div>
-	<div>
-		<a href="${path }/myPage/delivery.do">배송확인</a>
-		<!-- TODO 입찰중인 상품 갯수 -->
-	</div>
-	<div>
-		<a href="${path }/myPage/locationInfo.do">주소지등록</a>
-	</div>
-	<div>
-		<a href="${path }/myPage/userPayment.do">신용카드</a>
-	</div>
-	<div>
-		<a href="${path }/myPage/userInfo.do">회원개인정보</a>
-	</div> --%>
-</body>
-</html>
+<ul class="list-group">
+  <li class="list-group-item">
+  	<a href="${path }/notice/list.do">공지사항</a>
+	<!-- TODO 입찰중인 상품 갯수 -->
+  </li>
+  <li class="list-group-item">
+  	<a href="${path }/notice/qna.do">Q & A</a>
+  </li>
+</ul>
