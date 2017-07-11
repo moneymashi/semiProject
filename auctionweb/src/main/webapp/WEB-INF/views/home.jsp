@@ -7,6 +7,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String path = request.getContextPath();
+	//메인 수정: 0711 - top list화.
 %>
 <html>
 <c:import url="./structure/head.jsp" />
