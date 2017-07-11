@@ -103,15 +103,16 @@
 						<!--  최다 조회 물품 -->
 						<div class="col-md-4">
 							<div class="block box">
+								<c:forEach var = "highestHit" items ="${highestHit }" varStatus = "status" >
 								<div class="top">
-									<i class="fa fa-star-o" aria-hidden="true">highestHit</i> <i
+									<i class="fa fa-star-o" aria-hidden="true">highestHit TOP ${status.index +1 }</i> <i
 										class="pull-right">hit: ${highestHit.auction_hit }</i>
 								</div>
 								<div class="middle">
 									<a class="thumbnail"
 										href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />'>
 										<img src="${highestHit.picture_location  }" alt="pic"
-										style="width: 100%; height: 100%; max-height: 600px; background: cover;" />
+										style="width: 100%; height: 100%; max-height: 150px;  max-width: 150px; background: cover;" />
 									</a>
 								</div>
 								<div class="bottom">
@@ -128,21 +129,23 @@
 										</div>
 									</div>
 								</div>
+								</c:forEach>
 							</div>
 						</div>
 
 						<!--  최고 입찰금 물품 -->
 						<div class="col-md-4">
 							<div class="block box">
+								<c:forEach var = "highestBid" items ="${highestBid }" varStatus = "status" >
 								<div class="top">
-									<i class="fa fa-star-o" aria-hidden="true">highestBid</i> <i
+									<i class="fa fa-star-o" aria-hidden="true">highestBid TOP ${status.index +1 }</i> <i
 										class="pull-right">hit: ${highestBid.auction_hit }</i>
 								</div>
 								<div class="middle">
 									<a class="thumbnail"
 										href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />'>
 										<img src="${highestBid.picture_location  }" alt="pic"
-										style="width: 100%; height: 100%; max-height: 600px; background: cover;" />
+										style="width: 100%; height: 100%; max-height: 150px;  max-width: 150px; background: cover;" />
 									</a>
 								</div>
 								<div class="bottom">
@@ -159,21 +162,23 @@
 										</div>
 									</div>
 								</div>
+								</c:forEach>
 							</div>
 						</div>
 
 
 						<div class="col-md-4">
 							<div class="block box">
+								<c:forEach var = "randomOne" items ="${randomOne }" varStatus = "status" >
 								<div class="top">
-									<i class="fa fa-star-o" aria-hidden="true">randomOne</i> <i
+									<i class="fa fa-star-o" aria-hidden="true">latestOne Recent ${status.index +1 }</i> <i
 										class="pull-right">hit: ${randomOne.auction_hit }</i>
 								</div>
 								<div class="middle">
 									<a class="thumbnail"
 										href='${path }/board/list.do?auction_id=<c:out value = "${randomOneBid.auction_id }" />'>
 										<img src="${randomOne.picture_location  }" alt="pic"
-										style="width: 100%; height: 100%; max-height: 600px; background: cover;" />
+										style="width: 100%; height: 100%; max-height: 150px;  max-width: 150px; background: cover;" />
 									</a>
 								</div>
 								<div class="bottom">
@@ -190,6 +195,7 @@
 										</div>
 									</div>
 								</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
