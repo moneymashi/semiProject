@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/mail")
-public class mailController {
+public class MailController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
