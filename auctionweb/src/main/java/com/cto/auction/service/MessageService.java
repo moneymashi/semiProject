@@ -17,7 +17,7 @@ public class MessageService {
 	private MessageDAO dao;
 	
 	public List<Item> messageReceive(Message msg, HttpSession session) {
-		msg.setReciver_id((Integer)session.getAttribute("sessionUser_id"));
+		msg.setReceiver_id((Integer)session.getAttribute("sessionUser_id"));
 		return dao.messageReceive(msg);
 	}
 	public List<Item> messageSend(Message msg, HttpSession session) {

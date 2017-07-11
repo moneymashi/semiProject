@@ -5,7 +5,7 @@ import java.util.Date;
 public class Message {
 	   private Integer message_id;
 	   private Integer sender_id;
-	   private Integer reciver_id;
+	   private Integer receiver_id;
 	   private String message_title;
 	   private String message_content;
 	   private int receive_check;
@@ -29,12 +29,12 @@ public class Message {
 		this.sender_id = sender_id;
 	}
 	
-	public Integer getReciver_id() {
-		return reciver_id;
+	public Integer getReceiver_id() {
+		return receiver_id;
 	}
 
-	public void setReciver_id(Integer reciver_id) {
-		this.reciver_id = reciver_id;
+	public void setReceiver_id(Integer receiver_id) {
+		this.receiver_id = receiver_id;
 	}
 
 	public String getMessage_title() {

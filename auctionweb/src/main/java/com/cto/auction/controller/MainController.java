@@ -29,9 +29,10 @@ public class MainController {
 	@RequestMapping("whyNot.do")
 	public String adminSearchList(
 		@ModelAttribute("AUCTION_USER") User user,
-		@ModelAttribute("AUCTION_USER") Payment pay,
-		@ModelAttribute("AUCTION_USER") Auctioneer acnr,
-		@ModelAttribute("AUCTION_USER") Message msg,
+		@ModelAttribute("USER_PAYMENT") Payment pay,
+		@ModelAttribute("AUCTIONEER_INFO") Auctioneer acnr,
+		@ModelAttribute("USER_MESSAGE1") Message msg,
+		@ModelAttribute("USER_MESSAGE2") Message msg2,
 		Model m) {
 /*		m.addAttribute("adminSearchList", service.userAList(user));
 		m.addAttribute("adminSearchList", service.paymentAList(pay,schId));
@@ -42,7 +43,7 @@ public class MainController {
 		m.addAttribute("user_payment", service.paymentAList(pay));
 		m.addAttribute("auctioneer_info", service.auctioneerAList(acnr));
 		m.addAttribute("user_message1", service.message1AList(msg));
-		m.addAttribute("user_message2", service.message2AList(msg));
+		m.addAttribute("user_message2", service.message2AList(msg2));
 		return "main/adminList";
 	}
 }
