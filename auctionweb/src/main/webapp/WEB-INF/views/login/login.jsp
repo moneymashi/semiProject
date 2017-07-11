@@ -60,7 +60,6 @@
 <script type="text/javascript">
 /* TODO 인증번호 만들고 작업..  */
 	$(document).ready(function(){
-		alert("tt2");
 		$("#loginBtn").click(function(){
 			$("form").attr("action", "${path}/login/loginCheck.do");
 			$("form").submit();
