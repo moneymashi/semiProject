@@ -47,13 +47,17 @@ public class NoticeController {
 	
 	// 글쓰기화면
 	@RequestMapping("insert.do")
-	public String insert(){
-		return "menu/notice/noticeInsert";
+	public ModelAndView insert(ModelAndView mav){
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "notice/insert");
+		
+		return mav;
 	}
 	
 	// 글쓰기 로직
 	@RequestMapping("insertProc.do")
 	public String insertProc(@ModelAttribute Notice ins){
+		System.out.println(">>>>>>>>>>>>>>>>>>");
 		service.insertNotice(ins);
 		return "redirect:list.do";
 	}

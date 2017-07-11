@@ -2,80 +2,52 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>userInfo</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#uptBtn").click(function(){
-/* 			var password = $("#password").val();
-			if(password == ""){
-				alert("비밀번호를 입력하세요.");
-				$("#password").focus();
-				return;
-			} */
-			$("form").attr("action", "${path }/myPage/locUpdate.do");
-			alert("회원정보수정");
-			$("form").submit();
-		});
-	});
-</script>
-<style type="text/css"></style>
-</head>
-<body>
-	<div class="col-sm-3">
-		<jsp:include page="myPageNav.jsp" flush="false" />
-	</div>
-	<div class="col-sm-7">
-		<form>
-			<input type="hidden" name="user_id" value="${userInfo.user_id }"/>
-			<div class="form-group">
-			      <label for="password">이름:</label>
-			      <input type="text" class="form-control" name="real_name" id="real_name" value="${userInfo.real_name }">
-			</div>
-			
-			<div class="form-group">
-			      <label for="phone_number">전화번호:</label>
-			      <input type="text" class="form-control" name="phone_number" id="phone_number" value="${userInfo.phone_number }">
-			</div>
-			
-			<div class="form-group row">
-			  <div class="col-xs-2">
-			    <label for="month">우편번호:</label>
-			    <input class="form-control" id="sample4_postcode" name="zip_code" type="text" value="${userInfo.zip_code }">
-			  </div>
-			  <div class="col-xs-2">
-			  	<label for="search">&nbsp;&nbsp;&nbsp;</label>
-			    <input type="button" class="form-control btn btn-success" id="search" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-			  </div>
-			</div>
-			<div class="form-group">
-			  <label for="year">도로명 주소:</label>
-			  <input class="form-control" id="sample4_roadAddress" name="address" type="text" value="${userInfo.address }">
-			</div>
-			
-			<button type="button" id="uptBtn" class="btn btn-primary">주소 수정</button>
-					
-		<%-- <div>
+<div class="col-sm-3">
+	<jsp:include page="myPageNav.jsp" flush="false" />
+</div>
+<div class="col-sm-7">
+	<form>
 		<input type="hidden" name="user_id" value="${userInfo.user_id }"/>
-			<div>이름 : <input id="real_name" type="text" name="real_name" value="${userInfo.real_name }"></div>
-			<div>주소(API가능?)<input id="address" type="text" name="address" value="${userInfo.address }"></div>
-			<div>우편번호(API가능?) : <input id="zip_code" type="text" name="zip_code" value="${userInfo.zip_code }"></div>
-			<div>전화번호<input id="phone_number" type="text" name="phone_number" value="${userInfo.phone_number }"></div>
-			<!-- TODO 비밀번호 검사 -->
-			<!-- <div>현재 비밀번호(필수)<input type="password" name="password" id="password" value=""></div> -->
-			<button type="button" id="uptBtn">주소 수정</button>
-		</div> --%>
-		</form>
-	</div>
-	<div class="col-sm-2"></div>
-</body>
+		<div class="form-group">
+		      <label for="password">이름:</label>
+		      <input type="text" class="form-control" name="real_name" id="real_name" value="${userInfo.real_name }">
+		</div>
+		
+		<div class="form-group">
+		      <label for="phone_number">전화번호:</label>
+		      <input type="text" class="form-control" name="phone_number" id="phone_number" value="${userInfo.phone_number }">
+		</div>
+		
+		<div class="form-group row">
+		  <div class="col-xs-2">
+		    <label for="month">우편번호:</label>
+		    <input class="form-control" id="sample4_postcode" name="zip_code" type="text" value="${userInfo.zip_code }">
+		  </div>
+		  <div class="col-xs-2">
+		  	<label for="search">&nbsp;&nbsp;&nbsp;</label>
+		    <input type="button" class="form-control btn btn-success" id="search" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label for="year">도로명 주소:</label>
+		  <input class="form-control" id="sample4_roadAddress" name="address" type="text" value="${userInfo.address }">
+		</div>
+		
+		<button type="button" id="uptBtn" class="btn btn-primary">주소 수정</button>
+				
+	<%-- <div>
+	<input type="hidden" name="user_id" value="${userInfo.user_id }"/>
+		<div>이름 : <input id="real_name" type="text" name="real_name" value="${userInfo.real_name }"></div>
+		<div>주소(API가능?)<input id="address" type="text" name="address" value="${userInfo.address }"></div>
+		<div>우편번호(API가능?) : <input id="zip_code" type="text" name="zip_code" value="${userInfo.zip_code }"></div>
+		<div>전화번호<input id="phone_number" type="text" name="phone_number" value="${userInfo.phone_number }"></div>
+		<!-- TODO 비밀번호 검사 -->
+		<!-- <div>현재 비밀번호(필수)<input type="password" name="password" id="password" value=""></div> -->
+		<button type="button" id="uptBtn">주소 수정</button>
+	</div> --%>
+	</form>
+</div>
+<div class="col-sm-2"></div>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -129,4 +101,18 @@
         }).open();
     }
 </script>
-</html>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#uptBtn").click(function(){
+/* 			var password = $("#password").val();
+			if(password == ""){
+				alert("비밀번호를 입력하세요.");
+				$("#password").focus();
+				return;
+			} */
+			$("form").attr("action", "${path }/myPage/locUpdate.do");
+			alert("회원정보수정");
+			$("form").submit();
+		});
+	});
+</script>

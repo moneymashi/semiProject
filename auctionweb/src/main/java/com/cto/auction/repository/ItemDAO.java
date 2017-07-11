@@ -16,11 +16,11 @@ public interface ItemDAO {
 	// 아이템 등록
 	public void itemInsert(Item ins);
 	// 최고 입찰금액 검색
-	public Item highestBid();
+	public ArrayList<Item> highestBid();
 	// 최다 조회물품 검색
-	public Item highestHit();
+	public ArrayList<Item> highestHit();
 	// 랜덤물품 조회
-	public Item randomOne();
+	public ArrayList<Item> randomOne();
 	// 페이징 처리에 필요.
 	public int totCnt(Item_Sch sch);
 	
