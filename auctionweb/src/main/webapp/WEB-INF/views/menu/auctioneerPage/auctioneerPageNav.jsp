@@ -35,6 +35,9 @@
 		  <li class="list-group-item">
 		  	<a href="${path }/auctioneerPage/saleInfo.do">경매정보</a>
 		  </li>
+		  <li class="list-group-item">
+		  	<a href="${path }/auctioneerPage/delivery.do">상품배송(공사중)</a>
+		  </li>
 		</ul>
 		
 		<%-- <div>

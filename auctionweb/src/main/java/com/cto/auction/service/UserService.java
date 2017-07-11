@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cto.auction.repository.UserDAO;
-import com.cto.auction.vo.Auctioneer;
 import com.cto.auction.vo.Bid;
 import com.cto.auction.vo.Item;
-import com.cto.auction.vo.Message;
 import com.cto.auction.vo.Payment;
 import com.cto.auction.vo.User;
 
@@ -19,11 +17,6 @@ import com.cto.auction.vo.User;
 public class UserService {
 	@Autowired(required = false)
 	private UserDAO dao;
-
-	// 테스트용 리스트
-	public List<User> auctionUserList(User list) {
-		return dao.auctionUserList(list);
-	}
 
 	// 로그인 데이터확인
 	public User loginCheck(User mem) {

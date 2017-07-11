@@ -7,11 +7,6 @@
 	<resultMap type="payment" id="paymentResult" />
 	<resultMap type="item" id="itemResult" />
 	<resultMap type="bid" id="bidResult"/>
-	<!-- 테스트/관리자용 회원정보 -->
-	<select id="auctionUserList" resultType="user">
-		SELECT * FROM
-		AUCTION_USER WHERE 1=1
-	</select>
 	<select id="loginCheck" resultType="user">
 		SELECT * FROM AUCTION_USER
 		WHERE email = #{email} AND password = #{password}
@@ -41,10 +36,7 @@
 		WHERE
 		USER_ID = ${user_id }
 	</update>
-	<delete id="myPageUserDelete2">
-		DELETE FROM AUCTIONEER_INFO WHERE AUCTIONEER_ID = #{user_id}
-	</delete>
-	<delete id="myPageUserDelete1">
+	<delete id="myPageUserDelete">
 		DELETE FROM AUCTION_USER WHERE USER_ID = #{user_id}
 	</delete>
 	
@@ -191,7 +183,7 @@
 		WHERE USER_ID = #{user_id }
 	</update>
 	
-		<select id="chkDupEmail" resultType="int">
+	<select id="chkDupEmail" resultType="int">
 		SELECT COUNT(*)
 		FROM AUCTION_USER
 		WHERE 1 = 1

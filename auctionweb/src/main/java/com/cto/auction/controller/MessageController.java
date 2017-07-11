@@ -49,5 +49,12 @@ public class MessageController {
 		service.myPageMessageInsert(ins);
 		return "redirect:/myPage/message.do";
 	}
+	
+	@RequestMapping("myPage/messageReceiveCheck.do") 
+	public ModelAndView myPageMessageReceiveCheck(Message mrc, ModelAndView mav){
+		service.myPageMessageReceiveCheck(mrc);
+		mav.setViewName("redirect:myPage/message.do");
+		return mav;
+	}
 
 }

@@ -8,22 +8,29 @@
 	<select id="myPageMessageInsert" resultType="message">
 		INSERT INTO
 		USER_MESSAGE
-		( SENDER_ID, USER_ID, MESSAGE_TITLE, MESSAGE_CONTENT )
+		( SENDER_ID, RECEIVER_ID, MESSAGE_TITLE, MESSAGE_CONTENT )
 		VALUES
-		(#{sender_id }, #{user_id}, #{message_title}, #{message_content})
+		(#{sender_id }, #{receiver_id}, #{message_title}, #{message_content})
 	</select>
 	
 	<select id="messageReceive" resultMap="messageResult">
 		SELECT * FROM
 		USER_MESSAGE
-		WHERE USER_ID = #{user_id}
+		WHERE RECEIVER_ID = #{receiver_id}
 	</select>
 	<select id="messageSend" resultMap="messageResult">
 		SELECT * FROM
 		USER_MESSAGE
 		WHERE SENDER_ID = #{sender_id}
 	</select>
-
+	<update id="myPageMessageReceiveCheck" parameterType="message">
+		UPDATE
+		USER_MESSAGE
+		SET
+		RECEIVE_CHECK = #{receive_check},
+		WHERE
+		MESSAGE_ID = ${message_id }
+	</update>
 
 	
 </mapper>

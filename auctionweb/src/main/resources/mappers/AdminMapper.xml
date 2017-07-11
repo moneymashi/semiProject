@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cto.auction.repository.AdminDAO">
+	<resultMap type="user" id="userResult" />
+	<resultMap type="payment" id="paymentResult" />
+	<resultMap type="auctioneer" id="auctioneerResult" />
+	<resultMap type="message" id="messageResult"/>
+	<resultMap type="item" id="itemResult" />
+	<resultMap type="bid" id="bidResult"/>
+	
+	<!-- 테스트/관리자용 회원정보 -->
+	<select id="userAList" resultMap="userResult">
+		SELECT * FROM
+		AUCTION_USER WHERE 1=1 
+		<if test="user_id!=null and user_id!=''">
+			AND USER_ID = ${user_id}
+		</if>
+	</select>
+	<select id="paymentAList" resultMap="paymentResult">
+		SELECT * FROM
+		USER_PAYMENT WHERE 1=1 
+		<if test="user_id!=null and user_id!=''">
+			AND USER_ID = ${user_id}
+		</if>
+	</select>
+	<select id="auctioneerAList" resultMap="auctioneerResult">
+		SELECT * FROM
+		AUCTIONEER_INFO WHERE 1=1
+		<if test="auctioneer_id!=null and auctioneer_id!=''">
+			AND AUCTIONEER_ID = ${auctioneer_id}
+		</if>
+	</select>
+	<select id="message1AList" resultMap="messageResult">
+		SELECT * FROM
+		USER_MESSAGE WHERE 1=1 
+		<if test="reciver_id!=null and reciver_id!=''">
+			AND RECIVER_ID = ${reciver_id}
+		</if>
+	</select>
+	<select id="message2AList" resultMap="messageResult">
+		SELECT * FROM
+		USER_MESSAGE WHERE 1=1 
+		<if test="sender_id!=null and sender_id!=''">
+			AND SENDER_ID = ${sender_id}
+		</if>
+	</select>
+</mapper>

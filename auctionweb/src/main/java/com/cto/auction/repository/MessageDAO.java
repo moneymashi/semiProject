@@ -12,5 +12,6 @@ public interface MessageDAO{
 	public void myPageMessageInsert(Message ins);
 	public List<Item> messageReceive(Message msg);
 	public List<Item> messageSend(Message msg);
+	public void myPageMessageReceiveCheck(Message ins);
 
 }

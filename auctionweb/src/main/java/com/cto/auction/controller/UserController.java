@@ -31,12 +31,6 @@ public class UserController {
 	private UserService service;
 	private JavaMailSender mailSender;
 
-	@RequestMapping("whyNot.do")
-	public String auctionUserList(@ModelAttribute("testCtrlModelAttribute") User sch, Model m) {
-		m.addAttribute("ttt", service.auctionUserList(sch));
-		return "main/testlist";
-	}
-
 	// 로그인 접속
 	@RequestMapping("login/login.do")
 	public String login() {

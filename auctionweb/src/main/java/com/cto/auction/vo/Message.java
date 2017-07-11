@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Message {
 	   private Integer message_id;
-	   private Integer user_id; // = receiver_id
 	   private Integer sender_id;
+	   private Integer reciver_id;
 	   private String message_title;
 	   private String message_content;
 	   private int receive_check;
@@ -20,21 +20,21 @@ public class Message {
 	public void setMessage_id(Integer message_id) {
 		this.message_id = message_id;
 	}
-
-	public Integer getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
-	}
-
+	
 	public Integer getSender_id() {
 		return sender_id;
 	}
 
 	public void setSender_id(Integer sender_id) {
 		this.sender_id = sender_id;
+	}
+	
+	public Integer getReciver_id() {
+		return reciver_id;
+	}
+
+	public void setReciver_id(Integer reciver_id) {
+		this.reciver_id = reciver_id;
 	}
 
 	public String getMessage_title() {
@@ -76,5 +76,5 @@ public class Message {
 	public void setReceiver_name(String receiver_name) {
 		this.receiver_name = receiver_name;
 	}
-	   
+
 }

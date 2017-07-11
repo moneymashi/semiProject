@@ -17,6 +17,10 @@
 			alert("메세지 전송");
 			$("form").submit();
 		});
+		$("input[name=message_id]").closest("div").click(function(){
+			$(location).attr("href","${path}/auction/myPage/messageReceiveCheck.do?message_id="+$(this).children().val());
+			alert($(this).children().val());
+		});
 	});
 </script>
 <style type="text/css"></style>
@@ -38,10 +42,9 @@
 					자동생성=> 메세지번호/ 발신자/ 수신여부/ 발신일) -->
 					<!-- 메세지 API툴 있으면 좋을듯.. -->
 					
-					<label for="sender_id">SENDER_ID(자산의 user_id : ${mem.user_id }) 완성후 라벨삭제</label>
+					<label for="sender_id">SENDER_ID(user_id 확인 : ${mem.user_id })</label>
 					<div>
-						<input id="sender_id" type="hidden" name="sender_id"
-							value="${mem.user_id }">
+						<input id="sender_id" type="hidden" name="sender_id" value="${mem.user_id }">
 					</div>
 					<%--
 						TODO 이름으로 검색 후 삽입이 좋을 듯.. 일단은직접 아이디 입력으로 진행. 
@@ -50,9 +53,9 @@
 							<input id="user_id" type="hidden" value="${msg.user_id }">
 						</div>
 					 --%>
-					<label for="user_id">RECEIVER_ID</label>
+					<label for="receiver_id">RECEIVER_ID</label>
 					<div>
-						<input id="user_id" type="text" name="user_id"
+						<input id="receiver_id" type="text" name="receiver_id"
 							placeholder="receiver_id"/>
 					</div>
 					<label for="message_title">MESSAGE_TITLE</label>
@@ -117,8 +120,8 @@
 					<input id="sendBox" type="hidden" name="message_id"
 						value="${sendBoxJspOnly.message_id }" /> 
 					<!-- TODO sender_id를 user_name으로 변경해야함. -->
-					<div>user_id(=receiver_id) :</div>
-					<div>${sendBoxJspOnly.user_id}</div>
+					<div>receiver_id :</div>
+					<div>${sendBoxJspOnly.receiver_id}</div>
 					<div>message_title :</div>
 					<div>${sendBoxJspOnly.message_title}</div>
 					<div>message_content :</div>

@@ -78,5 +78,12 @@ public class AuctioneerController {
 		}
 		return mav;
 	}
+	@RequestMapping("auctioneerPage/delivery.do")
+	public ModelAndView auctioneerDelivery(Auctioneer info, HttpSession session, ModelAndView mav) {
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "auctioneerPage/delivery");
+		/*mav.addObject("acnrInfo", service.auctioneerAuctioneerInfo(info, session));*/
+		return mav;
+	}
 	
 }

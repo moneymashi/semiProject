@@ -6,10 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 
-import com.cto.auction.vo.Auctioneer;
 import com.cto.auction.vo.Bid;
 import com.cto.auction.vo.Item;
-import com.cto.auction.vo.Message;
 import com.cto.auction.vo.Payment;
 import com.cto.auction.vo.User;
 

@@ -44,8 +44,8 @@
 						<div class="panel-heading">Bidding(입찰중인물품)</div>
 						<div class="media">
 							<div class="media-left">
-								<a href="#"> <img class="media-object"
-									src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
+								<a href="#"> 
+								<img class="media-object" src="${path }/auction/resources/upload/${bidding1JspOnly.picture_location}"
 									style="width: 70px; height: auto;">
 								</a>
 							</div>
