@@ -41,10 +41,12 @@ form>div {
 							<div class=" col-sm-9">
 								<input type="hidden" id="emailChk" value="N" />
 								<!-- Text input-->
-								<input class=" form-control " id="email" name="email" type="text" placeholder="E-mail을 입력하세요." autofocus>
+								<input class=" form-control " id="email" name="email" type="text"
+									placeholder="E-mail을 입력하세요." autofocus >
 							</div>
 							<div class=" col-sm-3">
-								<input id="chkDupBtn" class=" form-control btn btn-primary " type="button" value="중복확인" />
+								<input id="chkDupBtn" class=" form-control btn btn-primary "
+									type="button" value="중복확인"/>
 							</div>
 						</div>
 						<div class="form-group col-sm-12">
@@ -77,12 +79,9 @@ form>div {
 							</div>
 							<div class=" col-sm-3">
 								<!-- 메일내용 -->
-								<input type="hidden" class="form-control" name="signMailTitle" id="signMailTitle" value="옥션 인증번호입니다.">
-                     			<input type="hidden" class="form-control" name="signMailContent" id="signMailContent" value="">
 								<div id="signCodeBtn" class="btn btn-primary">인증번호발송</div>
 							</div>
 							<div class=" col-sm-12" >
-							<!-- <div id="signUpCode2" style="display:inline"></div> -->
 							<span class="glyphicon glyphicon-time"></span>
 							<span id="codeTime"></span>
 						</div>
@@ -98,17 +97,99 @@ form>div {
 		</div>
 	</div>
 </body>
-<c:import url="../structure/tail.jsp" />
+<%-- <c:import url="../structure/tail.jsp" /> --%>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
-// 등록....
-function insertChk() {
-    var frm = document.companyForm;
-    if (!chkVal('email', '이메일'))
-        return false;
-
-}
-
 	$(document).ready(function() {
+		//1.아이디 중복확인
+		$("#chkDupBtn").click(function(){
+	        var prmEmail = $('#email').val();
+	        if ($("#email").val() == '') {
+	            alert('email를 입력해주세요.');
+	            $("#email").focus();
+	            return;
+	        }
+	        $.ajax({
+	            type : 'POST',
+	            data : "prmEmail=" + prmEmail,
+	            dataType :'text',
+	            url : '${path}/login/chkDupEmail.do',
+	            success : function(rData, textStatus, xhr) {
+	                var chkRst = rData;
+	                if (chkRst == 0) {
+	                    alert("등록 가능 합니다.");
+	                    $("#emailChk").val('Y');
+	                    $("#email").attr("disabled", "disabled");
+	                } else {
+	                    alert("중복 되어 있습니다.");
+	                    $("#emailChk").val('N');
+	                }
+	            },
+	            error : function(xhr, status, e) {
+	                alert("중복확인에러:"+e);
+	            }
+	        });
+	    });
+		//2.인증번호 생성
+		$("#signCodeBtn").click(function() {
+			//중복확인을 했다면.
+			if($("#emailChk").val()=='Y'){
+				//랜덤번호 생성
+				var randomCode = Math.floor(Math.random() * 9999) + 1;
+				if (randomCode < 10) {
+					code = "000" + randomCode;
+				} else if (randomCode >= 10 && randomCode < 100) {
+					code = "00" + randomCode;
+				} else if (randomCode >= 100 && randomCode < 1000) {
+					code = "0" + randomCode;
+				} else {
+					code = "" + randomCode;
+				}
+				clearTimeout(timeout);
+				codeTimer(180);
+		        //이메일 내용 생성
+				/* $.ajax({
+					type : 'POST',
+					data : "email=aaaaa&codeTitle=adddd&codeContent=accccc",
+					dataType :'text',
+		            url : '${path}/login/codeSend.do',
+		            success : function(data){
+		            	alert("success:");
+		            },
+		            error : function(a) {
+		                alert("1인증번호에러:"+a);
+		            }
+		        }); */
+			}else{
+				alert("e-Mail 중복확인을 해주세요.");
+			}
+            var email = $("#email").val();
+            var signMailTitle = "옥션 회원가입 인증번호 입니다."; //$("#signMailTitle").val();
+            var signMailContent = "인증번호:"+code;//$("#signMailContent").val();
+
+            $.ajax({
+                type : 'POST',
+                data : "email=" + email+"&signMailTitle="+signMailTitle+"&signMailContent="+signMailContent,
+                dataType : 'text',
+                url : '${path}/login/codeSend.do',
+                success : alert("인증번호가"+ $("#email").val()+"(으)로 발송되었습니다.")
+                    /* function(rData, textStatus, xhr) {
+                    var chkRst = rData;
+                    if (chkRst == 0) {
+                        alert("등록 가능 합니다.");
+                        $("#emailChk").val('Y');
+                    } else {
+                        alert("중복 되어 있습니다.");
+                        $("#emailChk").val('N');
+                    }
+                } */,
+                error : function(e) {
+                    alert("에러:"+e);
+                }
+            });
+
+		});
+		//3.등록시 최종확인
 		$("#signBtn").click(function() {
 	    	var email = $("#email").val();
 			var password = $("#password").val();
@@ -132,20 +213,21 @@ function insertChk() {
 			if ($("#emailChk").val() == 'N') {
 		        alert('Email 중복확인을 해주세요');
 		        return;
+			}else if($("#emailChk").val()=='Y'){
+				//인증번호 확인
+				if(code == $("#signUpCode").val() && timer > 0) {
+					$("form").attr("action", "${path}/login/signUpProc.do");
+					/* $("form").submit(); */
+				} else if (code == $("#signUpCode").val() && timer <= 0) {
+					alert("시간이초과되었습니다. 인증번호를 다시 발송해주세요.");
+				} else if (code != $("#signUpCode").val()) {
+					alert("인증번호가 잘못되엇습니다.");
+				}
+				alert("code:" + code);
+				alert("$(\"#signUpCode\").val():" + $("#signUpCode").val());
+			}else{
+				alert("ERROR : e-Mail_check_value_false");
 			}
-			
-			//인증번호 확인
-			if(code == $("#signUpCode").val() && timer > 0) {
-				$("form").attr("action", "${path}/login/signUpProc.do");
-				/* $("form").submit(); */
-			} else if (code == $("#signUpCode").val() && timer <= 0) {
-				alert("시간이초과되었습니다. 인증번호를 다시 발송해주세요.");
-			} else if (code != $("#signUpCode").val()) {
-				alert("인증번호가 잘못되엇습니다.");
-			}
-			
-			alert("code:" + code);
-			alert("$(\"#signUpCode\").val():" + $("#signUpCode").val());
 		});
 	});
 	var code = "notnull";
@@ -166,69 +248,11 @@ function insertChk() {
 			$('#codeTime').text("인증시간종료");
 		}
 	}
-	
-	$("#chkDupBtn").click(function(){
-        var prmEmail = $('#email').val();
-        if ($("#email").val() == '') {
-            alert('email를 입력해주세요.');
-            $("#email").focus();
-            return;
-        }
-
-        $.ajax({
-            type : 'POST',
-            data : "prmEmail=" + prmEmail,
-            dataType : 'text',
-            url : '${path}login/chkDupEmail.do',
-            success : function(rData, textStatus, xhr) {
-                var chkRst = rData;
-                if (chkRst == 0) {
-                    alert("등록 가능 합니다.");
-                    $("#emailChk").val('Y');
-                } else {
-                    alert("중복 되어 있습니다.");
-                    $("#emailChk").val('N');
-                }
-            },
-            error : function(xhr, status, e) {
-                alert("에러:"+e);
-            }
-        });
-    });
-	
-	
-	// 인증번호 생성
-	$("#signCodeBtn").click(function() {
-		var randomCode = Math.floor(Math.random() * 9999) + 1;
-		if (randomCode < 10) {
-			code = "000" + randomCode;
-		} else if (randomCode >= 10 && randomCode < 100) {
-			code = "00" + randomCode;
-		} else if (randomCode >= 100 && randomCode < 1000) {
-			code = "0" + randomCode;
-		} else {
-			code = "" + randomCode;
-		}
-		$("#signMailContent").val("귀하의 인증번호는 [ "+code+" ] 입니다");
-		$("#signUpCode").val(code);
-		clearTimeout(timeout);
-		codeTimer(180);
-        
-        var email = $("#email").val();
-        var signMailTitle = $("#signMailTitle").val();
-        var signMailContent = $("#signMailContent").val();
-        
-        $.ajax({
-            type : 'POST',
-            data : "email=" + email+"&signMailTitle="+signMailTitle+"&signMailContent="+signMailContent,
-            dataType : 'text',
-            url : '${path}login/codeSend.do',
-            success :
-            	alert("인증번호가"+ $("#email").val()+"(으)로 발송되었습니다."),
-            error : function(xhr, status, e) {
-                alert("에러:"+e);
-            }
-        });
-	});
+    // 등록....
+/* function insertChk() {
+    var frm = document.companyForm;
+    if (!chkVal('email', '이메일'))
+        return false;
+} */
 </script>
 </html>

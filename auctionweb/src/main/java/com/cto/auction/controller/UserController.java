@@ -1,5 +1,6 @@
 package com.cto.auction.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cto.auction.service.UserService;
@@ -79,7 +81,7 @@ public class UserController {
 			// 넘어온 ID를 받는다.
 			String paramId = (req.getParameter("prmEmail") == null) ? "" : String.valueOf(req.getParameter("prmEmail"));
 			User cnt = new User();
-			cnt.setEmail(paramId.trim());
+			cnt.setEmail(paramId);
 			int chkPoint = service.chkDupEmail(cnt);
 			out.print(chkPoint);
 			out.flush();
@@ -92,25 +94,22 @@ public class UserController {
 
 	// 인증메일 발송.
 	@RequestMapping(value = "login/codeSend.do")
-	public void codeSend(HttpServletRequest request) throws Exception {
-		String tomail = request.getParameter("email");
-		String title = request.getParameter("signMailTitle");
-		String content = request.getParameter("signMailContent");
+    public void codeSend(HttpServletRequest request) throws Exception {
+        String tomail = request.getParameter("email");
+        String title = request.getParameter("signMailTitle");
+        String content = request.getParameter("signMailContent");
 
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-
 			messageHelper.setTo(tomail);
 			messageHelper.setSubject(title);
 			messageHelper.setText(content);
-
 			mailSender.send(message);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-
 	// 실질적인 회원가입 진행로직
 	@RequestMapping("login/signUpProc.do")
 	public String signUpProc(User ins) {
