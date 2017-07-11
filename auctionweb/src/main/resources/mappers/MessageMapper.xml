@@ -27,7 +27,7 @@
 		UPDATE
 		USER_MESSAGE
 		SET
-		RECEIVE_CHECK = #{receive_check},
+		RECEIVE_CHECK = 2
 		WHERE
 		MESSAGE_ID = ${message_id }
 	</update>

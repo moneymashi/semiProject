@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cto.auction.vo.Bid;
 import com.cto.auction.vo.Item;
+import com.cto.auction.vo.Message;
 import com.cto.auction.vo.Payment;
 import com.cto.auction.vo.User;
 
@@ -46,6 +47,8 @@ public interface UserDAO {
 	public List<Item> auctionInfoLoseBid01(Item item);
 	public List<Bid> auctionInfoLoseBid02(Bid bid);
 	
+	public Integer newMessageCnt(Message msg);
+	
 	// 낙찰 데이터부르기(임시)
 	public Item winpay1(Item sch);
 	public User mem(User sch);
@@ -54,5 +57,6 @@ public interface UserDAO {
 	public void memProc(User sch);
 	
 	public int chkDupEmail(User cnt);
+	
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.cto.auction.repository.UserDAO;
 import com.cto.auction.vo.Bid;
 import com.cto.auction.vo.Item;
+import com.cto.auction.vo.Message;
 import com.cto.auction.vo.Payment;
 import com.cto.auction.vo.User;
 
@@ -98,6 +99,14 @@ public class UserService {
 		return dao.auctionInfoLoseBid02(bid);
 	}
 	
+	
+	
+	public Integer newMessageCnt(Message msg){
+		return dao.newMessageCnt(msg);
+	}
+	
+	
+	
 	// 낙찰 데이터 부르기(임시)
 	public Item winpay1(Item sch){
 		return dao.winpay1(sch);
@@ -109,6 +118,8 @@ public class UserService {
 	public void memProc(User upt){
 		dao.memProc(upt);
 	}
+	
+	
 		
 		
 }

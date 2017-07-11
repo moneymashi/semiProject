@@ -112,7 +112,12 @@
 						</li>
 						<ul class="nav navbar-nav row list-inline">
 							<li><a>[${sessionScope.mem.user_name }]님 환영합니다.</a></li>
-							<li><a>새메세지<span class="badge">222</span></a></li>
+								<c:if test="${sessionScope.newMsg > 0 }">
+									<li><a>새메세지<span class="badge">${sessionScope.newMsg}</span></a></li>
+								</c:if>
+								<c:if test="${sessionScope.newMsg == 0 || null}">
+									<li><a>메세지 없음</a></li>
+								</c:if>
 							<li><a>Point :[ ${sessionScope.mem.user_point } ]</a></li>
 						</ul>
 					</c:otherwise>

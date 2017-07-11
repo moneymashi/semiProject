@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cto.auction.service.MessageService;
@@ -50,10 +51,11 @@ public class MessageController {
 		return "redirect:/myPage/message.do";
 	}
 	
-	@RequestMapping("myPage/messageReceiveCheck.do") 
-	public ModelAndView myPageMessageReceiveCheck(Message mrc, ModelAndView mav){
-		service.myPageMessageReceiveCheck(mrc);
-		mav.setViewName("redirect:myPage/message.do");
+	@RequestMapping("myPage/messageReceiveCheck.do")
+	public ModelAndView myPageMessageReceiveCheck(@RequestParam("message_id") Integer mid,
+			Message mrc, ModelAndView mav){
+		service.myPageMessageReceiveCheck(mrc, mid);
+		mav.setViewName("redirect:/myPage/message.do");
 		return mav;
 	}
 

@@ -51,6 +51,7 @@ public class UserController {
 			session.setAttribute("email", service.loginCheck(mem).getEmail());
 			// 세션 name : 로그인 한 계정의 이름
 			session.setAttribute("name", service.loginCheck(mem).getUser_name());
+			/*session.setAttribute("newMsg", (Integer)service.newMessageCnt());*/
 			// 보여주는 view 경로 설정( 로그인이 성공 했으면 main으로)
 			mav.setViewName("redirect:/main.do");
 			// 해당 view에 포함시킬 객체 설정(로그인 여부 msg를 설정함-success)

@@ -27,7 +27,8 @@ public class MessageService {
 	public void myPageMessageInsert(Message ins) {
 		dao.myPageMessageInsert(ins);
 	}
-	public void myPageMessageReceiveCheck(Message mrc) {
+	public void myPageMessageReceiveCheck(Message mrc, Integer mid) {
+		mrc.setMessage_id(mid);
 		dao.myPageMessageReceiveCheck(mrc);
 	}
 }
