@@ -69,15 +69,15 @@ public class ItemService {
 			
 		}
 		// 최고입찰가
-		public Item highestBid(){
+		public ArrayList<Item> highestBid(){
 			return dao.highestBid();
 		}
 		// 최다조회물품
-		public Item highestHit(){
+		public ArrayList<Item> highestHit(){
 			return dao.highestHit();
 		}
 		// 랜덤 물품조회
-		public Item randomOne(){
+		public ArrayList<Item> randomOne(){
 			return dao.randomOne();
 		}
 		//페이징처리용

@@ -30,7 +30,6 @@
 	});
 </script>
 <style type="text/css">
-
 body {
 	padding-top: 40px;
 	/* background: #f9fafa;
@@ -43,7 +42,6 @@ body {
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap; */
 }
-
 .block {
 	margin: 15px;
 	border-radius: 4px;
@@ -51,12 +49,10 @@ body {
 	padding: 23px;
 	box-shadow: 0 2px 55px rgba(0, 0, 0, 0.1);
 }
-
 .top {
 	border-bottom: 1px solid #e5e5e5;
 	padding-bottom: 10px;
 }
-
 .top ul {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -65,30 +61,24 @@ body {
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
-
 .top a {
 	color: #9e9e9e;
 }
-
 .top a:hover {
 	color: #c7ccdb;
 }
-
 .converse {
 	padding: 2px 10px;
 	border-radius: 20px;
 	text-transform: uppercase;
 	font-size: 14px;
 }
-
 .middle {
 	margin-bottom: 40px;
 }
-
 .middle img {
 	width: 100%;
 }
-
 .bottom {
 	text-align: center;
 	display: -webkit-box;
@@ -105,54 +95,41 @@ body {
 	-ms-flex-positive: 1;
 	flex-grow: 1;
 }
-
 .heading {
 	font-size: 17px;
 	text-transform: uppercase;
 	margin-bottom: 5px;
 	letter-spacing: 0;
 }
-
 .info {
 	font-size: 14px;
 	color: #969696;
 	margin-bottom: 10px;
 }
-
 .style {
 	font-size: 16px;
 	margin-bottom: 20px;
 }
-
 .old-price {
 	color: #f00;
 	text-decoration: line-through;
 }
-
 .box {
 	display: inline-block;
 	width: 100%;
 	margin: 1em;
 }
-
 .footer {
 	width: 100% !important;
 	margin: 0;
 }
-
 .panel-body{
 	font-famliy: 'Raleway', Arial, sans-serif;;
 }
-
-
 .panel-footer{
 	font-famliy: Impact;
 	font-weight: bold;
 }
-
-
-
-
 </style>
 </head>
 <body>
