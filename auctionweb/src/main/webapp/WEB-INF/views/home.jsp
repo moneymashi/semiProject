@@ -20,7 +20,7 @@
 					<div class="col-md-8 col-md-offset-2">
 						<div class="brand">
 							<h1>CTO Auction System</h1>
-							<h3>CTO 옥션 시스템이 오신것을 환영합니다. 합리적인 가격, 훌륭한 품질, 빠른 피드백 원하는것을 얻을
+							<h3>CTO 옥션 시스템이 오신것을 환영합니다. 합리적인 가격, 훌륭한 품질, 빠른 피드백. 원하는것을 얻을
 								수 있습니다.</h3>
 						</div>
 					</div>
