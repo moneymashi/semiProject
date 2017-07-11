@@ -28,8 +28,8 @@ public class AdminService {
 	public List<Message> message1AList(Message msg) {
 		return dao.message1AList(msg);
 	}
-	public List<Message> message2AList(Message msg) {
-		return dao.message2AList(msg);
+	public List<Message> message2AList(Message msg2) {
+		return dao.message2AList(msg2);
 	}
 		
 }

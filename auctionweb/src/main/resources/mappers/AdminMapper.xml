@@ -17,6 +17,9 @@
 		<if test="user_id!=null and user_id!=''">
 			AND USER_ID = ${user_id}
 		</if>
+		<if test="email!=null and email!=''">
+			AND EMAIL like '%'||#{email}||'%'
+		</if>
 	</select>
 	<select id="paymentAList" resultMap="paymentResult">
 		SELECT * FROM
@@ -35,7 +38,7 @@
 	<select id="message1AList" resultMap="messageResult">
 		SELECT * FROM
 		USER_MESSAGE WHERE 1=1 
-		<if test="reciver_id!=null and reciver_id!=''">
+		<if test="receiver_id!=null and receiver_id!=''">
 			AND RECIVER_ID = ${reciver_id}
 		</if>
 	</select>

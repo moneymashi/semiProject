@@ -24,7 +24,6 @@
 <body>
 	<br>
 	<div class="">
-
 		<div class="yTitle">
 			<h1>관리자용리스트</h1>
 		</div>
@@ -37,15 +36,18 @@
 						value="${AUCTION_USER.user_id }" /></td>
 					<td>email<input type="text" name="email"
 						value="${AUCTION_USER.email }" /></td>
-					<td><input type="submit" value="???" /></td>
+					<td><input type="submit" value="유저정보" /></td>
 				</tr>
 			</table>
 		</form>
 		<hr />
 		<table border="1">
 			<tr>
+				<th>▒</th>
 				<th colspan="7"><h3>AUCTION_USER(회원정보)</h3></th>
+				<th>▒</th>
 				<th colspan="5"><h3>AUCTION_USER(배송지정보)</h3></th>
+				<th>▒</th>
 			</tr>
 			<tr>
 				<th>▒</th>
@@ -64,7 +66,7 @@
 				<th>PICTURE_LOCATION VARCHAR2 (500)</th>
 				<th>▒</th>
 			</tr>
-			<c:forEach var="au1JspOnly" items="${adminSearchList }">
+			<c:forEach var="au1JspOnly" items="${auction_user }">
 				<tr>
 					<td>▒</td>
 					<td>${au1JspOnly.user_id}</td>
@@ -90,16 +92,18 @@
 			<table border="1">
 				<tr>
 					<td>userId<input type="text" name="user_id"
-						value="${AUCTION_USER.user_id }" /></td>
-					<td>email<input type="text" name="email"
-						value="${AUCTION_USER.email }" /></td>
-					<td><input type="submit" value="???" /></td>
+						value="${USER_PAYMENT.user_id }" /></td>
+					<td><input type="submit" value="카드정보" /></td>
 				</tr>
 			</table>
 		</form>
 		<hr />
-		<h3>USER_PAYMENT(카드정보)</h3>
 		<table border="1">
+			<tr>
+				<th>▒</th>
+				<th colspan="7"><h3>USER_PAYMENT(카드정보)</h3></th>
+				<th>▒</th>
+			</tr>
 			<tr>
 				<th>▒</th>
 				<th>USER_ID         NUMBER (10)</th>
@@ -111,7 +115,7 @@
 				<th>SERIAL_NUMBER   VARCHAR2 (20)</th>
 				<th>▒</th>
 			</tr>
-			<c:forEach var="upJspOnly" items="${adminSearchList }">
+			<c:forEach var="upJspOnly" items="${user_payment }">
 				<tr>
 					<td>▒</td>
 					<td>${ai1JspOnly.user_id}</td>
@@ -126,9 +130,23 @@
 			</c:forEach>
 		</table>
 		<hr />
-		<h6>user_id = auctioneer_id 이므로 같이 검색</h6>
-		<h3>AUCTIONEER_INFO(판매자 정보)</h3>
+		<hr />
+		<form method="post">
+			<table border="1">
+				<tr>
+					<td>auctioneer_id<input type="text" name="auctioneer_id"
+						value="${AUCTIONEER_INFO.auctioneer_id }" /></td>
+					<td><input type="submit" value="판매자확인" /></td>
+				</tr>
+			</table>
+		</form>
+		<hr />
 		<table border="1">
+			<tr>
+				<th>▒</th>
+				<th colspan="6"><h3>AUCTIONEER_INFO(판매자 정보)</h3></th>
+				<th>▒</th>
+			</tr>
 			<tr>
 				<th>▒</th>
 				<th>AUCTIONEER_ID      NUMBER (10)</th>
@@ -139,7 +157,7 @@
 				<th>ACCOUNT_NUMBER     VARCHAR2 (20)</th>
 				<th>▒</th>
 			</tr>
-			<c:forEach var="ai1JspOnly" items="${adminSearchList }">
+			<c:forEach var="ai1JspOnly" items="${auctioneer_info }">
 				<tr>
 					<td>▒</td>
 					<td>${ai1JspOnly.auctioneer_id}</td>
@@ -153,9 +171,23 @@
 			</c:forEach>
 		</table>
 		<hr />
-		<h6>user_id = auctioneer_id 이므로 같이 검색</h6>
-		<h3>USER_MESSAGE(수신정보)</h3>
+		<hr />
+		<form method="post">
+			<table border="1">
+				<tr>
+					<td>userId<input type="text" name="receiver_id"
+						value="${USER_MESSAGE1.receiver_id }" /></td>
+					<td><input type="submit" value="수신자확인" /></td>
+				</tr>
+			</table>
+		</form>
+		<hr />
 		<table border="1">
+			<tr>
+				<th>▒</th>
+				<th colspan="7"><h3>USER_MESSAGE(수신정보)</h3></th>
+				<th>▒</th>
+			</tr>
 			<tr>
 				<th>▒</th>
 				<th>RECEIVER_ID       NUMBER (10)</th>
@@ -167,7 +199,7 @@
 				<th>SEND_DATE         DATE DEFAULT SYSDATE</th>
 				<th>▒</th>
 			</tr>
-			<c:forEach var="um1JspOnly" items="${adminSearchList }">
+			<c:forEach var="um1JspOnly" items="${user_message1 }">
 				<tr>
 					<td>▒</td>
 					<td>${um1JspOnly.receiver_id}</td>
@@ -181,8 +213,24 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<h3>USER_MESSAGE(발신정보)</h3>
+		<hr />
+		<hr />
+		<form method="post">
+			<table border="1">
+				<tr>
+					<td>sender_id<input type="text" name="sender_id"
+						value="${USER_MESSAGE2.sender_id }" /></td>
+					<td><input type="submit" value="발신자확인" /></td>
+				</tr>
+			</table>
+		</form>
+		<hr />
 		<table border="1">
+			<tr>
+				<th>▒</th>
+				<th colspan="7"><h3>USER_MESSAGE(발신정보)</h3></th>
+				<th>▒</th>
+			</tr>
 			<tr>
 				<th>▒</th>
 				<th>SENDER_ID         NUMBER (10)</th>
@@ -194,7 +242,7 @@
 				<th>SEND_DATE         DATE DEFAULT SYSDATE</th>
 				<th>▒</th>
 			</tr>
-			<c:forEach var="um2JspOnly" items="${adminSearchList }">
+			<c:forEach var="um2JspOnly" items="${user_message2 }">
 				<tr>
 					<td>▒</td>
 					<td>${um2JspOnly.sender_id}</td>
@@ -208,6 +256,7 @@
 				</tr>
 			</c:forEach>
 		</table>
+		<br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>
 </body>
 </html>

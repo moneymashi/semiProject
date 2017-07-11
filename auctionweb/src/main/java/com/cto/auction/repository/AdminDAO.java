@@ -20,5 +20,5 @@ public interface AdminDAO {
 	public List<Payment> paymentAList(Payment pay);
 	public List<Auctioneer> auctioneerAList(Auctioneer acnr);
 	public List<Message> message1AList(Message msg);
-	public List<Message> message2AList(Message msg);
+	public List<Message> message2AList(Message msg2);
 }
