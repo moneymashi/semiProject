@@ -39,11 +39,12 @@ form>div {
 								<label class=" control-label" for="email">E-mail</label>
 							</div>
 							<div class=" col-sm-9">
+								<input type="hidden" id="emailChk" value="N" />
 								<!-- Text input-->
 								<input class=" form-control " id="email" name="email" type="text" placeholder="E-mail을 입력하세요." autofocus>
 							</div>
 							<div class=" col-sm-3">
-								<input class=" form-control btn btn-primary " type="button" value="중복확인" />
+								<input id="chkDupBtn" class=" form-control btn btn-primary " type="button" value="중복확인" />
 							</div>
 						</div>
 						<div class="form-group col-sm-12">
@@ -69,18 +70,21 @@ form>div {
 
 						<div class="form-group">
 							<div class=" col-sm-12">
-								<label class=" control-label" for="signUpCode">인증번호(미구현)</label>
+								<label class=" control-label" for="signUpCode">인증번호</label>
 							</div>
 							<div class=" col-sm-9">
 								<input id="signUpCode" type="text" placeholder="인증번호" class="form-control input-md">
 							</div>
 							<div class=" col-sm-3">
+								<!-- 메일내용 -->
+								<input type="hidden" class="form-control" name="signMailTitle" id="signMailTitle" value="옥션 인증번호입니다.">
+                     			<input type="hidden" class="form-control" name="signMailContent" id="signMailContent" value="">
 								<div id="signCodeBtn" class="btn btn-primary">인증번호발송</div>
 							</div>
 							<div class=" col-sm-12" >
-							<div id="signUpCode2" style="display:inline"></div>
+							<!-- <div id="signUpCode2" style="display:inline"></div> -->
 							<span class="glyphicon glyphicon-time"></span>
-							<div id="codeTime" style="display:inline"></div>
+							<span id="codeTime"></span>
 						</div>
 						</div>
 						<!-- Button -->
@@ -96,11 +100,20 @@ form>div {
 </body>
 <c:import url="../structure/tail.jsp" />
 <script type="text/javascript">
+// 등록....
+function insertChk() {
+    var frm = document.companyForm;
+    if (!chkVal('email', '이메일'))
+        return false;
+
+}
+
 	$(document).ready(function() {
 		$("#signBtn").click(function() {
-			var email = $("#email").val();
+	    	var email = $("#email").val();
 			var password = $("#password").val();
 			var password2 = $("#password2").val();
+			
 			if (email == "") {
 				alert("E-mail을 입력하세요");
 				$("#email").focus();
@@ -116,36 +129,23 @@ form>div {
 				$("#password2").focus();
 				return;
 			}
+			if ($("#emailChk").val() == 'N') {
+		        alert('Email 중복확인을 해주세요');
+		        return;
+			}
+			
 			//인증번호 확인
-			if (code == $("#signUpCode").val() && timer > 0) {
+			if(code == $("#signUpCode").val() && timer > 0) {
 				$("form").attr("action", "${path}/login/signUpProc.do");
-				$("form").submit();
+				/* $("form").submit(); */
 			} else if (code == $("#signUpCode").val() && timer <= 0) {
 				alert("시간이초과되었습니다. 인증번호를 다시 발송해주세요.");
 			} else if (code != $("#signUpCode").val()) {
 				alert("인증번호가 잘못되엇습니다.");
 			}
+			
 			alert("code:" + code);
 			alert("$(\"#signUpCode\").val():" + $("#signUpCode").val());
-
-		});
-		// 인증번호 생성
-		$("#signCodeBtn").click(function() {
-			var randomCode = Math.floor(Math.random() * 9999) + 1;
-			if (randomCode < 10) {
-				code = "000" + randomCode;
-			} else if (randomCode >= 10 && randomCode < 100) {
-				code = "00" + randomCode;
-			} else if (randomCode >= 100 && randomCode < 1000) {
-				code = "0" + randomCode;
-			} else {
-				code = "" + randomCode;
-			}
-			$("#signUpCode").val(code);
-			clearTimeout(timeout);
-			codeTimer(5);
-			alert("1:" + code);
-			alert("2:" + $("#signUpCode").val());
 		});
 	});
 	var code = "notnull";
@@ -166,25 +166,69 @@ form>div {
 			$('#codeTime').text("인증시간종료");
 		}
 	}
+	
+	$("#chkDupBtn").click(function(){
+        var prmEmail = $('#email').val();
+        if ($("#email").val() == '') {
+            alert('email를 입력해주세요.');
+            $("#email").focus();
+            return;
+        }
 
-	//자바 랜덤수 로직
-	/* public static int generateNumber(int length) {
-	    String numStr = "1";
-	    String plusNumStr = "1";
-	    for (int i = 0; i < length; i++) {
-	        numStr += "0";
-	 
-	        if (i != length - 1) {
-	            plusNumStr += "0";
-	        }
-	    }
-	    Random random = new Random();
-	    int result = random.nextInt(Integer.parseInt(numStr)) + Integer.parseInt(plusNumStr);
-	 
-	    if (result > Integer.parseInt(numStr)) {
-	        result = result - Integer.parseInt(plusNumStr);
-	    }
-	    return result;
-	} */
+        $.ajax({
+            type : 'POST',
+            data : "prmEmail=" + prmEmail,
+            dataType : 'text',
+            url : '${path}login/chkDupEmail.do',
+            success : function(rData, textStatus, xhr) {
+                var chkRst = rData;
+                if (chkRst == 0) {
+                    alert("등록 가능 합니다.");
+                    $("#emailChk").val('Y');
+                } else {
+                    alert("중복 되어 있습니다.");
+                    $("#emailChk").val('N');
+                }
+            },
+            error : function(xhr, status, e) {
+                alert("에러:"+e);
+            }
+        });
+    });
+	
+	
+	// 인증번호 생성
+	$("#signCodeBtn").click(function() {
+		var randomCode = Math.floor(Math.random() * 9999) + 1;
+		if (randomCode < 10) {
+			code = "000" + randomCode;
+		} else if (randomCode >= 10 && randomCode < 100) {
+			code = "00" + randomCode;
+		} else if (randomCode >= 100 && randomCode < 1000) {
+			code = "0" + randomCode;
+		} else {
+			code = "" + randomCode;
+		}
+		$("#signMailContent").val("귀하의 인증번호는 [ "+code+" ] 입니다");
+		$("#signUpCode").val(code);
+		clearTimeout(timeout);
+		codeTimer(180);
+        
+        var email = $("#email").val();
+        var signMailTitle = $("#signMailTitle").val();
+        var signMailContent = $("#signMailContent").val();
+        
+        $.ajax({
+            type : 'POST',
+            data : "email=" + email+"&signMailTitle="+signMailTitle+"&signMailContent="+signMailContent,
+            dataType : 'text',
+            url : '${path}login/codeSend.do',
+            success :
+            	alert("인증번호가"+ $("#email").val()+"(으)로 발송되었습니다."),
+            error : function(xhr, status, e) {
+                alert("에러:"+e);
+            }
+        });
+	});
 </script>
 </html>
