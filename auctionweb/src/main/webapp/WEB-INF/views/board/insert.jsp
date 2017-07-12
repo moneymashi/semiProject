@@ -8,16 +8,6 @@
 <%request.setCharacterEncoding("UTF-8"); 
   String path=request.getContextPath();	
 %>    
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#regBtn").click(function(){
@@ -46,32 +36,21 @@
 		});
 	});
 </script>
-<style type="text/css">
+<h3>문의하기</h3>
 
-</style>
-</head>
-<body>
-	<div class="container">
-		<h3>문의하기</h3>
-		
-		<form method="post" action="${path }/board/insertProc.do">
-			<div class="form-group">
-				<%-- Subject field --%>
-				<label for="board_title">제목</label>
-				<input class="form-control" id="board_title" name="board_title" type="text" placeholder="제목을 입력하세요."/>
-			</div>
-			<div class="form-group">
-				<%-- Message field --%>
-				<label for="board_content">내용</label>
-				<textarea class="form-control" cols="40" id="board_content" name="board_content" rows="10" placeholder="내용을 입력하세요."></textarea>
-			</div>
-			<div class="form-group" style="text-align: right;">
-				<button class="btn btn-primary " id="regBtn" type="button">확인</button>
-				<button class="btn btn-primary " id="listBtn" type="button">취소</button>
-			</div>
-		</form>
+<form method="post" action="${path }/board/insertProc.do">
+	<div class="form-group">
+		<%-- Subject field --%>
+		<label for="board_title">제목</label>
+		<input class="form-control" id="board_title" name="board_title" type="text" placeholder="제목을 입력하세요."/>
 	</div>
-	
-
-</body>
-</html>
+	<div class="form-group">
+		<%-- Message field --%>
+		<label for="board_content">내용</label>
+		<textarea class="form-control" cols="40" id="board_content" name="board_content" rows="10" placeholder="내용을 입력하세요."></textarea>
+	</div>
+	<div class="form-group" style="text-align: right;">
+		<button class="btn btn-primary " id="regBtn" type="button">확인</button>
+		<button class="btn btn-primary " id="listBtn" type="button">취소</button>
+	</div>
+</form>

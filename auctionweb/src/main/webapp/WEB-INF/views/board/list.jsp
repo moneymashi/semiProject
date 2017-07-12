@@ -8,16 +8,6 @@
 <%request.setCharacterEncoding("UTF-8"); 
   String path=request.getContextPath();	
 %>    
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#writeBtn").click(function(){
@@ -45,105 +35,94 @@
 		$(location).attr("href","${path}/board/list.do?curPage="+page+"&option=${map.option}"+"&keyword=${map.keyword}"+"&auction_id="+auction_id);
 	}
 </script>
-<style type="text/css">
-
-</style>
-</head>
-<body>
-	<%-- header.jsp 인클루드 --%>
-	<div class="container">
-		
-		${map.count }개의 게시물이 있습니다.
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th class="col-sm-1">번호</th>
-					<th class="col-sm-7">제목</th>
-					<th class="col-sm-1">작성자</th>
-					<th class="col-sm-2">날짜</th>
-					<th class="col-sm-1">조회수</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%-- 게시글 넘버링 처리 및 리스트 불러오기 --%>
-				<c:forEach var="board" items="${map.list }">
-					<tr>
-						<%-- 게시글 넘버링 --%>
-						<td>${board.board_no }</td>
-						<%-- 게시글 제목 클릭시 게시글 보기(상세내용) --%>
-						<td>
-						<c:if test="${board.board_indent!=0 }">
-							<c:forEach begin="0" end="${board.board_indent }" step="1">
-								&nbsp;&nbsp;&nbsp;
-							</c:forEach>
-							<img src='${path }/resources/upload/reply_icon.gif' />
-						</c:if>
-						<a href="${path}/board/read.do?board_id=${board.board_id}&board_group=${board.board_group}">${board.board_title}</a></td>
-						<td>${board.board_name }</td>
-						<td><fmt:formatDate value="${board.board_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-						<td>${board.board_hit }</td>
-					</tr>
-				</c:forEach>
-				<%-- 게시글이 없을 경우 --%>
-				<c:if test="${map.list.size()==0 }">
-					<td colspan="5" style="text-align:center;">작성된 문의가 없습니다!!</td>
+${map.count }개의 게시물이 있습니다.
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th class="col-sm-1">번호</th>
+			<th class="col-sm-7">제목</th>
+			<th class="col-sm-1">작성자</th>
+			<th class="col-sm-2">날짜</th>
+			<th class="col-sm-1">조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%-- 게시글 넘버링 처리 및 리스트 불러오기 --%>
+		<c:forEach var="board" items="${map.list }">
+			<tr>
+				<%-- 게시글 넘버링 --%>
+				<td>${board.board_no }</td>
+				<%-- 게시글 제목 클릭시 게시글 보기(상세내용) --%>
+				<td>
+				<c:if test="${board.board_indent!=0 }">
+					<c:forEach begin="0" end="${board.board_indent }" step="1">
+						&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					<img src='${path }/resources/upload/reply_icon.gif' />
 				</c:if>
-			</tbody>
-		</table>
-		<form class="form-inline" method="post" action="${path }/board/list.do">
-		<div class="form-group col-sm-12">
-			<input type="hidden" name="auction_id" value="9"/>
-			<select class="form-control" name="option">
-				<option value="all"
-					<c:out value="${map.option=='all'?'selected':'' }"/>>제목+이름+내용</option>
-				<option value="board_title"
-					<c:out value="${map.option=='board_title'?'selected':'' }"/>>제목</option>
-				<option value="board_name"
-					<c:out value="${map.option=='board_name'?'selected':'' }"/>>작성자</option>
-				<option value="board_content"
-					<c:out value="${map.option=='board_content'?'selected':'' }"/>>내용</option>
-			</select>
-			<input class="form-control" name="keyword" value="${map.keyword }">
-			<button class="btn btn-default" id="schBtn" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
-			<a class="btn btn-primary pull-right" id="writeBtn"><span class="glyphicon glyphicon-pencil"></span> 글쓰기</a>
-		</div>
-		</form>
-		<div class="text-center">
-			<ul class="pagination">
-				<%-- **처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--%>
-                <c:if test="${map.boardPage.curPage > 1}">
-                    <li><a href="javascript:list('1')"><span class="glyphicon glyphicon-fast-backward"></span></a></li>
-                </c:if>
-                
-                <%-- **이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --%>
-                <c:if test="${map.boardPage.curBlock > 1}">
-                    <li><a href="javascript:list('${map.boardPage.prevPage}')"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-                </c:if>
-                
-                <%-- **하나의 블럭에서 반복문 수행 시작페이지부터 끝페이지까지 --%>
-                <c:forEach var="num" begin="${map.boardPage.blockBegin}" end="${map.boardPage.blockEnd}">
-                    <%-- **현재페이지이면 하이퍼링크 제거 --%>
-                    <c:choose>
-                        <c:when test="${num == map.boardPage.curPage}">
-                            <li><span style="color: red">${num}</span></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="javascript:list('${num}')">${num}</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                
-                <%-- **다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 --%>
-                <c:if test="${map.boardPage.curBlock <= map.boardPage.totBlock}">
-                    <li><a href="javascript:list('${map.boardPage.nextPage}')"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-                </c:if>
-                
-                <%-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 --%>
-                <c:if test="${map.boardPage.curPage <= map.boardPage.totPage}">
-                    <li><a href="javascript:list('${map.boardPage.totPage}')"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
-                </c:if>
-			</ul>
-		</div>
-	</div>
-</body>
-</html>
+				<a href="${path}/board/read.do?board_id=${board.board_id}&board_group=${board.board_group}">${board.board_title}</a></td>
+				<td>${board.board_name }</td>
+				<td><fmt:formatDate value="${board.board_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+				<td>${board.board_hit }</td>
+			</tr>
+		</c:forEach>
+		<%-- 게시글이 없을 경우 --%>
+		<c:if test="${map.list.size()==0 }">
+			<td colspan="5" style="text-align:center;">작성된 문의가 없습니다!!</td>
+		</c:if>
+	</tbody>
+</table>
+<form class="form-inline" method="post" action="${path }/board/list.do">
+<div class="form-group col-sm-12">
+	<input type="hidden" name="auction_id" value="9"/>
+	<select class="form-control" name="option">
+		<option value="all"
+			<c:out value="${map.option=='all'?'selected':'' }"/>>제목+이름+내용</option>
+		<option value="board_title"
+			<c:out value="${map.option=='board_title'?'selected':'' }"/>>제목</option>
+		<option value="board_name"
+			<c:out value="${map.option=='board_name'?'selected':'' }"/>>작성자</option>
+		<option value="board_content"
+			<c:out value="${map.option=='board_content'?'selected':'' }"/>>내용</option>
+	</select>
+	<input class="form-control" name="keyword" value="${map.keyword }">
+	<button class="btn btn-default" id="schBtn" type="submit" ><span class="glyphicon glyphicon-search"></span></button>
+	<a class="btn btn-primary pull-right" id="writeBtn"><span class="glyphicon glyphicon-pencil"></span> 글쓰기</a>
+</div>
+</form>
+<div class="text-center">
+	<ul class="pagination">
+		<%-- **처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--%>
+              <c:if test="${map.boardPage.curPage > 1}">
+                  <li><a href="javascript:list('1')"><span class="glyphicon glyphicon-fast-backward"></span></a></li>
+              </c:if>
+              
+              <%-- **이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --%>
+              <c:if test="${map.boardPage.curBlock > 1}">
+                  <li><a href="javascript:list('${map.boardPage.prevPage}')"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+              </c:if>
+              
+              <%-- **하나의 블럭에서 반복문 수행 시작페이지부터 끝페이지까지 --%>
+              <c:forEach var="num" begin="${map.boardPage.blockBegin}" end="${map.boardPage.blockEnd}">
+                  <%-- **현재페이지이면 하이퍼링크 제거 --%>
+                  <c:choose>
+                      <c:when test="${num == map.boardPage.curPage}">
+                          <li><span style="color: red">${num}</span></li>
+                      </c:when>
+                      <c:otherwise>
+                          <li><a href="javascript:list('${num}')">${num}</a></li>
+                      </c:otherwise>
+                  </c:choose>
+              </c:forEach>
+              
+              <%-- **다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 --%>
+              <c:if test="${map.boardPage.curBlock <= map.boardPage.totBlock}">
+                  <li><a href="javascript:list('${map.boardPage.nextPage}')"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+              </c:if>
+              
+              <%-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 --%>
+              <c:if test="${map.boardPage.curPage <= map.boardPage.totPage}">
+                  <li><a href="javascript:list('${map.boardPage.totPage}')"><span class="glyphicon glyphicon-fast-forward"></span></a></li>
+              </c:if>
+	</ul>
+</div>		
