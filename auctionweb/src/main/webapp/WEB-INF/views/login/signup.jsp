@@ -104,7 +104,7 @@ form>div {
 		//1.아이디 중복확인
 		$("#chkDupBtn").click(function(){
 	        var prmEmail = $('#email').val();
-	        if ($("#email").val() == '') {
+	        if (prmEmail == '') {
 	            alert('email를 입력해주세요.');
 	            $("#email").focus();
 	            return;
@@ -130,64 +130,37 @@ form>div {
 	            }
 	        });
 	    });
-		//2.인증번호 생성
+		//2.인증번호 메일
 		$("#signCodeBtn").click(function() {
 			//중복확인을 했다면.
+			var signEmail = $('#email').val();
+            $.ajax({
+                type : 'POST',
+                data : "signEmail="+signEmail,/* +"&signTitle="+signTitle+"&signContent="+signContent, */
+                dataType : 'text',
+                url : '${path}/login/codeSend.do',
+                success :
+                	function(rData, textStatus, xhr) {
+                		code = rData;
+                		alert("자바에서 보내온 joinCode:"+rData);
+                        alert("인증번호가"+signEmail+"(으)로 발송되었습니다.");
+                        alert(textStatus);
+                        alert(xhr);
+                        clearTimeout(timeout);
+        				codeTimer(180);
+                },
+                error : function(xhr, status, e) {
+                    alert("에러xhr:"+xhr);
+                    alert("에러status:"+status);
+                    alert("에러e:"+e);
+                }
+            });
 			if($("#emailChk").val()=='Y'){
 				//랜덤번호 생성
-				var randomCode = Math.floor(Math.random() * 9999) + 1;
-				if (randomCode < 10) {
-					code = "000" + randomCode;
-				} else if (randomCode >= 10 && randomCode < 100) {
-					code = "00" + randomCode;
-				} else if (randomCode >= 100 && randomCode < 1000) {
-					code = "0" + randomCode;
-				} else {
-					code = "" + randomCode;
-				}
-				clearTimeout(timeout);
-				codeTimer(180);
 		        //이메일 내용 생성
-				/* $.ajax({
-					type : 'POST',
-					data : "email=aaaaa&codeTitle=adddd&codeContent=accccc",
-					dataType :'text',
-		            url : '${path}/login/codeSend.do',
-		            success : function(data){
-		            	alert("success:");
-		            },
-		            error : function(a) {
-		                alert("1인증번호에러:"+a);
-		            }
-		        }); */
 			}else{
 				alert("e-Mail 중복확인을 해주세요.");
 			}
-            var email = $("#email").val();
-            var signMailTitle = "옥션 회원가입 인증번호 입니다."; //$("#signMailTitle").val();
-            var signMailContent = "인증번호:"+code;//$("#signMailContent").val();
-
-            $.ajax({
-                type : 'POST',
-                data : "email=" + email+"&signMailTitle="+signMailTitle+"&signMailContent="+signMailContent,
-                dataType : 'text',
-                url : '${path}/login/codeSend.do',
-                success : alert("인증번호가"+ $("#email").val()+"(으)로 발송되었습니다.")
-                    /* function(rData, textStatus, xhr) {
-                    var chkRst = rData;
-                    if (chkRst == 0) {
-                        alert("등록 가능 합니다.");
-                        $("#emailChk").val('Y');
-                    } else {
-                        alert("중복 되어 있습니다.");
-                        $("#emailChk").val('N');
-                    }
-                } */,
-                error : function(e) {
-                    alert("에러:"+e);
-                }
-            });
-
 		});
 		//3.등록시 최종확인
 		$("#signBtn").click(function() {

@@ -1,15 +1,20 @@
 package com.cto.auction.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
 import java.util.List;
 
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -93,11 +98,11 @@ public class UserController {
 	}
 
 	// 인증메일 발송.
-	@RequestMapping(value = "login/codeSend.do")
+/*	@RequestMapping(value = "login/codeSend.do")
     public void codeSend(HttpServletRequest request) throws Exception {
-        String tomail = request.getParameter("email");
-        String title = request.getParameter("signMailTitle");
-        String content = request.getParameter("signMailContent");
+        String tomail = request.getParameter("signMail");
+        String title = request.getParameter("signTitle");
+        String content = request.getParameter("signContent");
 
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
@@ -109,7 +114,42 @@ public class UserController {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}*/
+	@RequestMapping(value = "login/codeSend.do")
+	public void codeSend(HttpServletRequest request, HttpServletResponse res, ModelMap model) throws Exception {
+		PrintWriter out = res.getWriter();
+		String joinCode = MainController.randomNum(4);
+		
+	    String tomail  = request.getParameter("signEmail"); 
+	    String title   = "인증우다다다다";  
+	    String content = "코드 받아라 제발"+joinCode+"굳"; 
+	    
+	    System.out.println(">>>>>>>>>>>>tomail:"+tomail);
+	    System.out.println(">>>>>>>>>>>>title:"+title);
+	    System.out.println(">>>>>>>>>>>>content:"+content);
+	   
+	    try {
+	      MimeMessage message = mailSender.createMimeMessage();
+	      MimeMessageHelper messageHelper 
+	                        = new MimeMessageHelper(message, true, "UTF-8");
+
+	      messageHelper.setTo(tomail); 
+	      messageHelper.setSubject(title);
+	      messageHelper.setText(content); 
+	     
+	      mailSender.send(message);
+	      out.print(joinCode);
+	      out.flush();
+	      out.close();
+	      
+	    } catch(Exception e){
+	      System.out.println("에러내용<<<<<<<<<<<<<<<<<<:"+e);
+	      System.out.println(">>>>>>>>>>>>tomail:"+tomail);
+		  System.out.println(">>>>>>>>>>>>title:"+title);
+		  System.out.println(">>>>>>>>>>>>content:"+content);
+	    }
 	}
+	
 	// 실질적인 회원가입 진행로직
 	@RequestMapping("login/signUpProc.do")
 	public String signUpProc(User ins) {
