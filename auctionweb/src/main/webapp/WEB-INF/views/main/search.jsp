@@ -37,7 +37,7 @@
 						README: toggle에 문제잇음. 클릭마다 열고 닫는방법 모색중..
 						 --%>
 						<button class="btn btn-info" data-toggle="collapse" data-target="#demo">
-							세부 검색 <span class="caret"></span>
+							상세 검색 <span class="caret"></span>
 						</button>
 						<div id="demo" class="collapse">
 							<form id="filter" method="get">
@@ -68,24 +68,27 @@
 								</select>
 					
 								<%--  // 유저 입찰가 필터 적용 - input text기입 형식  --%>
-								<br /> 최소입찰금액: <input name="minCurrentBidPrice"
-									value="${itemSch.minCurrentBidPrice }" />원~ 최대입찰금액: <input
-									name="maxCurrentBidPrice" value="${itemSch.maxCurrentBidPrice }" />원까지
-								<input type="button" name="userPreferPrice" value="입찰가 필터적용" />
+								<br /> 
+								최소입찰금액: <input name="minCurrentBidPrice" value="${itemSch.minCurrentBidPrice }" />
+								원~ 최대입찰금액: <input name="maxCurrentBidPrice" value="${itemSch.maxCurrentBidPrice }" />원까지
+								<input type="button" class="btn btn-primary" name="userPreferPrice" value="입찰가 필터적용" />
 					
 								<%-- // 물품 입찰시작, 마감날짜 필터 - input date형식 --%>
-								<br /> 최소입찰기한:<input name="userStartDate" type="date"
-									value="${itemSch.userStartDate }" /> 최대입찰기한:<input
-									name="userEndDate" type="date" value="${itemSch.userEndDate }" /> <input
-									type="button" name="userPreferDate" value="날짜선택완료" />
+								<br /><br />
+								최소입찰기한:<input name="userStartDate" type="date" value="${itemSch.userStartDate }" />
+								최대입찰기한:<input name="userEndDate" type="date" value="${itemSch.userEndDate }" /> 
+								<input type="button" class="btn btn-primary" name="userPreferDate" value="날짜선택완료" />
 								<input type = "hidden" name = "schParentDept" value = "${itemSch.schParentDept }" />
 								<input type = "hidden" name = "schDept" value = "${itemSch.schDept }" />
 								<input type = "hidden" name = "schAll" value = "${itemSch.schAll }" />
 							</form>
 						</div>
-					
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
 						<div class="page-header">
-							<h1>
+							<h2>
 								<%-- 부모카테고리 - 자식카테고리 링크.  --%>
 								<a
 									href="${path }/search.do?schParentDept=<c:out value ="${itemSch.schParentDept }"/>">
@@ -95,7 +98,7 @@
 								<%-- 총데이터건수. --%>
 								검색 건수: ${itemSch.count }건
 								<small id="showTime"></small>
-							</h1>
+							</h2>
 						</div>
 					
 						<%-- 현재시간 조회 - setInterval --%>
@@ -106,36 +109,35 @@
 							<button class="btn btn-primary active" onclick="goBack();">
 								이전 페이지로</button>
 						</c:if>
-					
+					</div>
+					<div class="row">
 						<%-- 조회결과 물품목록 list. --%>
 						<%-- items는 ArrayList<Item> 형태,  Model d.addAttribute로 가져옴. --%>
-						<div class="card-deck box">
-							<c:forEach var="item" items="${itemList }">
-								<a
-									href='${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />'>
-									<div class="card col-sm-4">
-										<div class="block">
-											<img class="card-img-top"
-												src="${path }/resources/upload/${item.picture_location}"
-												alt="pictureNotUploaded" width="32%" height="32%">
-											<div class="card-block">
-												<h4 class="card-title">name: ${item.item_name }   item_id: ${item.auction_id }</h4>
-												<p class="card-text">
-													<small class="text-muted"> <fmt:formatDate var="edate"
-															value="${item.end_date }" pattern="yyyy-MM-dd hh:mm:ss" />
-														입찰마감: <c:out value="${edate }" /></small>
-												</p>
-											</div>
-											<div class="card-footer">
-												<div class="style">Hit: ${item.auction_hit }</div>
-												<div class="price">현재 입찰가: ${item.current_bid_amount }원</div>
-											</div>
+						<c:forEach var="item" items="${itemList }">
+							<div class="col-sm-4">
+								<div class="card">
+									<a href='${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />'>
+										<img class="card-img-top"
+											src="${path }/resources/upload/${item.picture_location}"
+											alt="pictureNotUploaded" width="32%" height="32%">
+										<div class="card-block">
+											<h4 class="card-title">name: ${item.item_name }   item_id: ${item.auction_id }</h4>
+											<p class="card-text">
+												<small class="text-muted"> <fmt:formatDate var="edate"
+														value="${item.end_date }" pattern="yyyy-MM-dd hh:mm:ss" />
+													입찰마감: <c:out value="${edate }" /></small>
+											</p>
 										</div>
-									</div>
-								</a>
-							</c:forEach>
-						</div>
-					
+										<div class="card-footer">
+											<div class="style">Hit: ${item.auction_hit }</div>
+											<div class="price">현재 입찰가: ${item.current_bid_amount }원</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="row">
 						<%-- 페이징 처리 - 페이지당 물품수(pageSize) --%>
 						<div>
 							페이지당 아이템수: <span>
@@ -149,7 +151,7 @@
 								</form>
 							</span>
 						</div>
-					
+						
 						<%-- 검색결과에따라 pageCount수 만큼 페이지번호 부여. --%>
 						<c:forEach var="cnt" begin="1" end="${itemSch.pageCount}">
 							<a style="text-decoration: none" href='javascript:go(${cnt})'> <c:choose>
@@ -167,10 +169,11 @@
 			</div>
 		</div>
 		<div class="footer">
-			<c:import url="../main/footer.jsp" />
+			<c:import url="../structure/footer.jsp" />
 		</div>
 	</div>
 </body>
+<c:import url="../structure/tail.jsp" />
 <script type="text/javascript">
 $(document).ready(function() {
 	
