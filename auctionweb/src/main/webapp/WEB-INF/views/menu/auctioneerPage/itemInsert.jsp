@@ -8,16 +8,64 @@
 <%request.setCharacterEncoding("UTF-8"); 
   String path=request.getContextPath();	
 %>    
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<div class="col-sm-3">
+	<jsp:include page="auctioneerPageNav.jsp" flush="false" />
+</div>
+<div class="container col-sm-9">
+<br><br><br><br>
+	<div class="panel panel-primary">
+		<div class="panel-heading" style="text-align:center;"><h2>물품등록</h2></div>
+		<div class="panel-body">
+			<form class="form-horizontal" id="form01" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<%-- 세션 id값으로 자동설정 --%>
+					<label class="col-sm-2 control-label">판매자id:</label>
+					<div class="col-sm-10"><input class="form-control" type="text" id="auctioneer_id" name="auctioneer_id" value="${sessionScope.id }"/></div>
+				</div>	
+				<div class="form-group">
+					<label class="col-sm-2 control-label">품목명:</label>
+					<div class="col-sm-10"><input class="form-control" type="text" id="item_name" name="item_name" /></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">상위카테고리:</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="parent_category_id" name="parent_category_id" onchange="categoryShow(this.value)">
+							<option value="">선택하세요</option>
+							<option value="1">Phone</option>
+							<option value="8">Laptop</option>
+							<option value="14">Desktop</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">하위카테고리:</label>
+					<div  class="col-sm-10">
+						
+						<select class="form-control" id="category_id" name="category_id" >
+							<option>선택하세요</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">경매시작가:</label>
+					<div class="col-sm-10"><input class="form-control" type="text" id="current_bid_amount" name="current_bid_amount" /></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">사진:</label>
+					<div class="col-sm-10"><input class="form-control" type="file" id="picture_location" name="file" /></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">물품상세정보:</label>
+					<div class="col-sm-10"><textarea class="form-control" id="item_content" rows="20" name="item_content"></textarea></div>
+				</div>
+				<div class="form-group" style="text-align:center;">
+					<input class="btn btn-primary" id="insBtn" type="button" value="등록하기" />
+					<input class="btn btn-primary" type="reset" value="초기화" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#insBtn").click(function(){
@@ -92,68 +140,3 @@
 		
 	} 
 </script>
-<style type="text/css">
-
-</style>
-</head>
-<body>
-	<div class="col-sm-3">
-		<jsp:include page="auctioneerPageNav.jsp" flush="false" />
-	</div>
-	<div class="container col-sm-9">
-	<br><br><br><br>
-		<div class="panel panel-primary">
-			<div class="panel-heading" style="text-align:center;"><h2>물품등록</h2></div>
-			<div class="panel-body">
-				<form class="form-horizontal" id="form01" method="post" enctype="multipart/form-data">
-					<div class="form-group">
-						<%-- 세션 id값으로 자동설정 --%>
-						<label class="col-sm-2 control-label">판매자id:</label>
-						<div class="col-sm-10"><input class="form-control" type="text" id="auctioneer_id" name="auctioneer_id" value="${sessionScope.id }"/></div>
-					</div>	
-					<div class="form-group">
-						<label class="col-sm-2 control-label">품목명:</label>
-						<div class="col-sm-10"><input class="form-control" type="text" id="item_name" name="item_name" /></div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">상위카테고리:</label>
-						<div class="col-sm-10">
-							<select class="form-control" id="parent_category_id" name="parent_category_id" onchange="categoryShow(this.value)">
-								<option value="">선택하세요</option>
-								<option value="1">Phone</option>
-								<option value="8">Laptop</option>
-								<option value="14">Desktop</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">하위카테고리:</label>
-						<div  class="col-sm-10">
-							
-							<select class="form-control" id="category_id" name="category_id" >
-								<option>선택하세요</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">경매시작가:</label>
-						<div class="col-sm-10"><input class="form-control" type="text" id="current_bid_amount" name="current_bid_amount" /></div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">사진:</label>
-						<div class="col-sm-10"><input class="form-control" type="file" id="picture_location" name="file" /></div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">물품상세정보:</label>
-						<div class="col-sm-10"><textarea class="form-control" id="item_content" rows="20" name="item_content"></textarea></div>
-					</div>
-					<div class="form-group" style="text-align:center;">
-						<input class="btn btn-primary" id="insBtn" type="button" value="등록하기" />
-						<input class="btn btn-primary" type="reset" value="초기화" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
