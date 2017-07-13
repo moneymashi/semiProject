@@ -113,28 +113,27 @@
 					<div class="row">
 						<%-- 조회결과 물품목록 list. --%>
 						<%-- items는 ArrayList<Item> 형태,  Model d.addAttribute로 가져옴. --%>
-						<c:forEach var="item" items="${itemList }">
-							<div class="col-sm-4">
-								<div class="card">
-									<a href='${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />'>
-										<img class="card-img-top"
-											src="${path }/resources/upload/${item.picture_location}"
-											alt="pictureNotUploaded" width="32%" height="32%">
-										<div class="card-block">
-											<h4 class="card-title">name: ${item.item_name }   item_id: ${item.auction_id }</h4>
-											<p class="card-text">
-												<small class="text-muted"> <fmt:formatDate var="edate"
-														value="${item.end_date }" pattern="yyyy-MM-dd hh:mm:ss" />
-													입찰마감: <c:out value="${edate }" /></small>
-											</p>
-										</div>
-										<div class="card-footer">
-											<div class="style">Hit: ${item.auction_hit }</div>
-											<div class="price">현재 입찰가: ${item.current_bid_amount }원</div>
-										</div>
-									</a>
+						<c:forEach var = "item" items ="${itemList }" >
+						<div class="col-lg-3 col-md-4 col-sm-6">
+							<div class="card " >
+								<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${item.auction_id }" />' style="height: 220px;">
+									<img class="card-img-top" src="${path }/resources/upload/${item.picture_location}"
+									alt="pictureNotUploaded" style="width: auto; height: 100%; max-height: 150px; background: cover;" />
+									<div class="caption">
+										<h5 class="card-title">${item.item_name }   item_id: ${item.auction_id }</h5>
+									</div>
+								</a>
+								<div >
+									<small class="text-muted">
+										<fmt:formatDate var="edate" value="${item.end_date }" pattern="yyyy-MM-dd hh:mm:ss" />입찰마감: <c:out value="${edate }" />
+									</small>
+									<div class="style">
+										현재 입찰가: ${item.current_bid_amount }원
+										<i class="fa pull-right" aria-hidden="true">Hit: ${item.auction_hit }</i>
+									</div>
 								</div>
 							</div>
+						</div>
 						</c:forEach>
 					</div>
 					<div class="row">
