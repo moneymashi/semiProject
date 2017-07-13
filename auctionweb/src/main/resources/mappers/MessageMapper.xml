@@ -27,10 +27,8 @@
 		UPDATE
 		USER_MESSAGE
 		SET
-		RECEIVE_CHECK = 2
+		RECEIVE_CHECK = 1
 		WHERE
 		MESSAGE_ID = ${message_id }
 	</update>
-
-	
 </mapper>

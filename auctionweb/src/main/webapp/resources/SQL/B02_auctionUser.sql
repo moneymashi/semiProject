@@ -3,27 +3,27 @@ INSERT INTO AUCTION_USER (USER_NAME, EMAIL, PASSWORD, REGISTER_DATE, AUTH, USER_
 INSERT INTO AUCTION_USER (USER_NAME, EMAIL, PASSWORD, REGISTER_DATE, AUTH, USER_POINT,
 						  REAL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, PICTURE_LOCATION)
 	VALUES ( '유반장', 'user01@cto.com', '1111', (SYSDATE - 55.55), 2, 20000,
-             '유재석', '서울 강남구 역삼로 404 (대치동)', '06199', '01019214937', '../resources/img/profile01.png');
+             '유재석', '서울 강남구 역삼로 404 (대치동)', '06199', '01019214937', '../resources/img/dummy_profile/profile01.png');
 INSERT INTO AUCTION_USER (USER_NAME, EMAIL, PASSWORD, REGISTER_DATE, AUTH, USER_POINT,
 						  REAL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, PICTURE_LOCATION)
 	VALUES ( '박거성', 'user02@cto.com', '1111', (SYSDATE - 44.44), 2, 20000,
-             '박명수', '서울 동작구 서달로15길 7 (흑석동)', '06972', '01002301388', '../resources/img/profile02.png');
+             '박명수', '서울 동작구 서달로15길 7 (흑석동)', '06972', '01002301388', '../resources/img/dummy_profile/profile02.png');
 INSERT INTO AUCTION_USER (USER_NAME, EMAIL, PASSWORD, REGISTER_DATE, AUTH, USER_POINT,
 						  REAL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, PICTURE_LOCATION)
 	VALUES ( '노긍정', 'user03@cto.com', '1111', (SYSDATE - 33.33), 2, 20000,
-             '노헝철', '충남 서천군 기산면 화산로476번길 63', '33628', '01026231084', '../resources/img/profile03.png');
+             '노헝철', '충남 서천군 기산면 화산로476번길 63', '33628', '01026231084', '../resources/img/dummy_profile/profile03.png');
 INSERT INTO AUCTION_USER (USER_NAME, EMAIL, PASSWORD, REGISTER_DATE, AUTH, USER_POINT,
 						  REAL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, PICTURE_LOCATION)
 	VALUES ( '도니', 'user04@cto.com', '1111', (SYSDATE - 22.22), 1, 20000,
-             '정형돈', '경기 평택시 고덕면 울성길 169-41', '17821', '01032849635', '../resources/img/profile04.png');
+             '정형돈', '경기 평택시 고덕면 울성길 169-41', '17821', '01032849635', '../resources/img/dummy_profile/profile04.png');
 INSERT INTO AUCTION_USER (USER_NAME, EMAIL, PASSWORD, REGISTER_DATE, AUTH, USER_POINT,
 						  REAL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, PICTURE_LOCATION)
 	VALUES ( '하하', 'user05@cto.com', '1111', (SYSDATE - 11.11), 1, 20000,
-             '하동훈', '서울 노원구 광운로12길 12 (월계동, 범하하이츠빌라)', '01896', '01067788000', '../resources/img/profile05.png');
+             '하동훈', '서울 노원구 광운로12길 12 (월계동, 범하하이츠빌라)', '01896', '01067788000', '../resources/img/dummy_profile/profile05.png');
 INSERT INTO AUCTION_USER (USER_NAME, EMAIL, PASSWORD, REGISTER_DATE, AUTH, USER_POINT,
 						  REAL_NAME, ADDRESS, ZIP_CODE, PHONE_NUMBER, PICTURE_LOCATION)
 	VALUES ( '정총무', 'user06@cto.com', '1111', (SYSDATE - 1.1), 1, 20000,
-             '정준하', '경북 영주시 풍기읍 인삼로 19', '36026', '01060232849', '../resources/img/profile06.png');
+             '정준하', '경북 영주시 풍기읍 인삼로 19', '36026', '01060232849', '../resources/img/dummy_profile/profile06.png');
 
 COMMIT;
 
