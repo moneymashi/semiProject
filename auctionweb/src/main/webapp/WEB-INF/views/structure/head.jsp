@@ -3,11 +3,12 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="resources/img/auction.png">
 	<link rel="icon" type="image/png" href="resources/img/auction.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+	
 	<title>CTO AUCTION</title>
-
+	
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	
 	<!--     Fonts and icons     -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />

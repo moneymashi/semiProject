@@ -8,21 +8,13 @@
 	request.setCharacterEncoding("UTF-8");
 	String path = request.getContextPath();
 %>
-<!DOCTYPE html>
 <html>
 <c:import url="../structure/head.jsp" />
-<style type="text/css">
-.box {
-	display: inline-block;
-	width: 100%;
-	margin: 1em;
-}
-.main {
-		margin-top: 100px;
-}
-</style>
 <body>
-	<c:import url="../structure/header-other.jsp" />
+	<div style="height: 100px">
+		<c:import url="../structure/header-other.jsp" />
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	</div>
 	<div class="wrapper">
 		<div class="main main-raised">
 			<div class="section section-basic">
@@ -38,7 +30,7 @@
 						<c:if test="${pageName == 'notice/qna' }">
 							<c:import url="notice/qna.jsp" />
 						</c:if>
-				
+
 						<!-- myPage메뉴 입찰정보/쪽지함/낙찰배송/주소지/신용카드/회원정보 순서-->
 						<c:if test="${pageName == 'myPage/auctionInfo' }">
 							<c:import url="myPage/auctionInfo.jsp" />
@@ -58,7 +50,7 @@
 						<c:if test="${pageName == 'myPage/userInfo' }">
 							<c:import url="myPage/userInfo.jsp" />
 						</c:if>
-				
+
 						<!-- 판매자(물품등록/계좌등록/판매중인물품-판매중,낙찰,유찰)-->
 						<c:if test="${pageName == 'auctioneerPage/auctioneerInfo' }">
 							<c:import url="auctioneerPage/auctioneerInfo.jsp" />
@@ -74,7 +66,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="footer">
 		<c:import url="../structure/footer.jsp" />
 	</div>

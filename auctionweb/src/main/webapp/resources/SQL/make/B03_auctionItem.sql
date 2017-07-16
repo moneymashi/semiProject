@@ -1,4 +1,4 @@
---phone				  
+ --phone				  
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
         VALUES ( 4,
@@ -204,7 +204,7 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END_DATE,
 						 CURRENT_BIDDER_ID, CURRENT_BIDDER, CURRENT_BID_AMOUNT, CATEGORY_ID, PICTURE_LOCATION)
         VALUES ( 4,
-                 '(TEST)Dell Latitude E6430 14.1 Inch High Performance Business Laptop, Intel Dual Core i7 up to 3.6GHz',
+                 '(TEST)Dell Latitude E6430 14.1 Inch High Performance Business Laptop, Intel Dual Core i7',
                   'This Certified Refurbished product is tested and certified to look and work like new. The refurbishing process includes functionality testing, basic cleaning, inspection, and repackaging. The product ships with all relevant accessories, a minimum 90-day warranty, and may arrive in a generic box. Only select sellers who maintain a high performance bar may offer Certified Refurbished products on Amazon.com',
                   (SYSDATE - 10), (SYSDATE - 1),
 				  NULL,
@@ -436,3 +436,4 @@ INSERT INTO AUCTION_ITEM (AUCTIONEER_ID, ITEM_NAME, ITEM_CONTENT,START_DATE, END
 
 				  
 				  
+ 

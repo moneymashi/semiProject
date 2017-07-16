@@ -2,14 +2,18 @@ package com.cto.auction.controller;
 
 
 
+import java.io.PrintWriter;
+
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,9 +51,35 @@ public class MailController{
 	   
 	    return "redirect:/notice/qna.do";
 	}
-
 	
-	// whyNot
+	@RequestMapping(value = "login/codeSend.do")
+	public void codeSend(HttpServletRequest request, HttpServletResponse res, ModelMap model) throws Exception {
+		PrintWriter out = res.getWriter();
+    	String joinCode = MainController.randomNum(4);
+    	String tomail  = request.getParameter("signEmail"); 
+    	String title   = "인증번호입니다.";  
+    	String content = "귀하의 인증번호는 [ "+joinCode+"] 입니다."; 
+    	
+		try {
+ 	      MimeMessage message = mailSender.createMimeMessage();
+	      MimeMessageHelper messageHelper 
+	                        = new MimeMessageHelper(message, true, "UTF-8");
+
+	      messageHelper.setTo(tomail); 
+	      messageHelper.setSubject(title);
+	      messageHelper.setText(content); 
+	     
+	      mailSender.send(message);
+	      out.print(joinCode);
+	      out.flush();
+	      out.close();
+	      
+	    } catch(Exception e){
+	      System.out.println("[ERROR]login/codeSend.do:"+e);
+	    }
+	}
+	
+	// whyNot 테스트중 현재 usercontroller에서 위에랑 같은 소스로 진행중
 /*	private UserService userService;
     private MailService mailService;
     

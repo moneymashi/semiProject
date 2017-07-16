@@ -17,7 +17,7 @@
 	<form action="${path }/mail/mailSending.do" method="post">
 		<div class="form-group">
 			<label for="tomail">받는사람:</label> 
-			<input type="hidden" name="tomail" value="llighter.aco@gmail.com">
+			<input type="hidden" name="tomail" value="whynottest@gmail.com">
 			<input type="text" class="form-control" name="tomail" id="tomail"
 				value="옥션 서비스센터" disabled="disabled">
 		</div>
