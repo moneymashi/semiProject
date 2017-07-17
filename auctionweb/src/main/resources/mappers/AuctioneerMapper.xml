@@ -28,14 +28,14 @@
 		AUCTION_USER
 		SET
 		AUTH = 2
-		WHERE USER_ID = ${auctioneer_id }
+		WHERE USER_ID = #{auctioneer_id }
 	</update>
 	<select id="auctioneerAuctioneerInsert" resultType="auctioneer">
 		INSERT INTO
 		AUCTIONEER_INFO
 		( AUCTIONEER_ID, BANK_NAME, ACCOUNT_NAME,
 		ACCOUNT_NUMBER ) VALUES
-		( ${auctioneer_id }, #{bank_name},
+		( #{auctioneer_id }, #{bank_name},
 		#{account_name}, #{account_number})
 	</select>
 		<!-- 경매인 -->

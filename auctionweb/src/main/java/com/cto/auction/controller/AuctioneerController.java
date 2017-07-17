@@ -21,8 +21,9 @@ import com.cto.auction.vo.User;
 public class AuctioneerController {
 	@Autowired(required = false)
 	private AuctioneerService service;
+	/*private UserService userService;*/
+	@Autowired(required = false)
 	private UserService userService;
-	
 	//판매자 전환하기, 판메자 페이지로 대체 가능
 /*	@RequestMapping("auctioneerPage/auctioneerAuth.do")
 	public ModelAndView auctioneerAuctioneerInfo(ModelAndView mav) {

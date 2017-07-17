@@ -10,6 +10,7 @@
 </div>
 <div class="col-sm-7">
 	<h1><c:out value="${sessionScope.mem.auth }"/></h1>
+	<h2>잉? ${acnrInfo.auctioneer_id }</h2>
 	<form>
 		<%-- <input type="hidden" name="user_id" value="${mem.user_id }" /> --%>
 		<input type="hidden" name="auctioneer_id" value="${mem.user_id }">

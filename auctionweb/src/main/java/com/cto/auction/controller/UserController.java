@@ -36,7 +36,7 @@ import com.cto.auction.vo.User;
 public class UserController {
 	@Autowired(required = false)
 	private UserService service;
-
+	
 	// 로그인 접속
 	@RequestMapping("login/login.do")
 	public String login() {
@@ -224,10 +224,6 @@ public class UserController {
 	
 	
 	
-	
-	
-	
-	
 	// 배송화면 아무런 로직 구현 안됨.
 	@RequestMapping("myPage/delivery.do")
 	public ModelAndView myPageDelivery(ModelAndView mav) {
@@ -267,4 +263,5 @@ public class UserController {
 		service.memProc(userUpt);
 		return "redirect:/myPage/auctionInfo.do";
 	}
+	
 }
