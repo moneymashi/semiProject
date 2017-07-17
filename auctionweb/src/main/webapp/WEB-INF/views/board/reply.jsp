@@ -32,7 +32,7 @@
 		
 	});
 </script>
-<h3>답변하기</h3>
+<h3 style="text-align: left;">답변하기</h3>
 
 <form>
 	<input type="hidden" name="board_id" value="${reply.board_id }"/>
@@ -41,16 +41,16 @@
 	<input type="hidden" name="board_indent" value="${reply.board_indent }"/>
 	<input type="hidden" name="board_name" value="${reply.board_name }"/>
 	
-	<div class="form-group">
-		<label for="board_title">제목</label>
-		<input class="form-control" name="board_title" id="board_title" value="${reply.board_title }"/>
+	<div class="form-group label-floating" style="text-align: left;">
+		<label class="control-label">제목</label>
+		<input class="form-control" name="board_title" id="board_title" type="text" value="${reply.board_title } 의 답글입니다"/>
 	</div>
-	<div class="form-group">
-		<label for="board_content">내용</label>
+	<div class="form-group label-floating" style="text-align: left;">
+		<label class="control-label">내용</label>
 		<textarea class="form-control" name="board_content" id="board_content" rows="15">${reply.board_content }</textarea>
 	</div>
 	<div class="form-group" style="text-align: center;">
-		<input class="btn btn-primary" type="button" id="writeBtn" value="답변하기"/>
-		<input class="btn btn-primary" type="button" id="backBtn" value="취소"/>
+		<input class="btn btn-success" type="button" id="writeBtn" data-toggle="tooltip" data-placement="top" title="답글달기" value="확인"/>
+		<input class="btn btn-default" type="button" id="backBtn" data-toggle="tooltip" data-placement="top" title="전글로" value="취소"/>
 	</div>
 </form>

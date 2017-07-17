@@ -26,23 +26,26 @@
 			$("form").attr("action", "${path}/board/updateProc.do");
 			$("form").submit();
 		});
+		$("#backBtn").click(function(){
+			history.go(-1);
+		});
 	});
 </script>
-<h3>게시글 수정</h3>
+<h3 style="text-align: left;">수정하기</h3>
 
 <form method="post">
-	<div class="form-group">
-		<label for="board_title">제목</label>
-		<input class="form-control" name="board_title" id="board_title" value="${upt.board_title}" placeholder="제목을 입력해주세요">
+	<div class="form-group label-floating">
+		<label class="control-label">제목</label>
+		<input class="form-control" name="board_title" id="board_title" type="text" value="${upt.board_title}" >
 	</div>
-	<div class="form-group">
-		<label for="board_content">내용</label>
-		<textarea class="form-control" name="board_content" id="board_content" rows="4" placeholder="내용을 입력해주세요">${upt.board_content}</textarea>
+	<div class="form-group label-floating">
+		<label class="control-label">내용</label>
+		<textarea class="form-control" name="board_content" id="board_content" rows="10" >${upt.board_content}</textarea>
 	</div>
 	<div class="form-group" style="text-align: center;">
 		<%-- 게시물번호를 hidden으로 처리 --%>
 		<input type="hidden" name="board_id" value="${upt.board_id}">
-		<button class="btn btn-primary" type="button" id="saveBtn">수정완료</button>
-		<button class="btn btn-primary" type="reset">다시작성</button>
+		<button class="btn btn-success" type="button" id="saveBtn" data-toggle="tooltip" data-placement="top" title="수정하기">확인</button>
+		<input class="btn btn-default" type="button" id="backBtn" data-toggle="tooltip" data-placement="top" title="전글로" value="취소"/>
 	</div>
 </form>
