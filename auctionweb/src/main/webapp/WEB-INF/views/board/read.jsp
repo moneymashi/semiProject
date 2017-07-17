@@ -34,31 +34,31 @@
 <form method="post">
 	<div class="panel panel-default">
 		<div class="panel-heading">			
-			<div class="panel-title">제목 : ${read.board_title}</div>
+			<div class="panel-title text-left "><h4> ${read.board_title}</h4></div>
 		</div>
 		<div class="panel-body">
-			<div class="pull-right">
-				이름: ${read.board_name } |
+			<div class="text-right">
+				| 작성자: ${read.board_name } |
 				작성일자: <fmt:formatDate value="${read.board_date}" pattern="yyyy-MM-dd a HH:mm" /> |
 				조회수 : ${read.board_hit} |
-			</div><br><hr>
-			<div class="form-group">
-				${read.board_content}
+			</div><hr>
+			<div class="text-left" style="min-height: 150px">
+				<h5>${read.board_content}</h5>
 			</div>
 		</div>
 		
 	</div>
 	<div class="form-group" style="text-align: right;">
 		<input type="hidden" name="board_id" value="${read.board_id}">
-		<input class="btn btn-primary" type="button" id="listBtn" value="목록"/>
+		<input class="btn btn-info" type="button" id="listBtn" value="목록"/>
 		<%-- 유저 id와 글쓴 id가 같을 경우 수정, 삭제 가능--%>
 		<c:if test="${sessionScope.id == read.board_writer_id }">
-			<button class="btn btn-primary" type="button" id="uptBtn">수정</button>
-			<button class="btn btn-primary" type="button" id="delBtn">삭제</button>			
+			<button class="btn btn-info" type="button" id="uptBtn">수정</button>
+			<button class="btn btn-default" type="button" id="delBtn">삭제</button>			
 		</c:if>
 		<%-- 유저id와 판매자 id가 같을 경우 답글 작성 가능 --%>
 		<c:if test="${sessionScope.id==sessionScope.auctioneer_id}">
-			<input class="btn btn-primary" type="button" id="replyBtn" value="답변하기"/>
+			<input class="btn btn-success" type="button" id="replyBtn" value="답변하기"/>
 		</c:if>
 	</div>
 </form>

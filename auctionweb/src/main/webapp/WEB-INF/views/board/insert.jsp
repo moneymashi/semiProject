@@ -36,21 +36,21 @@
 		});
 	});
 </script>
-<h3>문의하기</h3>
+<h3 style="text-align: left;">문의하기</h3>
 
 <form method="post" action="${path }/board/insertProc.do">
-	<div class="form-group">
+	<div class="form-group label-floating " style="text-align: left;">
 		<%-- Subject field --%>
-		<label for="board_title">제목</label>
-		<input class="form-control" id="board_title" name="board_title" type="text" placeholder="제목을 입력하세요."/>
+		<label class="control-label" >제목</label>
+		<input class="form-control" id="board_title" name="board_title" type="text" />
 	</div>
-	<div class="form-group">
+	<div class="form-group label-floating" style="text-align: left;">
 		<%-- Message field --%>
-		<label for="board_content">내용</label>
-		<textarea class="form-control" cols="40" id="board_content" name="board_content" rows="10" placeholder="내용을 입력하세요."></textarea>
+		<label class="control-label" >내용</label>
+		<textarea class="form-control" id="board_content" name="board_content" rows="10"></textarea>
 	</div>
-	<div class="form-group" style="text-align: right;">
-		<button class="btn btn-primary " id="regBtn" type="button">확인</button>
-		<button class="btn btn-primary " id="listBtn" type="button">취소</button>
+	<div class="form-group" style="text-align: center;">
+		<button class="btn btn-success " id="regBtn" type="button" data-toggle="tooltip" data-placement="top" title="글쓰기">확인</button>
+		<button class="btn btn-default " id="listBtn" type="button" data-toggle="tooltip" data-placement="top" title="목록으로">취소</button>
 	</div>
 </form>
