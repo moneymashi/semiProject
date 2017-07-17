@@ -7,10 +7,11 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String path = request.getContextPath();
-	//메인 수정: 0711 - top list화.
 %>
 <html>
 <c:import url="./structure/head.jsp" />
+
+
 <body class="index-page">
 	<c:import url="./structure/header.jsp" />
 	<div class="wrapper">
@@ -109,7 +110,7 @@
 							<div class="middle " >
 								<div class="panel panel-default">
 									<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestHit.auction_id }" />' style="height: 370px;">
-										<img src="${highestHit.picture_location  }"
+										<img src="${path }/resources/upload/${highestHit.picture_location  }"
 										alt="pic" style="width: auto; height: 100%; max-height: 300px; background: cover;" />
 										<div class="caption">
 											<p>${highestHit.item_name }</p>
@@ -141,7 +142,7 @@
 							<div class="middle " >
 								<div class="panel panel-default">
 									<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${highestBid.auction_id }" />' style="height: 370px;">
-										<img src="${highestBid.picture_location  }"
+										<img src="${path }/resources/upload/${highestBid.picture_location  }"
 										alt="pic" style="width: auto; height: 100%; max-height: 300px; background: cover;" />
 										<div class="caption">
 											<p>${highestBid.item_name }</p>
@@ -171,7 +172,7 @@
 							<div class="middle " >
 								<div class="panel panel-default">
 									<a class="thumbnail" href='${path }/board/list.do?auction_id=<c:out value = "${randomOne.auction_id }" />' style="height: 370px;">
-										<img src="${randomOne.picture_location  }"
+										<img src="${path }/resources/upload/${randomOne.picture_location  }"
 										alt="pic" style="width: auto; height: 100%; max-height: 300px; background: cover;" />
 										<div class="caption">
 											<p>${randomOne.item_name }</p>

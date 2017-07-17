@@ -110,6 +110,10 @@ public class ItemService {
 		ins.setPicture_location(filename);
 		dao.itemInsert(ins);
 	}
+	// ajax
+		public ArrayList<Item> preSearchLists(Item_Sch sch){
+			return dao.preSearchLists(sch);
+		}
 /*
 	public void copy(File temp, File target) throws IOException{
 		FileInputStream in = new FileInputStream(temp);

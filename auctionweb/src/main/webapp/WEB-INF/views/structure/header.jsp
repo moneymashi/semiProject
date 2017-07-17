@@ -8,6 +8,41 @@
 	request.setCharacterEncoding("UTF-8");
 	String path = request.getContextPath();
 %>
+
+<html>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('input[name =schAll]').keyup(function(){
+			var schAll = $(this).val();
+			$.ajax({
+				url : "${path}/preSearch.do",
+				data : "schAll=" +schAll,
+				dataType : "json",
+				type : "post",
+				success: function(data) {
+					alert("성공:"+data.preSearchLists);
+					for(item in data.preSearchLists){
+						console.log(item);
+					}
+					
+					
+				},
+				error:function(request,status,error){
+					alert("code:"+request.status+"\n"+"error:"+error);
+				}
+			}); 
+		})
+	});
+	// Jul17, 21:00
+	// JB 작업중. 데이터 끌어들이기까지가능. autocomplet이 아직 미완.
+	
+
+
+</script>
+</html>
+
+
 <!-- Navbar -->
 <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
 	<!-- <div class="container-fluid"> -->
@@ -82,6 +117,23 @@
         			</ul>
         		</li>
     		</ul>
+    		<ul class="nav navbar-nav navbar-left">
+	            <li class="dropdown">
+	               <a href="#" class=" dropdown-toggle " role="button" data-toggle="dropdown">
+	                    <i class="material-icons">&#xE8B6;</i>Search
+	                 </a>
+	               <ul class="dropdown-menu">
+	                  <li style="width:300px;">
+	                     <form class="input-group input-group-lg" method="post" action="${path }/search.do">
+	                        <input type="text" class="search-query form-control" name="schAll" placeholder="Search" value="${itemSch.schAll }" />
+	                        <div class="input-group-btn">
+	                           <button class="btn btn-default" type="submit"><i class="material-icons">&#xE8B6;</i></button>
+	                        </div>
+	                     </form>
+	                  </li>
+	               </ul>
+	            </li>
+            </ul>
     		<ul class="nav navbar-nav navbar-right">
 	    		<c:choose>
 					<c:when test="${sessionScope.mem.user_id == null }">

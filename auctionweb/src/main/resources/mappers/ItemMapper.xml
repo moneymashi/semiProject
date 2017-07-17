@@ -70,13 +70,10 @@
 			'yyyy/mm/dd' ) and to_date( #{userEndDate} , 'yyyy/mm/dd' )
 		</if>
 		<if test="schAll != null and schAll != '' ">
-			AND ( lower(c2.category_name) LIKE lower('%'|| #{schAll}
-			||'%')
+			AND ( lower(c2.category_name) LIKE lower('%'|| #{schAll} ||'%')
 			or lower(c1.category_name) LIKE lower('%'|| #{schAll} ||'%')
-			or
-			lower(ai.item_name) LIKE lower('%'|| #{schAll} ||'%')
-			or
-			lower(ai.item_content) LIKE lower('%'|| #{schAll} ||'%') )
+			or lower(ai.item_name) LIKE lower('%'|| #{schAll} ||'%')
+			or lower(ai.item_content) LIKE lower('%'|| #{schAll} ||'%') )
 		</if>
 		<if test="aucStatus != 'allAuction' and aucStatus != 'outOfAuction'   ">
 			AND sysdate &lt;= end_date
@@ -116,21 +113,21 @@
 		SELECT * 
 		FROM (select * from auction_item 
 			ORDER BY current_bid_amount desc )
-		WHERE ROWNUM between 1 and 5
+		WHERE ROWNUM between 1 and 3
 	</select>
 	<!-- 최다 조회물품 : subquery로 max(조회)값을 추출. -->
 	<select id="highestHit" resultMap="itemResult">
 		SELECT * 
 		FROM (select * from auction_item 
 			ORDER BY auction_hit desc )
-		WHERE ROWNUM between 1 and 5
+		WHERE ROWNUM between 1 and 3
 	</select>
 	<!-- 랜덤 물품 조회 : 랜덤함수 -->
 	<select id="randomOne" resultMap="itemResult">
 		SELECT * 
 		FROM (select * from auction_item 
 			ORDER BY auction_id desc )
-		WHERE ROWNUM between 1 and 5
+		WHERE ROWNUM between 1 and 3
 	</select>
 
 	<!-- 검색결과 전체 물품수 카운트. 내용물은 searchLists와 동일. -->
@@ -203,7 +200,18 @@
 		</if>
 		) aiall )
 	</select>
+	
+	<select id="preSearchLists" resultMap="itemResult" parameterType="itemSch">
+		SELECT ai.item_name, c2.category_name parentName, c1.category_name childName 
+		FROM auction_item ai
+		LEFT OUTER JOIN category c1 ON ai.category_id = c1.category_id
+		INNER JOIN category c2 ON c1.parent_category_id = c2.category_id
+		WHERE 1=1
+		AND ( lower(c2.category_name) LIKE lower('%'|| #{schAll} ||'%')
+			or lower(c1.category_name) LIKE lower('%'|| #{schAll} ||'%')
+			or lower(ai.item_name) LIKE lower('%'|| #{schAll} ||'%') )
 
+	</select>
 
 </mapper>
 	

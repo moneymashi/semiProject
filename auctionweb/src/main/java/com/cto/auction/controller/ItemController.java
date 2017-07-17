@@ -1,6 +1,7 @@
 package com.cto.auction.controller;
 
-import java.io.IOException; 
+import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -79,7 +83,27 @@ public class ItemController {
 
 		return "main/search";
 	}
-
+	@ResponseBody
+	@RequestMapping(value = "preSearch.do", method = RequestMethod.POST)
+	public HashMap<String, Object> preSearch(
+			@RequestParam("schAll") String schAll,
+			Item_Sch sch
+			) throws Exception {
+		sch.setSchAll(schAll);
+		HashMap<String, Object> hashmap = new HashMap<String, Object>();
+		try{
+			hashmap.put("preSearchLists", service.preSearchLists(sch));
+			System.out.println("############service.size()     "+service.preSearchLists(sch).size() );
+			for(Item item : service.preSearchLists(sch)){
+				System.out.println("############ item Name : " + item.getItem_name() );
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return hashmap;
+	}
+	
 	/* whyNot Start */
 	
 	@RequestMapping("auctioneerPage/itemInsert.do")

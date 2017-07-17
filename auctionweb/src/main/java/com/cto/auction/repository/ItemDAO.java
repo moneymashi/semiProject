@@ -21,6 +21,8 @@ public interface ItemDAO {
 	public ArrayList<Item> highestHit();
 	// 랜덤물품 조회
 	public ArrayList<Item> randomOne();
+	// ajax
+	public ArrayList<Item> preSearchLists(Item_Sch sch);
 	// 페이징 처리에 필요.
 	public int totCnt(Item_Sch sch);
 	
