@@ -40,7 +40,7 @@ public class UserController {
 	// 로그인 접속
 	@RequestMapping("login/login.do")
 	public String login() {
-		return "login/login";
+		return "login/login_old";
 	}
 
 	// 로그인 체크
@@ -216,14 +216,6 @@ public class UserController {
 		}
 		return mav;
 	}
-
-	
-	
-	
-	
-	
-	
-	
 	// 배송화면 아무런 로직 구현 안됨.
 	@RequestMapping("myPage/delivery.do")
 	public ModelAndView myPageDelivery(ModelAndView mav) {
@@ -231,11 +223,6 @@ public class UserController {
 		mav.addObject("pageName", "myPage/delivery");
 		return mav;
 	}
-
-	
-	
-	
-	
 	// 재현
 	// 낙찰 작업: 서비스들은 임시 데이터 부르기.
 	@RequestMapping("myPage/payTheWin.do")
@@ -263,5 +250,20 @@ public class UserController {
 		service.memProc(userUpt);
 		return "redirect:/myPage/auctionInfo.do";
 	}
+	
+	@RequestMapping("myPage/refillPoints.do")
+	public ModelAndView refillPoints(
+			@ModelAttribute("userSch") User userSch, @ModelAttribute("item02") Item item02,
+			Payment info, HttpSession session, ModelAndView mav) {
+		userSch.setUser_id((int) session.getAttribute("id"));
+		item02.setCurrent_bidder_id((int) session.getAttribute("id"));
+		mav.setViewName("menu/menu");
+		mav.addObject("pageName", "myPage/refillPoints");
+		mav.addObject("payInfo", service.myPageUserPayment(info, session));
+		mav.addObject("mem", service.mem(userSch));
+		mav.addObject("winpay1", service.winpay1(item02));
+		return mav;
+	}
+	
 	
 }

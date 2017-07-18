@@ -207,9 +207,9 @@
 		LEFT OUTER JOIN category c1 ON ai.category_id = c1.category_id
 		INNER JOIN category c2 ON c1.parent_category_id = c2.category_id
 		WHERE 1=1
-		AND ( lower(c2.category_name) LIKE lower('%'|| #{schAll} ||'%')
-			or lower(c1.category_name) LIKE lower('%'|| #{schAll} ||'%')
-			or lower(ai.item_name) LIKE lower('%'|| #{schAll} ||'%') )
+		AND ( lower(c2.category_name) LIKE lower(#{schAll} ||'%')
+			or lower(c1.category_name) LIKE lower(#{schAll} ||'%')
+			or lower(ai.item_name) LIKE lower(#{schAll} ||'%') )
 
 	</select>
 

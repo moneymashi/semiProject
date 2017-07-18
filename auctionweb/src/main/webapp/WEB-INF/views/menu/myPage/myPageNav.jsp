@@ -22,6 +22,10 @@
   <li class="list-group-item">
   	<a href="${path }/myPage/userPayment.do">신용카드</a>
   </li>
+  <!-- 포인트 충전 -->
+  <li class="list-group-item">
+  	<a href="${path }/myPage/refillPoints.do">입찰포인트 충전</a>
+  </li>
   <li class="list-group-item">
   	<a href="${path }/myPage/userInfo.do">회원개인정보</a>
   </li>

@@ -21,12 +21,13 @@
 				dataType : "json",
 				type : "post",
 				success: function(data) {
-					alert("성공:"+data.preSearchLists);
-					for(item in data.preSearchLists){
-						console.log(item);
+					//alert("성공:"+data.preSearchLists);
+					for(prop in data.preSearchLists){
+						console.log("p: "+data.preSearchLists[prop].parentName + " c: " +data.preSearchLists[prop].childName +" n: "+data.preSearchLists[prop].item_name);
+						$(this).html("<div>" +data.preSearchLists[prop].parentName  + "</div>");
+						$(this).html("<div>" +data.preSearchLists[prop].childName  + "</div>");
+						$(this).html("<div>" +data.preSearchLists[prop].item_name  + "</div>");
 					}
-					
-					
 				},
 				error:function(request,status,error){
 					alert("code:"+request.status+"\n"+"error:"+error);
@@ -34,8 +35,8 @@
 			}); 
 		})
 	});
-	// Jul17, 21:00
-	// JB 작업중. 데이터 끌어들이기까지가능. autocomplet이 아직 미완.
+	// Jul19, 01:00
+	// JB 작업중. 데이터 끌어들이기까지가능..
 	
 
 

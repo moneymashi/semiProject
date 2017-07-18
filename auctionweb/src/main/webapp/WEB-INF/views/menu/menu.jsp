@@ -31,7 +31,7 @@
 							<c:import url="notice/qna.jsp" />
 						</c:if>
 
-						<!-- myPage메뉴 입찰정보/쪽지함/낙찰배송/주소지/신용카드/회원정보 순서-->
+						<!-- myPage메뉴 입찰정보/쪽지함/낙찰배송/주소지/신용카드/포인트충전/회원정보 순서-->
 						<c:if test="${pageName == 'myPage/auctionInfo' }">
 							<c:import url="myPage/auctionInfo.jsp" />
 						</c:if>
@@ -46,6 +46,10 @@
 						</c:if>
 						<c:if test="${pageName == 'myPage/userPayment' }">
 							<c:import url="myPage/userPayment.jsp" />
+						</c:if>
+						<!-- 포인트 충전 -->
+						<c:if test="${pageName == 'myPage/refillPoints' }">
+							<c:import url="myPage/refillPoints.jsp" />
 						</c:if>
 						<c:if test="${pageName == 'myPage/userInfo' }">
 							<c:import url="myPage/userInfo.jsp" />
