@@ -53,8 +53,8 @@
 			  </div>
 			</div>
 			<div class="form-group">
-			      <label >현재 포인트: </label>
-			      <input type="text" class="form-control" name="user_point_now" value="${mem.user_point }" disabled>
+			      <label >현재 포인트: ${mem.user_point } </label>
+			      <%-- <input type="text" class="form-control" name="user_point_before" value="${mem.user_point }" disabled />  --%>
 			</div>
 			<div class="form-group">
 			      <label >충전 포인트: </label>
@@ -71,11 +71,12 @@
 			</div>
 			<div class="form-group">
 			      <label >입금처리 후 잔여포인트: </label>
-			      <input type="text" class="form-control" name="user_point" value = "${mem.user_point + param.refillPoints }" disabled >
+			      <input type="text" class="form-control" name="user_point_after" value="${ mem.user_point  }" disabled/> 
+			      <input type="hidden"  name="user_point" value="${ mem.user_point + param.refillPoints }" /> 
 			</div>
-			<div> 주의사항 : <br /> 
+			<div> 주의사항 : 
 				<a href="http://t.bestizdiet.net/ab-4154292-26&PB_1365066159=3&OTSKIN=layout_ptr.php&SI_F_serial_num=asc">
-					주의사항 전문보기 </a>
+					<전문보기> </a>
 				<div class="checkbox">
 					<label><input type="checkbox" name="checkWarning">위 주의사항을 읽고 숙지했으며 위 사안들에 대해 동의합니다.</label>
 				</div>
@@ -83,7 +84,7 @@
 			
 			<input type="hidden" name="user_id" value="${ mem.user_id }" />
 			<div>
-				충전 확인 :<input type="password" name="password" value = "" placeholder = "결제확인을 위해 비밀번호를 입력해 주세요." />
+				충전 확인(비밀번호) :<input type="password" name="password" />
 			</div>
 			
 			<br>
@@ -100,7 +101,38 @@
 	
 	</div>
 	<div class="col-sm-2"></div>
-
+			<%-- <div class="form-group">
+			      <label >입금처리 후 잔여포인트: </label>
+			      <input type="text" class="form-control" name="user_point" value = "" disabled >
+			</div>
+			<div> 주의사항 : <br /> 
+				<a href="http://t.bestizdiet.net/ab-4154292-26&PB_1365066159=3&OTSKIN=layout_ptr.php&SI_F_serial_num=asc">
+					주의사항 전문보기 </a>
+				<div class="checkbox">
+					<label><input type="checkbox" name="checkWarning">위 주의사항을 읽고 숙지했으며 위 사안들에 대해 동의합니다.</label>
+				</div>
+			</div>
+			
+			<input type="hidden" name="user_id" value="${ mem.user_id }" />
+			<div>
+				충전 확인 :<input type="password" name="password" value = "" placeholder = "비밀번호를 입력해 주세요." />
+			</div>
+			
+			<br>
+			<div class="form-group">
+			<input type="button" class="btn btn-primary" id="checkAllPaying" value="계약서 작성완료" />
+			</div>
+			<div class="form-group">
+			<button type="reset" class="btn btn-primary">다시작성하기</button>
+			</div>
+				
+		</form>
+	</c:otherwise>
+	</c:choose>
+	
+	</div>
+	<div class="col-sm-2"></div>
+ --%>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 	
 		<%--
@@ -127,12 +159,15 @@
 </body>
 <c:import url="../../structure/tail.jsp" /> --%>
 <script type="text/javascript">
-
+	console.log('test 9.7');
+	
+	//$("input[name =user_point]").attr("disabled", true);
+	
 	$(document).ready(function() {
 		$('select[name = refillPoints]').change(function(){
 			var userPoints = parseInt("${ mem.user_point }") + parseInt($(this).val());
 			//alert("userPoints   " +  userPoints);
-			$('input[name = user_point_now]').val("${ mem.user_point }");
+			$('input[name = user_point_after]').val(userPoints);
 			$('input[name = user_point]').val(userPoints);
 		});
 	
