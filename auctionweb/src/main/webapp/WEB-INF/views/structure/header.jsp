@@ -10,11 +10,21 @@
 %>
 
 <html>
+
+<style type="text/css">
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; color: black; }
+.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; font-size:22px}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #3399FF; }
+</style>
+
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('input[name =schAll]').keyup(function(){
+		console.log('test 10.7 ')
+		$('input[name = schAll]').keyup(function(){
 			var schAll = $(this).val();
+			$('#w-input-box').nextAll().remove();
 			$.ajax({
 				url : "${path}/preSearch.do",
 				data : "schAll=" +schAll,
@@ -23,14 +33,17 @@
 				success: function(data) {
 					//alert("성공:"+data.preSearchLists);
 					for(prop in data.preSearchLists){
-						console.log("p: "+data.preSearchLists[prop].parentName + " c: " +data.preSearchLists[prop].childName +" n: "+data.preSearchLists[prop].item_name);
-						$(this).html("<div>" +data.preSearchLists[prop].parentName  + "</div>");
-						$(this).html("<div>" +data.preSearchLists[prop].childName  + "</div>");
-						$(this).html("<div>" +data.preSearchLists[prop].item_name  + "</div>");
+						var item = data.preSearchLists[prop]
+						console.log("p: "+item.parentName + " c: " +item.childName +" n: "+item.item_name);
+						$('#w-input-box').after("<div class='autocomplete-suggestions' selected>" 
+								+ '<a href="${path }/search.do?schParentDept='+ item.parentName + '">'+ item.parentName +'</a>'
+								+ ' > <a href="${path }/search.do?schParentDept='+item.parentName+'&schDept='+item.childName+'">'+item.childName+'</a>'  
+								+ ' > <a href="${path }/board/list.do?auction_id='+item.auction_id+'">'+item.item_name.split(' ').slice(0,4).join(' ') +'</a>'
+								+ "</div>");
 					}
 				},
 				error:function(request,status,error){
-					alert("code:"+request.status+"\n"+"error:"+error);
+					console.log("code:"+request.status+"\n"+"error:"+error);
 				}
 			}); 
 		})
@@ -124,11 +137,11 @@
 	                    <i class="material-icons">&#xE8B6;</i>Search
 	                 </a>
 	               <ul class="dropdown-menu">
-	                  <li style="width:300px;">
-	                     <form class="input-group input-group-lg" method="post" action="${path }/search.do">
+	                  <li style="width:300px;" id="w-input-box" >
+	                     <form class="input-group input-group-lg" method="get" action="${path }/search.do">
 	                        <input type="text" class="search-query form-control" name="schAll" placeholder="Search" value="${itemSch.schAll }" />
 	                        <div class="input-group-btn">
-	                           <button class="btn btn-default" type="submit"><i class="material-icons">&#xE8B6;</i></button>
+	                           <button class="btn btn-default" id="w-button-search" type="submit"><i class="material-icons">&#xE8B6;</i></button>
 	                        </div>
 	                     </form>
 	                  </li>

@@ -151,6 +151,16 @@
 							</span>
 						</div>
 						
+						<%-- **처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--%>
+		              <c:if test="${itemSch.curPage > 1}">
+		                 <a href="javascript:go('1')" data-toggle="tooltip" data-placement="top" title="처음">
+		                  	<i class="material-icons">first_page</i></a>
+		                 
+		              </c:if>
+						<%-- **이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --%>
+		              <c:if test="${itemSch.curPage > 1}">
+		                 <a href="javascript:go('${itemSch.curPage -1}')"><i class="material-icons">chevron_left</i></a>
+		              </c:if>
 						<%-- 검색결과에따라 pageCount수 만큼 페이지번호 부여. --%>
 						<c:forEach var="cnt" begin="1" end="${itemSch.pageCount}">
 							<a style="text-decoration: none" href='javascript:go(${cnt})'> <c:choose>
@@ -163,6 +173,16 @@
 								</c:choose>
 							</a>
 						</c:forEach>
+						<%-- **다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작으면 [다음]하이퍼링크를 화면에 출력 --%>
+		              <c:if test="${itemSch.curPage < itemSch.pageCount}">
+		                  <a href="javascript:go('${itemSch.curPage + 1}')"><i class="material-icons">chevron_right</i></a>
+		              </c:if>
+						<%-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작으면 [끝]하이퍼링크를 화면에 출력 --%>
+		              <c:if test="${itemSch.curPage < itemSch.pageCount}">
+		                  <a href="javascript:go('${itemSch.pageCount}')" data-toggle="tooltip" data-placement="top" title="끝">
+		                  	<i class="material-icons">last_page</i></a>
+		                  
+		              </c:if>
 					</div>
 				</div>
 			</div>

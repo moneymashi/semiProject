@@ -202,7 +202,7 @@
 	</select>
 	
 	<select id="preSearchLists" resultMap="itemResult" parameterType="itemSch">
-		SELECT ai.item_name, c2.category_name parentName, c1.category_name childName 
+		SELECT ai.item_name, ai.auction_id, c2.category_name parentName, c1.category_name childName 
 		FROM auction_item ai
 		LEFT OUTER JOIN category c1 ON ai.category_id = c1.category_id
 		INNER JOIN category c2 ON c1.parent_category_id = c2.category_id
@@ -210,6 +210,7 @@
 		AND ( lower(c2.category_name) LIKE lower(#{schAll} ||'%')
 			or lower(c1.category_name) LIKE lower(#{schAll} ||'%')
 			or lower(ai.item_name) LIKE lower(#{schAll} ||'%') )
+		AND sysdate &lt;= end_date
 
 	</select>
 
