@@ -138,51 +138,54 @@
 					</div>
 					<div class="row">
 						<%-- 페이징 처리 - 페이지당 물품수(pageSize) --%>
-						<div>
-							페이지당 아이템수: <span>
-								<form method="post" id="pageSize">
-									<select name="pageSize">
-										<option value="3">3</option>
-										<option value="6" selected>6</option>
-										<option value="9">9</option>
-										<option value="12">12</option>
-									</select> <input type="hidden" name="curPage" value="1" />
-								</form>
-							</span>
-						</div>
-						
+						<form class="form-inline" method="post" id="pageSize">
+							<div class="form-group">페이지당 아이템수:
+								<select class="form-control " name="pageSize">
+									<option value="3">3</option>
+									<option value="6" selected>6</option>
+									<option value="9">9</option>
+									<option value="12">12</option>
+								</select> <input type="hidden" name="curPage" value="1" />
+							</div>
+						</form>
 						<%-- **처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--%>
-		              <c:if test="${itemSch.curPage > 1}">
-		                 <a href="javascript:go('1')" data-toggle="tooltip" data-placement="top" title="처음">
-		                  	<i class="material-icons">first_page</i></a>
-		                 
-		              </c:if>
-						<%-- **이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --%>
-		              <c:if test="${itemSch.curPage > 1}">
-		                 <a href="javascript:go('${itemSch.curPage -1}')"><i class="material-icons">chevron_left</i></a>
-		              </c:if>
-						<%-- 검색결과에따라 pageCount수 만큼 페이지번호 부여. --%>
-						<c:forEach var="cnt" begin="1" end="${itemSch.pageCount}">
-							<a style="text-decoration: none" href='javascript:go(${cnt})'> <c:choose>
+					
+						<ul class="pagination pagination-info">
+							<c:if test="${itemSch.curPage > 1}">
+								<li><a href="javascript:go('1')" data-toggle="tooltip" data-placement="top" title="처음">
+									<i class="material-icons">first_page</i></a>
+								</li>
+							</c:if>
+							<%-- **이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --%>
+							<c:if test="${itemSch.curPage > 1}">
+								<li><a href="javascript:go('${itemSch.curPage -1}')">
+									<i class="material-icons">chevron_left</i></a>
+								</li>
+							</c:if>
+							<%-- 검색결과에따라 pageCount수 만큼 페이지번호 부여. --%>
+							<c:forEach var="cnt" begin="1" end="${itemSch.pageCount}">
+								<c:choose>
 									<c:when test="${cnt==itemSch.curPage}">
-										<b style="font-size: 17pt;">[${cnt}]</b>
+										<li class="active"><span>[${cnt}]</span></li>
 									</c:when>
 									<c:otherwise>
-										<b style="font-size: 13pt; color: black;">[${cnt}]</b>
+										 <li><a href='javascript:go(${cnt})'>[${cnt}]</a></li>
 									</c:otherwise>
 								</c:choose>
-							</a>
-						</c:forEach>
-						<%-- **다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작으면 [다음]하이퍼링크를 화면에 출력 --%>
-		              <c:if test="${itemSch.curPage < itemSch.pageCount}">
-		                  <a href="javascript:go('${itemSch.curPage + 1}')"><i class="material-icons">chevron_right</i></a>
-		              </c:if>
-						<%-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작으면 [끝]하이퍼링크를 화면에 출력 --%>
-		              <c:if test="${itemSch.curPage < itemSch.pageCount}">
-		                  <a href="javascript:go('${itemSch.pageCount}')" data-toggle="tooltip" data-placement="top" title="끝">
-		                  	<i class="material-icons">last_page</i></a>
-		                  
-		              </c:if>
+							</c:forEach>
+							<%-- **다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작으면 [다음]하이퍼링크를 화면에 출력 --%>
+							<c:if test="${itemSch.curPage < itemSch.pageCount}">
+								<li><a href="javascript:go('${itemSch.curPage + 1}')">
+									<i class="material-icons">chevron_right</i></a>
+								</li>
+							</c:if>
+							<%-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작으면 [끝]하이퍼링크를 화면에 출력 --%>
+							<c:if test="${itemSch.curPage < itemSch.pageCount}">
+								<li><a href="javascript:go('${itemSch.pageCount}')" data-toggle="tooltip" data-placement="top" title="끝">
+									<i class="material-icons">last_page</i></a>
+								</li>
+							</c:if>
+						</ul>
 					</div>
 				</div>
 			</div>
