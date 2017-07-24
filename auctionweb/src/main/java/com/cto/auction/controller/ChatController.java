@@ -10,6 +10,14 @@ public class ChatController {
 		return "chatws";
 	}
 	
+	/*
+	 * java 1.8이상 사용가능.
+	 * 방법: muz_final 오른클릭 > property > project facet > java version 1.8로 수정.
+	 * 
+	 * 
+	 * 
+	 */
+	
 	
 }
 
