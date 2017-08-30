@@ -14,13 +14,13 @@ public class CalendarController {
 	
 	@Autowired(required=false)
 	private CalendarService service;
-	// http://localhost:6080/springweb/calendar.do?method=init
+	// http://localhost:6380/auction/calendar.do?method=init
 	@RequestMapping(params="method=init")
 	public String start(){	
 //		return "/i02_calen_jsp/a01_calendar";
 		return "/menu/a02_calTest";
 	}
-	// ajax..
+	// http://localhost:6380/auction/calendar.do?method=list
 	@RequestMapping(params="method=list")
 	public ModelAndView ajaxlist(){
 		ModelAndView mav = new ModelAndView();
@@ -31,5 +31,9 @@ public class CalendarController {
 			System.out.println("########## title()" + item.getTitle() );
 		}
 		return mav;
+	}
+	@RequestMapping(params="method=example")
+	public String myCalendar(){
+		return "/menu/myCalendar";
 	}
 }

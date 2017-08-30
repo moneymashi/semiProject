@@ -50,98 +50,126 @@
 			 format = (second < 10) ? format.replace("ss", "0" + second) : format.replace("ss", second);
 			 return format;
 		}		
-			var dteinfo;
-			$(document).ready(function(){
-				 $.ajax({
-					type:"post",
-					url:"${path}/calendar.do?method=list",
-					dataType:"json",
-					success:function( data ){
-						$.each(data.list, function(idx) {
-							item= data.list[idx]; 
+		var dteinfo;
+		$(document).ready(function(){
+			$.ajax({
+				//type:"post",
+				url:"calendar.do?method=list",
+				dataType:"json",
+				success:function( data ){
+					console.log('tester 9.1')
+					var lists = data.list;
+					$.each(lists, function(col) {
+						/* events.push({
+		                	title : $(this).attr('title'),
+		                	start_date :   $(this).attr('start_date'),
+		                	end_date : $(this).attr('end_date'),
+		                	url : $(this).attr('url')
+						}); */
+		            console.log(lists[col].title);
+						//dteinfo= lists[col];
+						//loadView(dteinfo);
+					$('#calendar').fullCalendar({
+						theme: true,  // 테마적용.
+						header: {
+							left: 'prev,next today',
+							center: 'title',
+							right: 'month,agendaWeek,agendaDay,listMonth'
+						},
+						defaultDate: new Date(),
+						navLinks: true, // can click day/week names to navigate views
+						eventLimit: true, // allow "more" link when too many events
+						// id, title, start, end, url
+						events: dteinfo
+					});  // fullcalendar END
+						
 							
-							console.log(item) 
-							loadView(item);
-						})
-					}
-				}); 
-				
-				/*  $('#calendar').fullCalendar({
-					theme: true,  // 테마적용.
-					header: {
-						left: 'prev,next today',
-						center: 'title',
-						right: 'month,agendaWeek,agendaDay,listMonth'
-					},
-					defaultDate: new Date(),
-					navLinks: true, // can click day/week names to navigate views
-					editable: false,
-					eventLimit: true, // allow "more" link when too many events
-					events: [
-						{
-							title: 'All Day Event',
-							start: '2017-07-01'
-						},
-						{
-							title: 'Long Event',
-							start: '2017-07-07',
-							end: '2017-07-10'
-						},
-						{
-							title: 'Business Lunch',
-							start: '2017-07-03T13:00:00',
-							constraint: 'businessHours'
-						},
-						{
-							title: 'Meeting',
-							start: '2017-07-13T11:00:00',
-							constraint: 'availableForMeeting', // defined below
-							color: '#257e4a'
-						},
-						{
-							title: 'Conference',
-							start: '2017-07-18',
-							end: '2017-07-20'
-						},
-						{
-							title: 'Party',
-							start: '2017-07-29T20:00:00'
-						},
-
-						// areas where "Meeting" must be dropped
-						{
-							id: 'availableForMeeting',
-							start: '2017-07-11T10:00:00',
-							end: '2017-07-11T16:00:00',
-							rendering: 'background'
-						},
-						{
-							id: 'availableForMeeting',
-							start: '2017-07-13T10:00:00',
-							end: '2017-07-13T16:00:00',
-							rendering: 'background'
-						},
-
-						// red areas where no events can be dropped
-						{
-							start: '2017-07-24',
-							end: '2017-07-28',
-							overlap: false,
-							rendering: 'background',
-							color: '#ff9f89'
-						},
-						{
-							start: '2017-07-06',
-							end: '2017-07-08',
-							overlap: false,
-							rendering: 'background',
-							color: '#ff9f89'
-						}
-					]
-				});  */
-				
+					});  // $.each DONE
+				},error: function(e) 
+	            {
+	                console.log("error" + e);
+	                for(i in e){
+	                	console.log('?? ' + e[i])
+	                }
+	            }
 			});
-			function loadView(item){
+		});
+			
+			 /*  $('#calendar').fullCalendar({
+				theme: true,  // 테마적용.
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay,listMonth'
+				},
+				defaultDate: new Date(),
+				navLinks: true, // can click day/week names to navigate views
+				editable: false,
+				eventLimit: true, // allow "more" link when too many events
+				events: [
+					{
+						title: 'All Day Event',
+						start: '2017-07-01'
+					},
+					{
+						title: 'Long Event',
+						start: '2017-07-07',
+						end: '2017-07-10'
+					},
+					{
+						title: 'Business Lunch',
+						start: '2017-07-03T13:00:00',
+						constraint: 'businessHours'
+					},
+					{
+						title: 'Meeting',
+						start: '2017-07-13T11:00:00',
+						constraint: 'availableForMeeting', // defined below
+						color: '#257e4a'
+					},
+					{
+						title: 'Conference',
+						start: '2017-07-18',
+						end: '2017-07-20'
+					},
+					{
+						title: 'Party',
+						start: '2017-07-29T20:00:00'
+					},
+
+					// areas where "Meeting" must be dropped
+					{
+						id: 'availableForMeeting',
+						start: '2017-07-11T10:00:00',
+						end: '2017-07-11T16:00:00',
+						rendering: 'background'
+					},
+					{
+						id: 'availableForMeeting',
+						start: '2017-07-13T10:00:00',
+						end: '2017-07-13T16:00:00',
+						rendering: 'background'
+					},
+
+					// red areas where no events can be dropped
+					{
+						start: '2017-07-24',
+						end: '2017-07-28',
+						overlap: false,
+						rendering: 'background',
+						color: '#ff9f89'
+					},
+					{
+						start: '2017-07-06',
+						end: '2017-07-08',
+						overlap: false,
+						rendering: 'background',
+						color: '#ff9f89'
+					}
+				]
+			});  
+			 */
+			function loadView(dteinfo){
 				$('#calendar').fullCalendar({
 					theme: true,  // 테마적용.
 					header: {
@@ -153,13 +181,8 @@
 					navLinks: true, // can click day/week names to navigate views
 					eventLimit: true, // allow "more" link when too many events
 					// id, title, start, end, url
-					events: {
-						 	title: item.title,
-			                start_date : item.start_date,
-			                end_date : item.end_date,
-			                url : item.url
-					}
-						/* {
+					events: dteinfo
+						/*  {
 			             
 			            url: "${path}/calendar.do?method=list",
 			            error: function(e) 
@@ -189,10 +212,6 @@
 		                url : url01
 			                
 				        } // success END   
-				        
-				        
-				        
-				        
 				}  //events END				*/
 				
 				}); // fullCalendar END
